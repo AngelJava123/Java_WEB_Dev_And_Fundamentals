@@ -9,7 +9,7 @@ public class MyPanel extends JPanel {
 
     MyPanel() {
 
-        image = new ImageIcon("C:\\Users\\tasheva\\IdeaProjects\\Additional_Problems\\src\\com\\company\\istockphoto-186019678-612x612.jpg").getImage();
+        image = new ImageIcon("C:\Users\tasheva\IdeaProjects\Additional_Problems\src\com\company\GraphicsPackage\istockphoto-186019678-612x612.jpg").getImage();
         this.setPreferredSize(new Dimension(500, 500));
     }
 
