@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 public class CreateController {
@@ -33,7 +34,7 @@ public class CreateController {
     @PostMapping("/create")
     public String createCar(@Valid CreateCarDTO createCarDTO,
                              BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors() || !this.createService.create(createCarDTO)) {
             redirectAttributes.addFlashAttribute("createCarDTO", createCarDTO);
