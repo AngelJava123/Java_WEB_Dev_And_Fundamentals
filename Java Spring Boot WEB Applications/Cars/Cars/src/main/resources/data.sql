@@ -19,3 +19,65 @@ VALUES(1, "Welcome to autogenius.bg. These terms and conditions ('Agreement') ap
 "Any dispute arising out of or relating to this Agreement or your use of the Service shall be resolved by binding arbitration in accordance with the Commercial Arbitration Rules of the American Arbitration Association. The arbitration shall take place in Sofia, Bulgaria. Judgment on the award rendered by the arbitrator(s) may be entered in any court having jurisdiction thereof.",
 "This Agreement constitutes the entire agreement between you and autogenius.bg");
 
+INSERT INTO categories(id, category)
+VALUES(1, "Sedan"),
+      (2, "Hatchback"),
+      (3, "Coupe"),
+      (4, "SUV"),
+      (5, "Cabrio"),
+      (6, "Truck"),
+      (7, "VAN");
+
+INSERT INTO colors(id, paint)
+VALUES(1, "Black"),
+      (2, "White"),
+      (3, "Gray"),
+      (4, "Silver"),
+      (5, "Red"),
+      (6, "Blue"),
+      (7, "Green"),
+      (8, "Yellow"),
+      (9, "Orange"),
+      (10, "Purple"),
+      (11, "Pink"),
+      (12, "Brown"),
+      (13, "Beige"),
+      (14, "Gold"),
+      (15, "Bronze"),
+      (16, "Copper"),
+      (17, "Turquoise"),
+      (18, "Magenta"),
+      (19, "Olive"),
+      (20, "Teal");
+
+INSERT INTO gear_boxes(id, gear_box_type)
+VALUES(1, "Automatic"),
+      (2, "Manual"),
+      (3, "Semi-Automatic");
+
+INSERT INTO engines(id, cubic_capacity, engine_type, euro_standard, power)
+VALUES(1, "2000", "Gasoline", "EURO5", "170");
+
+INSERT INTO safeties(id, acc, abs, aeb, bsd, esc, fcw, ldw, rvc)
+VALUES(1, 1, 1, 1, 0, 1, 0, 0, 0);
+
+INSERT INTO exteriors(id, alloy_wheels, automatic_headlights, fog_lights, led_headlights, power_side_mirror_adjustment, rain_sensing_wipers, sunroof)
+VALUES(1, 0, 1, 1, 1, 1, 1, 1);
+
+INSERT INTO interiors(id, backup_camera, bluetooth, dual_climate_control, heated_seats, leather_seats, navigation_system, power_locks, power_windows, push_button_start, sunroof)
+VALUES(1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1);
+
+INSERT INTO protections(id, airbags, alarm_system, anti_theft_system, backup_camera, parking_sensors, remote_keyless_entry, tire_pressure_monitoring)
+VALUES(1, 1, 1, 1, 0, 1, 0, 1);
+
+INSERT INTO comforts(id, air_conditioning, cruise_control, heated_mirrors, heated_steering_wheel, power_steering, rear_defrost, remote_engine_start, remote_trunk_release, telescoping_steering_wheel, tilt_steering_wheel)
+VALUES(1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1);
+
+INSERT INTO others(id, adaptive_headlights, android_auto, apple_carplay, heated_rear_seats, multi_zone_climate_control, panoramic_sunroof, power_adjustable_pedals, power_tailgate, premium_sound_system, wireless_charging)
+VALUES(1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0);
+
+INSERT INTO cars(id, make, model, price, month, year, engine_id, category_id, gear_box_id, mileage, color_id, safety_id, exterior_id, interior_id, protection_id,  comfort_id, other_id, additional_information)
+VALUES(1, "Volkswagen", "Tiguan", "16400", "June", "2010", 1, 4, 2, "245000", 1, 1, 1, 1, 1, 1, 1, "New importation . . SWITZERLAND. . . 4x4. . . . Navigation. . . . Service book. . . Very good technical and visual condition. . . . Solid undercarriage - Preserved Interior - Motor and Box work perfectly. . . Very Strong and Practical Jeep. . . All systems and units are 100% functional. The car was bought directly from the owner, uniquely preserved. The car is sold with an invoice and a contract from the company, at any time convenient for you. I assist in the extraction of transit insurance numbers. ALL VEHICLES IN THE DEALERSHIP HAVE CATALYTIC DEVICES AVAILABLE. ! !");
+
+INSERT INTO car_image_paths(car_id, image_path)
+VALUES(1, "C:\\Users\\tasheva\\Desktop\\Cars\\Cars\\src\\main\\resources\\static\\assets\\uploads\\tiguan1.jpg");
