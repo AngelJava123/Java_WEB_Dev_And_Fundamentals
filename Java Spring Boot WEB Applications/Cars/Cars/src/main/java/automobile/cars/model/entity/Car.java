@@ -2,6 +2,7 @@ package automobile.cars.model.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,8 @@ public class Car {
     @Column(name = "additional_information", columnDefinition = "TEXT")
     private String additionalInformation;
 
+    @Column(name = "date_added")
+    private LocalDateTime dateAdded;
 
     public Car() {
     }
@@ -234,5 +237,13 @@ public class Car {
 
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }
