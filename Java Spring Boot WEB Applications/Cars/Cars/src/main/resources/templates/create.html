@@ -1131,7 +1131,7 @@
                                     </div>
                                 </form>
                                 <script>
-                                    function submitForm() {
+                                   function submitForm() {
                                      var makeSelect = document.getElementById("car-make");
                                      let selectedMake = makeSelect.options[makeSelect.selectedIndex].value;
                                      var modelSelect = document.getElementById("car-model");
@@ -1157,27 +1157,35 @@
                                      var additionalInformation = document.getElementById("additional-information").value;
                                      var terms = document.getElementById("acceptTerms").checked;
 
+
                                      // Check if all fields are populated
                                      if (selectedMake && selectedModel && !isNaN(price) && month && year && selectedEngineType
-                                     && !isNaN(enginePower) && euroStandard && !isNaN(cubicCapacity) && category && gearBoxType
-                                     && !isNaN(mileage) && color && additionalInformation && terms) {
-                                       // Submit the form programmatically
-                                       document.getElementById("create-form").submit();
+                                         && !isNaN(enginePower) && euroStandard && !isNaN(cubicCapacity) && category && gearBoxType
+                                         && !isNaN(mileage) && color && additionalInformation && terms) {
 
-                                       // Show success message
-                                       alert("Your offer has been submitted successfully!");
+                                     // Check if file is uploaded
 
-                                       // Clear form fields
-                                       document.getElementById("create-form").reset();
+                                     var fileInput = document.querySelector('input[type="file"]');
+                                      if (!fileInput || fileInput.files.length === 0) {
+                                        alert("Please upload at least one image.");
+                                      } else {
+                                        // Submit the form programmatically
+                                        document.getElementById("create-form").submit();
 
-                                       // Return to home page
-                                       // window.location.href = "/";
-                                     } else {
-                                       // Show error message
-                                       alert("Please fill in all fields with valid information and accept the terms before submitting.");
-                                     }
-                                   }
-                                </script>
+                                        // Show success message
+                                        alert("Your offer has been submitted successfully!");
+
+                                        // Clear form fields
+                                        document.getElementById("create-form").reset();
+
+                                      }
+                                    } else {
+                                      // Show error message
+                                      alert("Please fill in all fields with valid information and accept the terms before submitting.");
+                                    }
+                                  }
+
+                                </script> <!-- JS check (Empty Fields, Valid Number Fields), Alerts, Form Submission -->
 
 
                             </div>
