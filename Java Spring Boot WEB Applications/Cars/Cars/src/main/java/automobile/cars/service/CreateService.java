@@ -9,6 +9,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -204,6 +205,10 @@ public class CreateService {
         this.otherRepository.save(other);
 
         car.setOther(other);
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime newDateTime = now.plusHours(2);
+        car.setDateAdded(newDateTime);
 
         // Additional Information
 
