@@ -28,7 +28,7 @@ public class CarsDealershipSecurityConfig {
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/", "/login", "/register").permitAll().
-                antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/create", "catalog").permitAll().
+                antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/create", "/catalog", "/details/**").permitAll().
                 anyRequest().
                 authenticated().
                 and().formLogin().
