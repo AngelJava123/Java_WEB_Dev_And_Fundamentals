@@ -1,7 +1,9 @@
 package automobile.cars.view;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class CarViewModel {
 
@@ -37,6 +39,7 @@ public class CarViewModel {
     private VehicleOtherViewModel otherViewModel;
     private String additionalInformation;
     private LocalDateTime dateAdded;
+    private String formattedDateAdded;
 
     public CarViewModel() {
     }
@@ -199,5 +202,15 @@ public class CarViewModel {
 
     public void setDateAdded(LocalDateTime dateAdded) {
         this.dateAdded = dateAdded;
+        this.formattedDateAdded = formatDateAdded(dateAdded.minusHours(3));
+    }
+
+    public String getFormattedDateAdded() {
+        return formattedDateAdded;
+    }
+
+    private String formatDateAdded(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a 'on' dd MMMM yyyy", Locale.ENGLISH);
+        return localDateTime.format(formatter);
     }
 }
