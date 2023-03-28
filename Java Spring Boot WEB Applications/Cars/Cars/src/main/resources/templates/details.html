@@ -112,6 +112,7 @@
 
 
 
+
     </style>
 </head>
 
@@ -291,7 +292,7 @@
         </div>
     </div>
     <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
-    <p>Price: <strong th:text="${car.price}" style="font-size: 24px; color: #0074D9;"></strong>€</p>
+    <p>Price: <strong th:text="${car.price}" style="font-size: 24px; color: #0074D9;"></strong>€ <a style="opacity: 0.5">(The price includes VAT)</a></p>
     <p>Date of manufacture: <strong th:text="${car.month} + ' ' + ${car.year}"></strong></p>
     <p>Engine type: <strong th:text="${car.engineViewModel.engineType}"></strong></p>
     <p>Power: <strong th:text="${car.engineViewModel.power}"></strong>hp</p>
@@ -303,6 +304,101 @@
     <p>Color: <strong th:text="${car.paint}"></strong></p>
     <br>
     <p style="opacity: 0.5">Date added: <a th:text="${car.formattedDateAdded}"></a></p>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Safety</h3>
+                <ul>
+                    <li th:if="${car.safetyViewModel.antiLockBrakingSystem}">Anti Lock Braking System</li>
+                    <li th:if="${car.safetyViewModel.electronicStabilityControl}">Electronic Stability Control</li>
+                    <li th:if="${car.safetyViewModel.adaptiveCruiseControl}">Adaptive Cruise Control</li>
+                    <li th:if="${car.safetyViewModel.laneDepartureWarning}">Lane Departure Warning</li>
+                    <li th:if="${car.safetyViewModel.blindSpotDetection}">Blind Spot Detection</li>
+                    <li th:if="${car.safetyViewModel.forwardCollisionWarning}">Forward Collision Warning</li>
+                    <li th:if="${car.safetyViewModel.automaticEmergencyBraking}">Automatic Emergency Braking</li>
+                    <li th:if="${car.safetyViewModel.rearviewCamera}">Rearview Camera</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Exterior</h3>
+                <ul>
+                    <li th:if="${car.exteriorViewModel.alloyWheels}">Alloy Wheels</li>
+                    <li th:if="${car.exteriorViewModel.powerSideMirrorAdjustment}">Power Side Mirror Adjustment</li>
+                    <li th:if="${car.exteriorViewModel.rainSensingWipers}">Rain Sensing Wipers</li>
+                    <li th:if="${car.exteriorViewModel.sunroof}">Sunroof</li>
+                    <li th:if="${car.exteriorViewModel.ledHeadlights}">Led Head lights</li>
+                    <li th:if="${car.exteriorViewModel.fogLights}">Fog Lights</li>
+                    <li th:if="${car.exteriorViewModel.automaticHeadlights}">Automatic Head lights</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Interior</h3>
+                <ul>
+                    <li th:if="${car.interiorViewModel.leatherSeats}">Leather Seats</li>
+                    <li th:if="${car.interiorViewModel.heatedSeats}">Heated Seats</li>
+                    <li th:if="${car.interiorViewModel.powerWindows}">Power Windows</li>
+                    <li th:if="${car.interiorViewModel.powerLocks}">Power Locks</li>
+                    <li th:if="${car.interiorViewModel.sunroof}">Sunroof</li>
+                    <li th:if="${car.interiorViewModel.navigationSystem}">Navigation System</li>
+                    <li th:if="${car.interiorViewModel.bluetooth}">Bluetooth</li>
+                    <li th:if="${car.interiorViewModel.backupCamera}">Backup Camera</li>
+                    <li th:if="${car.interiorViewModel.pushButtonStart}">Push Button Start</li>
+                    <li th:if="${car.interiorViewModel.dualClimateControl}">Dual Climate Control</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Comfort</h3>
+                <ul>
+                    <li th:if="${car.comfortViewModel.airConditioning}">Air Conditioning</li>
+                    <li th:if="${car.comfortViewModel.cruiseControl}">Cruise Control</li>
+                    <li th:if="${car.comfortViewModel.powerSteering}">Power Steering</li>
+                    <li th:if="${car.comfortViewModel.tiltSteeringWheel}">Tilt Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.telescopingSteeringWheel}">Telescoping Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.rearDefrost}">Rear Defrost</li>
+                    <li th:if="${car.comfortViewModel.remoteTrunkRelease}">Remote Trunk Release</li>
+                    <li th:if="${car.comfortViewModel.remoteEngineStart}">Remote Engine Start</li>
+                    <li th:if="${car.comfortViewModel.heatedSteeringWheel}">Heated Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.heatedMirrors}">Heated Mirrors</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Protection</h3>
+                <ul>
+                    <li th:if="${car.protectionViewModel.antiTheftSystem}">Anti Theft System</li>
+                    <li th:if="${car.protectionViewModel.remoteKeylessEntry}">Remote Keyless Entry</li>
+                    <li th:if="${car.protectionViewModel.alarmSystem}">Alarm System</li>
+                    <li th:if="${car.protectionViewModel.airbags}">Airbags</li>
+                    <li th:if="${car.protectionViewModel.parkingSensors}">Parking Sensors</li>
+                    <li th:if="${car.protectionViewModel.backupCamera}">Backup Camera</li>
+                    <li th:if="${car.protectionViewModel.tirePressureMonitoring}">Tire Pressure Monitoring</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Other</h3>
+                <ul>
+                    <li th:if="${car.otherViewModel.powerTailgate}">Power Tailgate</li>
+                    <li th:if="${car.otherViewModel.panoramicSunroof}">Panoramic Sunroof</li>
+                    <li th:if="${car.otherViewModel.adaptiveHeadlights}">Adaptive Headlights</li>
+                    <li th:if="${car.otherViewModel.appleCarPlay}">Apple Car Play</li>
+                    <li th:if="${car.otherViewModel.androidAuto}">Android Auto</li>
+                    <li th:if="${car.otherViewModel.wirelessCharging}">Wireless Charging</li>
+                    <li th:if="${car.otherViewModel.premiumSoundSystem}">Premium Sound System</li>
+                    <li th:if="${car.otherViewModel.multiZoneClimateControl}">Multi Zone Climate Control</li>
+                    <li th:if="${car.otherViewModel.powerAdjustablePedals}">Power Adjustable Pedals</li>
+                    <li th:if="${car.otherViewModel.heatedRearSeats}">Heated Rear Seats</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <strong>Additional Information</strong>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <p th:text="${car.additionalInformation}"></p>
     </p>
 </main><!-- End #main -->
 
@@ -337,6 +433,7 @@ function updateSlider() {
 }
 
 updateSlider();
+
 
 
 
