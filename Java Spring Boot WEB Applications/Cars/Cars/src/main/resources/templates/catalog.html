@@ -213,7 +213,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+    <section class="section" id="carCatalog">
         <div class="row">
             <div class="col-lg-6" th:each="car : ${allCars}">
                 <div class="card">
@@ -224,18 +224,16 @@
                                 <div class="slider">
                                     <ul>
                                         <li th:each="imagePath : ${car.imageFilePaths}">
-                                            <img th:src="@{/assets/uploads/{fileName}(fileName=${imagePath})}"
-                                                 alt="Image" style="max-width: 350px; max-height: 350px;">
+                                            <div class="image-container">
+                                                <img id="carImage" th:src="@{/assets/uploads/{fileName}(fileName=${imagePath})}"
+                                                     alt="Image">
+                                                <div class="price-bubble">
+                                                    <span th:text="${car.price}"></span>€
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <p style="margin: 0;">
-                                    Price <span style="font-size: 24px; color: #0074D9;"
-                                                th:text="${car.price}"></span>
-                                    €
-                                </p>
                             </li>
                             <br>
                             <li style="margin-bottom: 10px;">
@@ -251,13 +249,18 @@
                                 </p>
                             </li>
                             <br>
-                            <a th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
+                            <li style="text-align: center; margin-top: 20px;">
+                                <a th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
     <div class="container-fluid row justify-content-center">
         <ul class="pagination d-flex justify-content-center">
