@@ -3,6 +3,7 @@ package automobile.cars.service;
 import automobile.cars.config.FileUploadUtil;
 import automobile.cars.model.dto.CreateCarDTO;
 import automobile.cars.model.entity.*;
+import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CreateService {
@@ -30,13 +32,14 @@ public class CreateService {
     private final ProtectionRepository protectionRepository;
     private final ComfortRepository comfortRepository;
     private final OtherRepository otherRepository;
+    private final UserRepository userRepository;
 
     public CreateService(CarRepository carRepository,
                          ColorRepository colorRepository,
                          EngineRepository engineRepository,
                          CategoryRepository categoryRepository,
                          GearBoxRepository gearBoxRepository,
-                         SafetyRepository safetyRepository, ExteriorRepository exteriorRepository, InteriorRepository interiorRepository, ProtectionRepository protectionRepository, ComfortRepository comfortRepository, OtherRepository otherRepository) {
+                         SafetyRepository safetyRepository, ExteriorRepository exteriorRepository, InteriorRepository interiorRepository, ProtectionRepository protectionRepository, ComfortRepository comfortRepository, OtherRepository otherRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
         this.colorRepository = colorRepository;
         this.engineRepository = engineRepository;
@@ -48,9 +51,10 @@ public class CreateService {
         this.protectionRepository = protectionRepository;
         this.comfortRepository = comfortRepository;
         this.otherRepository = otherRepository;
+        this.userRepository = userRepository;
     }
 
-    public boolean create(CreateCarDTO createCarDTO) throws IOException {
+    public boolean create(CreateCarDTO createCarDTO, CarsDealershipUserDetails userDetails) throws IOException {
         // Create a new car entity
 
         Car car = new Car();
@@ -207,7 +211,7 @@ public class CreateService {
         car.setOther(other);
 
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime newDateTime = now.plusHours(2);
+        LocalDateTime newDateTime = now.plusHours(3);
         car.setDateAdded(newDateTime);
 
         // Additional Information
@@ -218,13 +222,16 @@ public class CreateService {
         List<String> imageFilePaths = new ArrayList<>();
         for (MultipartFile imageFile : createCarDTO.getImageFiles()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(imageFile.getOriginalFilename()));
-            String filePath = uploadDir + fileName;
             FileUploadUtil.saveFile(uploadDir, fileName, imageFile);
-            imageFilePaths.add(filePath);
+            imageFilePaths.add(fileName);
         }
 
         // Set the image files to the car entity
         car.setImageFilePaths(imageFilePaths);
+
+        // Ser Car to the user
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
+        car.setUser(user.get());
 
         // Save the car entity to the database
         Car savedCar = carRepository.save(car);
