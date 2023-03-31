@@ -1,7 +1,9 @@
 package automobile.cars.web;
 
 import automobile.cars.model.dto.CreateCarDTO;
+import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.service.CreateService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,9 +36,10 @@ public class CreateController {
     @PostMapping("/create")
     public String createCar(@Valid CreateCarDTO createCarDTO,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes) throws IOException {
+                            RedirectAttributes redirectAttributes,
+                            @AuthenticationPrincipal CarsDealershipUserDetails userDetails) throws IOException {
 
-        if (bindingResult.hasErrors() || !this.createService.create(createCarDTO)) {
+        if (bindingResult.hasErrors() || !this.createService.create(createCarDTO, userDetails)) {
             redirectAttributes.addFlashAttribute("createCarDTO", createCarDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.createCarDTO",
                     bindingResult);
