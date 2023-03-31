@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Pages / Contact - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+ .slider-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 40px);
+  height: 100%;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  margin: 0 20px;
+}
+
+.slider-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.slider-item:last-child {
+  margin-right: 0;
+}
+
+.slider-item img {
+  max-width: 100%;
+  max-height: 400px;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  color: blue;
+  border: 3px solid blue;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-arrow:hover {
+  background-color: blue;
+  color: white;
+}
+
+.slider-arrow-prev {
+  left: 0;
+}
+
+.slider-arrow-next {
+  right: 0;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header th:replace="fragments/fragment :: headerNav"></header>
+
+<!-- ======= Sidebar ======= -->
+<aside th:replace="fragments/fragment :: asideNav"></aside>
+
+<main id="main" class="main" th:object="${car}">
+    <p class="text-center p-5">
+    <p><strong th:text="${car.make} + ' ' + ${car.model}" style="font-size: 24px;"></strong></p>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <div class="slider-item" th:each="imagePath : ${car.imageFilePaths}">
+                    <div style="display: inline-block;">
+                        <img th:src="@{/assets/uploads/{fileName}(fileName=${imagePath})}" alt="car image">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-arrow slider-arrow-prev">&lt;</div>
+            <div class="slider-arrow slider-arrow-next">&gt;</div>
+        </div>
+    </div>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <p>Price: <strong th:text="${car.price}" style="font-size: 24px; color: #0074D9;"></strong>€ <a style="opacity: 0.5">(The price includes VAT)</a></p>
+    <p>Date of manufacture: <strong th:text="${car.month} + ' ' + ${car.year}"></strong></p>
+    <p>Engine type: <strong th:text="${car.engineViewModel.engineType}"></strong></p>
+    <p>Power: <strong th:text="${car.engineViewModel.power}"></strong>hp</p>
+    <p>Eurostandard: <strong th:text="${car.engineViewModel.euroStandard}"></strong></p>
+    <p>Cubic capacity [cc]: <strong th:text="${car.engineViewModel.cubicCapacity}"></strong>cc</p>
+    <p>Transmission: <strong th:text="${car.gearBoxType}"></strong></p>
+    <p>Category: <strong th:text="${car.category}"></strong></p>
+    <p>Mileage [km]: <strong th:text="${car.mileage}"></strong>km</p>
+    <p>Color: <strong th:text="${car.paint}"></strong></p>
+    <br>
+    <p style="opacity: 0.5">Date added: <a th:text="${car.formattedDateAdded}"></a></p>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Safety</h3>
+                <ul>
+                    <li th:if="${car.safetyViewModel.antiLockBrakingSystem}">Anti Lock Braking System</li>
+                    <li th:if="${car.safetyViewModel.electronicStabilityControl}">Electronic Stability Control</li>
+                    <li th:if="${car.safetyViewModel.adaptiveCruiseControl}">Adaptive Cruise Control</li>
+                    <li th:if="${car.safetyViewModel.laneDepartureWarning}">Lane Departure Warning</li>
+                    <li th:if="${car.safetyViewModel.blindSpotDetection}">Blind Spot Detection</li>
+                    <li th:if="${car.safetyViewModel.forwardCollisionWarning}">Forward Collision Warning</li>
+                    <li th:if="${car.safetyViewModel.automaticEmergencyBraking}">Automatic Emergency Braking</li>
+                    <li th:if="${car.safetyViewModel.rearviewCamera}">Rearview Camera</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Exterior</h3>
+                <ul>
+                    <li th:if="${car.exteriorViewModel.alloyWheels}">Alloy Wheels</li>
+                    <li th:if="${car.exteriorViewModel.powerSideMirrorAdjustment}">Power Side Mirror Adjustment</li>
+                    <li th:if="${car.exteriorViewModel.rainSensingWipers}">Rain Sensing Wipers</li>
+                    <li th:if="${car.exteriorViewModel.sunroof}">Sunroof</li>
+                    <li th:if="${car.exteriorViewModel.ledHeadlights}">Led Head lights</li>
+                    <li th:if="${car.exteriorViewModel.fogLights}">Fog Lights</li>
+                    <li th:if="${car.exteriorViewModel.automaticHeadlights}">Automatic Head lights</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Interior</h3>
+                <ul>
+                    <li th:if="${car.interiorViewModel.leatherSeats}">Leather Seats</li>
+                    <li th:if="${car.interiorViewModel.heatedSeats}">Heated Seats</li>
+                    <li th:if="${car.interiorViewModel.powerWindows}">Power Windows</li>
+                    <li th:if="${car.interiorViewModel.powerLocks}">Power Locks</li>
+                    <li th:if="${car.interiorViewModel.sunroof}">Sunroof</li>
+                    <li th:if="${car.interiorViewModel.navigationSystem}">Navigation System</li>
+                    <li th:if="${car.interiorViewModel.bluetooth}">Bluetooth</li>
+                    <li th:if="${car.interiorViewModel.backupCamera}">Backup Camera</li>
+                    <li th:if="${car.interiorViewModel.pushButtonStart}">Push Button Start</li>
+                    <li th:if="${car.interiorViewModel.dualClimateControl}">Dual Climate Control</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Comfort</h3>
+                <ul>
+                    <li th:if="${car.comfortViewModel.airConditioning}">Air Conditioning</li>
+                    <li th:if="${car.comfortViewModel.cruiseControl}">Cruise Control</li>
+                    <li th:if="${car.comfortViewModel.powerSteering}">Power Steering</li>
+                    <li th:if="${car.comfortViewModel.tiltSteeringWheel}">Tilt Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.telescopingSteeringWheel}">Telescoping Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.rearDefrost}">Rear Defrost</li>
+                    <li th:if="${car.comfortViewModel.remoteTrunkRelease}">Remote Trunk Release</li>
+                    <li th:if="${car.comfortViewModel.remoteEngineStart}">Remote Engine Start</li>
+                    <li th:if="${car.comfortViewModel.heatedSteeringWheel}">Heated Steering Wheel</li>
+                    <li th:if="${car.comfortViewModel.heatedMirrors}">Heated Mirrors</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Protection</h3>
+                <ul>
+                    <li th:if="${car.protectionViewModel.antiTheftSystem}">Anti Theft System</li>
+                    <li th:if="${car.protectionViewModel.remoteKeylessEntry}">Remote Keyless Entry</li>
+                    <li th:if="${car.protectionViewModel.alarmSystem}">Alarm System</li>
+                    <li th:if="${car.protectionViewModel.airbags}">Airbags</li>
+                    <li th:if="${car.protectionViewModel.parkingSensors}">Parking Sensors</li>
+                    <li th:if="${car.protectionViewModel.backupCamera}">Backup Camera</li>
+                    <li th:if="${car.protectionViewModel.tirePressureMonitoring}">Tire Pressure Monitoring</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Other</h3>
+                <ul>
+                    <li th:if="${car.otherViewModel.powerTailgate}">Power Tailgate</li>
+                    <li th:if="${car.otherViewModel.panoramicSunroof}">Panoramic Sunroof</li>
+                    <li th:if="${car.otherViewModel.adaptiveHeadlights}">Adaptive Headlights</li>
+                    <li th:if="${car.otherViewModel.appleCarPlay}">Apple Car Play</li>
+                    <li th:if="${car.otherViewModel.androidAuto}">Android Auto</li>
+                    <li th:if="${car.otherViewModel.wirelessCharging}">Wireless Charging</li>
+                    <li th:if="${car.otherViewModel.premiumSoundSystem}">Premium Sound System</li>
+                    <li th:if="${car.otherViewModel.multiZoneClimateControl}">Multi Zone Climate Control</li>
+                    <li th:if="${car.otherViewModel.powerAdjustablePedals}">Power Adjustable Pedals</li>
+                    <li th:if="${car.otherViewModel.heatedRearSeats}">Heated Rear Seats</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <strong>Additional Information</strong>
+    <div style="border-color: blue; border-style: solid; border-width: 1px 0 0 0; margin: 1em 0;"></div>
+    <p th:text="${car.additionalInformation}"></p>
+    </p>
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer th:replace="fragments/fragment :: footer"></footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/assets/vendor/quill/quill.min.js"></script>
+<script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Templates JS Files -->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/imageSlider.js"></script>
+
+</body>
+
+</html>

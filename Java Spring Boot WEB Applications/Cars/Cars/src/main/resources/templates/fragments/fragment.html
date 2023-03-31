@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header id="header" class="header fixed-top d-flex align-items-center" th:fragment="headerNav">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">AutoGenius</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+            </li><!-- End Search Icon-->
+
+            <li class="nav-item dropdown pe-3">
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2" sec:authorize="isAuthenticated()">Welcome,
+                        <th:block sec:authentication="name"></th:block>
+                        !</span>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>
+                            <th:block sec:authentication="name"></th:block>
+                        </h6>
+                        <span>Customer</span>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="dropdown-item d-flex align-items-center"  th:href="@{/profile}">
+                            <i class="bi bi-person"></i>
+                            <span>Profile & Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" th:href="@{/inquiries}">
+                            <i class="bi bi-question-circle"></i>
+                            <span>Need Help?</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <form th:action="@{/logout}" sec:authorize="isAuthenticated()" th:method="post">
+                            <input class="btn btn-link nav-link" type="submit" value="SIGN OUT">
+                        </form>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+        </ul>
+    </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<aside id="sidebar" class="sidebar" th:fragment="asideNav">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/catalog}">
+                <i class="bi bi-grid"></i>
+                <span>Catalog</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-heading">Pages</li>
+
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+            <a class="nav-link collapsed" th:href="@{/register}">
+                <i class="bi bi-card-list"></i>
+                <span>Register</span>
+            </a>
+        </li><!-- End Register Page Nav -->
+
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+            <a class="nav-link collapsed" th:href="@{/login}">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+            </a>
+        </li><!-- End Login Page Nav -->
+
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link collapsed" th:href="@{/profile}">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link collapsed" th:href="@{/create}">
+                <i class="bi bi-file-earmark"></i>
+                <span>Create Car Offer</span>
+            </a>
+        </li><!-- End Create Car Offer Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/inquiries">
+                <i class="bi bi-question-circle"></i>
+                <span>Suggestions & Inquiries</span>
+            </a>
+        </li><!-- End Suggestions & Inquiries Page Nav -->
+
+        <!-- class="nav-link" th:text="#{navbar_register}" th:href="@{/register}" -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-error-404.html">
+                <i class="bi bi-dash-circle"></i>
+                <span>Error 404</span>
+            </a>
+        </li><!-- End Error 404 Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-blank.html">
+                <i class="bi bi-file-earmark"></i>
+                <span>Blank</span>
+            </a>
+        </li><!-- End Blank Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/contact">
+                <i class="bi bi-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </li><!-- End Contact Page Nav -->
+
+    </ul>
+
+</aside><!-- End Sidebar-->
+
+<footer id="footer" class="footer" th:fragment="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>AutoGenius</span></strong>. All Rights Reserved
+    </div>
+</footer><!-- End Footer -->

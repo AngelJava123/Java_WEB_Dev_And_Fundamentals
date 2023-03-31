@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Pages / Register - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<main>
+    <div class="container">
+
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                        <div class="d-flex justify-content-center py-4">
+                            <a href="/" class="logo d-flex align-items-center w-auto">
+                                <img src="assets/img/logo.png" alt="">
+                                <span class="d-none d-lg-block">AutoGenius</span>
+                            </a>
+                        </div><!-- End Logo -->
+
+                        <div class="card mb-3">
+
+                            <div class="card-body">
+
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Create Car Offer</h5>
+                                    <p class="text-center small">Enter your car details</p>
+                                </div>
+
+                                <form class="row g-3 needs-validation" id="create-form" th:action="@{/create}"
+                                      th:method="post"
+                                      th:object="${createCarDTO}"
+                                      enctype="multipart/form-data">
+
+                                    <!------------------------------------------------------>
+
+                                    <div class="col-12">
+                                        <label for="car-make">Car Make</label>
+                                        <select id="car-make" name="make" class="form-control"
+                                                th:field="*{make}"
+                                                th:errorclass="is-invalid">
+                                            <option value="">-- Select Make --</option>
+                                            <optgroup label="A">
+                                                <option value="Acura">Acura</option>
+                                                <option value="Alfa Romeo">Alfa Romeo</option>
+                                                <option value="Aston Martin">Aston Martin</option>
+                                                <option value="Audi">Audi</option>
+                                            </optgroup>
+                                            <optgroup label="B">
+                                                <option value="Bentley">Bentley</option>
+                                                <option value="BMW">BMW</option>
+                                                <option value="Bugatti">Bugatti</option>
+                                                <option value="Buick">Buick</option>
+                                            </optgroup>
+                                            <optgroup label="C">
+                                                <option value="Cadillac">Cadillac</option>
+                                                <option value="Chevrolet">Chevrolet</option>
+                                                <option value="Chrysler">Chrysler</option>
+                                            </optgroup>
+                                            <optgroup label="D">
+                                                <option value="Dodge">Dodge</option>
+                                            </optgroup>
+                                            <optgroup label="F">
+                                                <option value="Ferrari">Ferrari</option>
+                                                <option value="Fiat">Fiat</option>
+                                                <option value="Ford">Ford</option>
+                                            </optgroup>
+                                            <optgroup label="G">
+                                                <option value="Genesis">Genesis</option>
+                                                <option value="GMC">GMC</option>
+                                            </optgroup>
+                                            <optgroup label="H">
+                                                <option value="Honda">Honda</option>
+                                                <option value="Hyundai">Hyundai</option>
+                                            </optgroup>
+                                            <optgroup label="I">
+                                                <option value="Infiniti">Infiniti</option>
+                                            </optgroup>
+                                            <optgroup label="J">
+                                                <option value="Jaguar">Jaguar</option>
+                                                <option value="Jeep">Jeep</option>
+                                            </optgroup>
+                                            <optgroup label="K">
+                                                <option value="Kia">Kia</option>
+                                            </optgroup>
+                                            <optgroup label="L">
+                                                <option value="Lamborghini">Lamborghini</option>
+                                                <option value="Land Rover">Land Rover</option>
+                                                <option value="Lexus">Lexus</option>
+                                                <option value="Lincoln">Lincoln</option>
+                                                <option value="Lotus">Lotus</option>
+                                            </optgroup>
+                                            <optgroup label="M">
+                                                <option value="Maserati">Maserati</option>
+                                                <option value="Mazda">Mazda</option>
+                                                <option value="McLaren">McLaren</option>
+                                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                                <option value="Mini">Mini</option>
+                                                <option value="Mitsubishi">Mitsubishi</option>
+                                            </optgroup>
+                                            <optgroup label="N">
+                                                <option value="Nissan">Nissan</option>
+                                            </optgroup>
+                                            <optgroup label="P">
+                                                <option value="Porsche">Porsche</option>
+                                            </optgroup>
+                                            <optgroup label="R">
+                                                <option value="Ram">Ram</option>
+                                                <option value="Rolls-Royce">Rolls-Royce</option>
+                                            </optgroup>
+                                            <optgroup label="S">
+                                                <option value="Subaru">Subaru</option>
+                                            </optgroup>
+                                            <optgroup label="T">
+                                                <option value="Tesla">Tesla</option>
+                                                <option value="Toyota">Toyota</option>
+                                            </optgroup>
+                                            <optgroup label="V">
+                                                <option value="Volkswagen">Volkswagen</option>
+                                                <option value="Volvo">Volvo</option>
+                                            </optgroup>
+                                        </select>
+                                    </div> <!-- Makes -->
+
+                                    <div class="col-12">
+                                        <label for="car-model">Car Model</label>
+                                        <select id="car-model" name="model" class="form-control"
+                                                th:field="*{model}"
+                                                th:errorclass="is-invalid">>
+                                            <option value="">-- Select Model --</option>
+                                            <!-- Acura models -->
+                                            <option value="ILX" data-make="Acura">ILX</option>
+                                            <option value="MDX" data-make="Acura">MDX</option>
+                                            <option value="NSX" data-make="Acura">NSX</option>
+                                            <option value="RDX" data-make="Acura">RDX</option>
+                                            <option value="RLX" data-make="Acura">RLX</option>
+                                            <option value="TLX" data-make="Acura">TLX</option>
+
+                                            <!-- Alfa Romeo models -->
+                                            <option value="4C" data-make="Alfa Romeo">4C</option>
+                                            <option value="Giulia" data-make="Alfa Romeo">Giulia</option>
+                                            <option value="Stelvio" data-make="Alfa Romeo">Stelvio</option>
+
+                                            <!-- Aston Martin models -->
+                                            <option value="DB11" data-make="Aston Martin">DB11</option>
+                                            <option value="DBS Superleggera" data-make="Aston Martin">DBS Superleggera
+                                            </option>
+                                            <option value="Vantage" data-make="Aston Martin">Vantage</option>
+
+                                            <!-- Audi models -->
+                                            <option value="A3" data-make="Audi">A3</option>
+                                            <option value="A4" data-make="Audi">A4</option>
+                                            <option value="A5" data-make="Audi">A5</option>
+                                            <option value="A6" data-make="Audi">A6</option>
+                                            <option value="A7" data-make="Audi">A7</option>
+                                            <option value="A8" data-make="Audi">A8</option>
+                                            <option value="Q3" data-make="Audi">Q3</option>
+                                            <option value="Q5" data-make="Audi">Q5</option>
+                                            <option value="Q7" data-make="Audi">Q7</option>
+                                            <option value="Q8" data-make="Audi">Q8</option>
+                                            <option value="TT" data-make="Audi">TT</option>
+
+                                            <!-- Bentley models -->
+                                            <option value="Bentayga" data-make="Bentley">Bentayga</option>
+                                            <option value="Continental GT" data-make="Bentley">Continental GT</option>
+                                            <option value="Flying Spur" data-make="Bentley">Flying Spur</option>
+
+                                            <!-- BMW models -->
+                                            <option value="2 Series" data-make="BMW">2 Series</option>
+                                            <option value="3 Series" data-make="BMW">3 Series</option>
+                                            <option value="4 Series" data-make="BMW">4 Series</option>
+                                            <option value="5 Series" data-make="BMW">5 Series</option>
+                                            <option value="6 Series" data-make="BMW">6 Series</option>
+                                            <option value="7 Series" data-make="BMW">7 Series</option>
+                                            <option value="8 Series" data-make="BMW">8 Series</option>
+                                            <option value="M2" data-make="BMW">M2</option>
+                                            <option value="M3" data-make="BMW">M3</option>
+                                            <option value="M4" data-make="BMW">M4</option>
+                                            <option value="M5" data-make="BMW">M5</option>
+                                            <option value="M8" data-make="BMW">M8</option>
+                                            <option value="X1" data-make="BMW">X1</option>
+                                            <option value="X2" data-make="BMW">X2</option>
+                                            <option value="X3" data-make="BMW">X3</option>
+                                            <option value="X4" data-make="BMW">X4</option>
+
+                                            <!-- Bugatti models -->
+                                            <option value="Chiron" data-make="Bugatti">Chiron</option>
+                                            <option value="Divo" data-make="Bugatti">Divo</option>
+
+                                            <!-- Buick models -->
+                                            <option value="Enclave" data-make="Buick">Enclave</option>
+                                            <option value="Encore" data-make="Buick">Encore</option>
+                                            <option value="Envision" data-make="Buick">Envision</option>
+                                            <option value="LaCrosse" data-make="Buick">LaCrosse</option>
+
+                                            <!-- Cadillac models -->
+                                            <option value="CT4" data-make="Cadillac">CT4</option>
+                                            <option value="CT5" data-make="Cadillac">CT5</option>
+                                            <option value="CT6" data-make="Cadillac">CT6</option>
+                                            <option value="Escalade" data-make="Cadillac">Escalade</option>
+
+                                            <!-- Chevrolet models -->
+                                            <option value="Camaro" data-make="Chevrolet">Camaro</option>
+                                            <option value="Corvette" data-make="Chevrolet">Corvette</option>
+                                            <option value="Equinox" data-make="Chevrolet">Equinox</option>
+                                            <option value="Impala" data-make="Chevrolet">Impala</option>
+                                            <option value="Malibu" data-make="Chevrolet">Malibu</option>
+                                            <option value="Silverado" data-make="Chevrolet">Silverado</option>
+                                            <option value="Suburban" data-make="Chevrolet">Suburban</option>
+                                            <option value="Tahoe" data-make="Chevrolet">Tahoe</option>
+                                            <option value="Traverse" data-make="Chevrolet">Traverse</option>
+
+                                            <!-- Chrysler models -->
+                                            <option value="300" data-make="Chrysler">300</option>
+                                            <option value="Pacifica" data-make="Chrysler">Pacifica</option>
+                                            <option value="Voyager" data-make="Chrysler">Voyager</option>
+
+                                            <!-- Dodge models -->
+                                            <option value="Dodge" data-make="Dodge">Dodge</option>
+                                            <option value="Challenger" data-make="Dodge">Challenger</option>
+                                            <option value="Charger" data-make="Dodge">Charger</option>
+                                            <option value="Durango" data-make="Dodge">Durango</option>
+                                            <option value="Viper" data-make="Dodge">Viper</option>
+
+                                            <!-- Ferrari models -->
+                                            <option value="Ferrari" data-make="Ferrari">Ferrari</option>
+                                            <option value="488 GTB" data-make="Ferrari">488 GTB</option>
+                                            <option value="812 Superfast" data-make="Ferrari">812 Superfast</option>
+                                            <option value="California T" data-make="Ferrari">California T</option>
+                                            <option value="F8 Tributo" data-make="Ferrari">F8 Tributo</option>
+
+                                            <!-- Fiat models -->
+                                            <option value="Fiat" data-make="Fiat">Fiat</option>
+                                            <option value="500" data-make="Fiat">500</option>
+                                            <option value="500X" data-make="Fiat">500X</option>
+                                            <option value="Spider" data-make="Fiat">Spider</option>
+
+                                            <!-- Ford models -->
+                                            <option value="Ford" data-make="Ford">Ford</option>
+                                            <option value="Mustang" data-make="Ford">Mustang</option>
+                                            <option value="F-150" data-make="Ford">F-150</option>
+                                            <option value="Focus" data-make="Ford">Focus</option>
+                                            <option value="Explorer" data-make="Ford">Explorer</option>
+
+                                            <!-- Genesis models -->
+                                            <option value="Genesis" data-make="Genesis">Genesis</option>
+                                            <option value="G70" data-make="Genesis">G70</option>
+                                            <option value="G80" data-make="Genesis">G80</option>
+                                            <option value="G90" data-make="Genesis">G90</option>
+
+                                            <!-- GMC models -->
+                                            <option value="Acadia" data-make="GMC">Acadia</option>
+                                            <option value="Canyon" data-make="GMC">Canyon</option>
+                                            <option value="Sierra 1500" data-make="GMC">Sierra 1500</option>
+                                            <option value="Sierra 2500HD" data-make="GMC">Sierra 2500HD</option>
+                                            <option value="Sierra 3500HD" data-make="GMC">Sierra 3500HD</option>
+                                            <option value="Terrain" data-make="GMC">Terrain</option>
+                                            <option value="Yukon" data-make="GMC">Yukon</option>
+                                            <option value="Yukon XL" data-make="GMC">Yukon XL</option>
+                                            <!-- Honda models -->
+                                            <option value="Accord" data-make="Honda">Accord</option>
+                                            <option value="Civic" data-make="Honda">Civic</option>
+                                            <option value="Clarity Plug-In Hybrid" data-make="Honda">Clarity Plug-In
+                                                Hybrid
+                                            </option>
+                                            <option value="CR-V" data-make="Honda">CR-V</option>
+                                            <option value="HR-V" data-make="Honda">HR-V</option>
+                                            <option value="Insight" data-make="Honda">Insight</option>
+                                            <option value="Odyssey" data-make="Honda">Odyssey</option>
+                                            <option value="Passport" data-make="Honda">Passport</option>
+                                            <option value="Pilot" data-make="Honda">Pilot</option>
+                                            <option value="Ridgeline" data-make="Honda">Ridgeline</option>
+                                            <!-- Hyundai models -->
+                                            <option value="Accent" data-make="Hyundai">Accent</option>
+                                            <option value="Elantra" data-make="Hyundai">Elantra</option>
+                                            <option value="Ioniq Hybrid" data-make="Hyundai">Ioniq Hybrid</option>
+                                            <option value="Kona" data-make="Hyundai">Kona</option>
+                                            <option value="Palisade" data-make="Hyundai">Palisade</option>
+                                            <option value="Santa Fe" data-make="Hyundai">Santa Fe</option>
+                                            <option value="Sonata" data-make="Hyundai">Sonata</option>
+                                            <option value="Tucson" data-make="Hyundai">Tucson</option>
+                                            <option value="Veloster" data-make="Hyundai">Veloster</option>
+                                            <!-- Infiniti models -->
+                                            <option value="Q50" data-make="Infiniti">Q50</option>
+                                            <option value="Q60" data-make="Infiniti">Q60</option>
+                                            <option value="QX50" data-make="Infiniti">QX50</option>
+                                            <option value="QX60" data-make="Infiniti">QX60</option>
+                                            <option value="QX80" data-make="Infiniti">QX80</option>
+                                            <!-- Jaguar models -->
+                                            <option value="F-PACE" data-make="Jaguar">F-PACE</option>
+                                            <option value="F-TYPE" data-make="Jaguar">F-TYPE</option>
+                                            <option value="XE" data-make="Jaguar">XE</option>
+                                            <option value="XF" data-make="Jaguar">XF</option>
+                                            <option value="XJ" data-make="Jaguar">XJ</option>
+                                            <option value="XK" data-make="Jaguar">XK</option>
+
+                                            <!-- Jeep models -->
+                                            <option value="Cherokee" data-make="Jeep">Cherokee</option>
+                                            <option value="Compass" data-make="Jeep">Compass</option>
+                                            <option value="Gladiator" data-make="Jeep">Gladiator</option>
+                                            <option value="Grand Cherokee" data-make="Jeep">Grand Cherokee</option>
+                                            <option value="Renegade" data-make="Jeep">Renegade</option>
+                                            <option value="Wrangler" data-make="Jeep">Wrangler</option>
+                                            <!-- Kia models -->
+                                            <option value="Forte" data-make="Kia">Forte</option>
+                                            <option value="K5" data-make="Kia">K5</option>
+                                            <option value="Optima" data-make="Kia">Optima</option>
+                                            <option value="Rio" data-make="Kia">Rio</option>
+                                            <option value="Seltos" data-make="Kia">Seltos</option>
+                                            <option value="Sorento" data-make="Kia">Sorento</option>
+                                            <option value="Soul" data-make="Kia">Soul</option>
+                                            <option value="Sportage" data-make="Kia">Sportage</option>
+                                            <!-- Lamborghini models -->
+                                            <option value="Aventador" data-make="Lamborghini">Aventador</option>
+                                            <option value="Huracan" data-make="Lamborghini">Huracan</option>
+                                            <option value="Urus" data-make="Lamborghini">Urus</option>
+                                            <!-- Land Rover models -->
+                                            <option value="Defender" data-make="Land Rover">Defender</option>
+                                            <option value="Discovery" data-make="Land Rover">Discovery</option>
+                                            <option value="Range Rover" data-make="Land Rover">Range Rover</option>
+                                            <option value="Range Rover Evoque" data-make="Land Rover">Range Rover
+                                                Evoque
+                                            </option>
+                                            <option value="Range Rover Sport" data-make="Land Rover">Range Rover Sport
+                                            </option>
+                                            <!-- Lexus models -->
+                                            <option value="ES" data-make="Lexus">ES</option>
+                                            <option value="GX" data-make="Lexus">GX</option>
+                                            <option value="IS" data-make="Lexus">IS</option>
+                                            <option value="LC" data-make="Lexus">LC</option>
+                                            <option value="LS" data-make="Lexus">LS</option>
+                                            <option value="LX" data-make="Lexus">LX</option>
+                                            <option value="NX" data-make="Lexus">NX</option>
+                                            <option value="RC" data-make="Lexus">RC</option>
+                                            <option value="RX" data-make="Lexus">RX</option>
+
+                                            <!-- Lincoln models -->
+                                            <option value="Aviator" data-make="Lincoln">Aviator</option>
+                                            <option value="Continental" data-make="Lincoln">Continental</option>
+                                            <option value="Corsair" data-make="Lincoln">Corsair</option>
+                                            <option value="MKC" data-make="Lincoln">MKC</option>
+                                            <option value="MKT" data-make="Lincoln">MKT</option>
+                                            <option value="MKX" data-make="Lincoln">MKX</option>
+                                            <option value="MKZ" data-make="Lincoln">MKZ</option>
+                                            <option value="Nautilus" data-make="Lincoln">Nautilus</option>
+                                            <option value="Navigator" data-make="Lincoln">Navigator</option>
+                                            <!-- Lotus models -->
+                                            <option value="Elise" data-make="Lotus">Elise</option>
+                                            <option value="Evora" data-make="Lotus">Evora</option>
+                                            <option value="Exige" data-make="Lotus">Exige</option>
+                                            <!-- Maserati models -->
+                                            <option value="Ghibli" data-make="Maserati">Ghibli</option>
+                                            <option value="GranTurismo" data-make="Maserati">GranTurismo</option>
+                                            <option value="Levante" data-make="Maserati">Levante</option>
+                                            <option value="Quattroporte" data-make="Maserati">Quattroporte</option>
+                                            <!-- Mazda models -->
+                                            <option value="CX-3" data-make="Mazda">CX-3</option>
+                                            <option value="CX-30" data-make="Mazda">CX-30</option>
+                                            <option value="CX-5" data-make="Mazda">CX-5</option>
+                                            <option value="CX-9" data-make="Mazda">CX-9</option>
+                                            <option value="Mazda2" data-make="Mazda">Mazda2</option>
+                                            <option value="Mazda3" data-make="Mazda">Mazda3</option>
+                                            <option value="Mazda6" data-make="Mazda">Mazda6</option>
+                                            <option value="MX-5 Miata" data-make="Mazda">MX-5 Miata</option>
+                                            <!-- McLaren models -->
+                                            <option value="540C" data-make="McLaren">540C</option>
+                                            <option value="570GT" data-make="McLaren">570GT</option>
+                                            <option value="570S" data-make="McLaren">570S</option>
+                                            <option value="600LT" data-make="McLaren">600LT</option>
+                                            <option value="620R" data-make="McLaren">620R</option>
+                                            <option value="720S" data-make="McLaren">720S</option>
+                                            <option value="Artura" data-make="McLaren">Artura</option>
+                                            <option value="GT" data-make="McLaren">GT</option>
+
+                                            <!-- Mercedes-Benz models -->
+                                            <option value="A-Class" data-make="Mercedes-Benz">A-Class</option>
+                                            <option value="C-Class" data-make="Mercedes-Benz">C-Class</option>
+                                            <option value="E-Class" data-make="Mercedes-Benz">E-Class</option>
+                                            <option value="S-Class" data-make="Mercedes-Benz">S-Class</option>
+                                            <option value="G-Class" data-make="Mercedes-Benz">G-Class</option>
+
+                                            <!-- Mini models -->
+                                            <option value="Cooper" data-make="Mini">Cooper</option>
+                                            <option value="Countryman" data-make="Mini">Countryman</option>
+                                            <option value="Clubman" data-make="Mini">Clubman</option>
+                                            <option value="Convertible" data-make="Mini">Convertible</option>
+                                            <option value="Hardtop 2 Door" data-make="Mini">Hardtop 2 Door</option>
+
+                                            <!-- Mitsubishi models -->
+                                            <option value="Mirage" data-make="Mitsubishi">Mirage</option>
+                                            <option value="Outlander" data-make="Mitsubishi">Outlander</option>
+                                            <option value="Eclipse Cross" data-make="Mitsubishi">Eclipse Cross</option>
+                                            <option value="Lancer" data-make="Mitsubishi">Lancer</option>
+                                            <option value="Pajero" data-make="Mitsubishi">Pajero</option>
+
+                                            <!-- Nissan models -->
+                                            <option value="Altima" data-make="Nissan">Altima</option>
+                                            <option value="Maxima" data-make="Nissan">Maxima</option>
+                                            <option value="Sentra" data-make="Nissan">Sentra</option>
+                                            <option value="Rogue" data-make="Nissan">Rogue</option>
+                                            <option value="Pathfinder" data-make="Nissan">Pathfinder</option>
+
+                                            <!-- Porsche models -->
+                                            <option value="911" data-make="Porsche">911</option>
+                                            <option value="Cayenne" data-make="Porsche">Cayenne</option>
+                                            <option value="Panamera" data-make="Porsche">Panamera</option>
+                                            <option value="Macan" data-make="Porsche">Macan</option>
+                                            <option value="718" data-make="Porsche">718</option>
+
+                                            <!-- Ram models -->
+                                            <option value="1500" data-make="Ram">1500</option>
+                                            <option value="2500" data-make="Ram">2500</option>
+                                            <option value="3500" data-make="Ram">3500</option>
+                                            <option value="ProMaster City" data-make="Ram">ProMaster City</option>
+                                            <option value="ProMaster" data-make="Ram">ProMaster</option>
+                                            <!-- Rolls-Royce models -->
+                                            <option value="Phantom" data-make="Rolls-Royce">Phantom</option>
+                                            <option value="Cullinan" data-make="Rolls-Royce">Cullinan</option>
+                                            <option value="Ghost" data-make="Rolls-Royce">Ghost</option>
+                                            <option value="Wraith" data-make="Rolls-Royce">Wraith</option>
+                                            <option value="Dawn" data-make="Rolls-Royce">Dawn</option>
+                                            <!-- Subaru models -->
+                                            <option value="Impreza" data-make="Subaru">Impreza</option>
+                                            <option value="Crosstrek" data-make="Subaru">Crosstrek</option>
+                                            <option value="Forester" data-make="Subaru">Forester</option>
+                                            <option value="Outback" data-make="Subaru">Outback</option>
+                                            <option value="Ascent" data-make="Subaru">Ascent</option>
+                                            <!-- Tesla models -->
+                                            <option value="Model S" data-make="Tesla">Model S</option>
+                                            <option value="Model X" data-make="Tesla">Model X</option>
+                                            <option value="Model 3" data-make="Tesla">Model 3</option>
+                                            <option value="Model Y" data-make="Tesla">Model Y</option>
+                                            <option value="Roadster" data-make="Tesla">Roadster</option>
+                                            <!-- Toyota models -->
+                                            <option value="Corolla" data-make="Toyota">Corolla</option>
+                                            <option value="Camry" data-make="Toyota">Camry</option>
+                                            <option value="RAV4" data-make="Toyota">RAV4</option>
+                                            <option value="Highlander" data-make="Toyota">Highlander</option>
+                                            <option value="Tundra" data-make="Toyota">Tundra</option>
+
+                                            <!-- Volkswagen models -->
+                                            <option value="Jetta" data-make="Volkswagen">Jetta</option>
+                                            <option value="Passat" data-make="Volkswagen">Passat</option>
+                                            <option value="Golf" data-make="Volkswagen">Golf</option>
+                                            <option value="Tiguan" data-make="Volkswagen">Tiguan</option>
+                                            <option value="Atlas" data-make="Volkswagen">Atlas</option>
+                                            <!-- Volvo models -->
+                                            <option value="S60" data-make="Volvo">S60</option>
+                                            <option value="S90" data-make="Volvo">S90</option>
+                                            <option value="XC40" data-make="Volvo">XC40</option>
+                                            <option value="XC60" data-make="Volvo">XC60</option>
+                                            <option value="XC90" data-make="Volvo">XC90</option>
+                                        </select>
+                                    </div> <!-- Models -->
+
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                    $(document).ready(function() {
+                                      // Hide all car models initially
+                                      $('#car-model option').hide();
+
+                                      // When car make is selected, show only the models for that make
+                                      $('#car-make').change(function() {
+                                        var selectedMake = $(this).val();
+                                        $('#car-model option').hide();
+                                        $('#car-model option[data-make="' + selectedMake + '"]').show();
+                                        $('#car-model').val('');
+                                      });
+                                    });
+
+                                    </script>
+
+
+                                    <!------------------------------------------------------>
+
+                                    <div class="col-12">
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="text" name="price" class="form-control" required
+                                               id="price"
+                                               th:field="*{price}"
+                                               th:errorclass="is-invalid"
+                                               aria-describedby="usernameHelpInline" placeholder="5,394">
+                                        <div class="invalid-feedback">Please, enter a price!</div>
+                                    </div> <!-- Price -->
+
+                                    <div class="col-12">
+                                        <label for="month" class="form-label">Production Month</label>
+                                        <select name="month" class="form-control" required
+                                                id="month"
+                                                th:field="*{month}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="usernameHelpInline">
+                                            <option value="">-- Select Month --</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid month!
+                                        </div>
+                                    </div> <!-- Production Month -->
+
+                                    <div class="col-12">
+                                        <label for="year" class="form-label">Production Year</label>
+                                        <select name="year" class="form-control" required
+                                                id="year"
+                                                th:field="*{year}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="usernameHelpInline">
+                                            <option value="">--Select year--</option>
+                                            <th:block th:each="year : ${#numbers.sequence(1998, 2023)}">
+                                                <option th:value="${year}" th:text="${year}"></option>
+                                            </th:block>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid year!
+                                        </div>
+                                    </div> <!-- Production Year -->
+
+                                    <div class="col-12">
+                                        <label for="engine.engineType" class="form-label">Engine Type</label>
+                                        <select name="engine.engineType" class="form-select" required
+                                                id="engine.engineType"
+                                                th:field="*{engine.engineType}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="usernameHelpInline">
+                                            <option value="">Choose...</option>
+                                            <option value="Gasoline">Gasoline</option>
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="Electric">Electric</option>
+                                            <option value="Hybrid">Hybrid</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid engine type!
+                                        </div>
+                                    </div> <!-- Engine Type -->
+
+                                    <div class="col-12">
+                                        <label for="engine.power" class="form-label">Engine Power (HP)</label>
+                                        <input type="text" name="engine.power" class="form-control" required
+                                               id="engine.power"
+                                               th:field="*{engine.power}"
+                                               th:errorclass="is-invalid"
+                                               aria-describedby="usernameHelpInline" placeholder="150">
+                                        <div class="invalid-feedback">Please enter a valid engine power in horsepower
+                                            (HP)!
+                                        </div>
+                                    </div> <!-- Engine Power (HP) -->
+
+                                    <div class="col-12">
+                                        <label for="engine.euroStandard" class="form-label">Euro Standard</label>
+                                        <select name="engine.euroStandard" class="form-select" required
+                                                id="engine.euroStandard"
+                                                th:field="*{engine.euroStandard}"
+                                                th:errorclass="is-invalid" aria-describedby="usernameHelpInline">
+                                            <option value="">Select Euro Standard</option>
+                                            <option value="EURO1">EURO1</option>
+                                            <option value="EURO2">EURO2</option>
+                                            <option value="EURO3">EURO3</option>
+                                            <option value="EURO4">EURO4</option>
+                                            <option value="EURO5">EURO5</option>
+                                            <option value="EURO6">EURO6</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid Euro Standard!
+                                        </div>
+                                    </div> <!-- Euro Standard -->
+
+                                    <div class="col-12">
+                                        <label for="engine.cubicCapacity" class="form-label">Cubic Capacity</label>
+                                        <input type="text" name="engine.cubicCapacity" class="form-control" required
+                                               id="engine.cubicCapacity"
+                                               th:field="*{engine.cubicCapacity}"
+                                               th:errorclass="is-invalid"
+                                               aria-describedby="usernameHelpInline" placeholder="Enter cubic capacity">
+                                        <div class="invalid-feedback">
+                                            Please enter a valid cubic capacity!
+                                        </div>
+                                    </div> <!-- Cubic Capacity -->
+
+                                    <div class="col-12">
+                                        <label for="category.category" class="form-label">Category</label>
+                                        <select name="category.category" class="form-select" required
+                                                id="category.category"
+                                                th:field="*{category.category}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="categoryCategoryHelpInline">
+                                            <option value="">--Select a category--</option>
+                                            <option value="Sedan">Sedan</option>
+                                            <option value="Hatchback">Hatchback</option>
+                                            <option value="Coupe">Coupe</option>
+                                            <option value="SUV">SUV</option>
+                                            <option value="Cabrio">Cabrio</option>
+                                            <option value="Truck">Truck</option>
+                                            <option value="Van">Van</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid category!
+                                        </div>
+                                    </div> <!-- Category -->
+
+                                    <div class="col-12">
+                                        <label for="gearBox.gearBoxType" class="form-label">Gearbox Type</label>
+                                        <select name="gearBox.gearBoxType" class="form-select" required
+                                                id="gearBox.gearBoxType"
+                                                th:field="*{gearBox.gearBoxType}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="gearBoxTypeHelpInline">
+                                            <option value="">--Select a gearbox type--</option>
+                                            <option value="Automatic">Automatic</option>
+                                            <option value="Manual">Manual</option>
+                                            <option value="Semi-Automatic">Semi-Automatic</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid gearbox type!
+                                        </div>
+                                    </div> <!-- Gearbox -->
+
+                                    <div class="col-12">
+                                        <label for="mileage" class="form-label">Mileage</label>
+                                        <input type="text" name="mileage" class="form-control" required id="mileage"
+                                               th:field="*{mileage}"
+                                               th:errorclass="is-invalid"
+                                               aria-describedby="mileageHelpInline" placeholder="20,000">
+                                        <div class="invalid-feedback">Please, enter a valid mileage!</div>
+                                    </div> <!-- Mileage -->
+
+                                    <div class="col-12">
+                                        <label for="color.paint" class="form-label">Color</label>
+                                        <select name="color.paint" class="form-select" required id="color.paint"
+                                                th:field="*{color.paint}"
+                                                th:errorclass="is-invalid"
+                                                aria-describedby="colorPaintHelpInline">
+                                            <option value="">--Select a color--</option>
+                                            <option value="Black">Black</option>
+                                            <option value="White">White</option>
+                                            <option value="Gray">Gray</option>
+                                            <option value="Silver">Silver</option>
+                                            <option value="Red">Red</option>
+                                            <option value="Blue">Blue</option>
+                                            <option value="Green">Green</option>
+                                            <option value="Yellow">Yellow</option>
+                                            <option value="Orange">Orange</option>
+                                            <option value="Purple">Purple</option>
+                                            <option value="Pink">Pink</option>
+                                            <option value="Brown">Brown</option>
+                                            <option value="Beige">Beige</option>
+                                            <option value="Gold">Gold</option>
+                                            <option value="Bronze">Bronze</option>
+                                            <option value="Copper">Copper</option>
+                                            <option value="Turquoise">Turquoise</option>
+                                            <option value="Magenta">Magenta</option>
+                                            <option value="Olive">Olive</option>
+                                            <option value="Teal">Teal</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid color!
+                                        </div>
+                                    </div> <!-- Color -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Safety Features</label>
+                                        <div>
+                                            <input type="checkbox" name="safety.antiLockBrakingSystem"
+                                                   id="antiLockBrakingSystem"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.antiLockBrakingSystem}"/>
+                                            <label for="antiLockBrakingSystem" class="form-check-label">Anti-lock
+                                                Braking System (ABS)</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.adaptiveCruiseControl"
+                                                   id="adaptiveCruiseControl"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.adaptiveCruiseControl}"/>
+                                            <label for="adaptiveCruiseControl" class="form-check-label">Adaptive Cruise
+                                                Control</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.laneDepartureWarning"
+                                                   id="laneDepartureWarning"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.laneDepartureWarning}"/>
+                                            <label for="laneDepartureWarning" class="form-check-label">Lane Departure
+                                                Warning</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.blindSpotDetection"
+                                                   id="blindSpotDetection"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.blindSpotDetection}"/>
+                                            <label for="blindSpotDetection" class="form-check-label">Blind Spot
+                                                Detection</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.forwardCollisionWarning"
+                                                   id="forwardCollisionWarning"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.forwardCollisionWarning}"/>
+                                            <label for="forwardCollisionWarning" class="form-check-label">Forward
+                                                Collision Warning</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.automaticEmergencyBraking"
+                                                   id="automaticEmergencyBraking"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.automaticEmergencyBraking}"/>
+                                            <label for="automaticEmergencyBraking" class="form-check-label">Automatic
+                                                Emergency Braking</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="safety.rearviewCamera" id="rearviewCamera"
+                                                   class="form-check-input"
+                                                   th:field="*{safety.rearviewCamera}"/>
+                                            <label for="rearviewCamera" class="form-check-label">Rearview Camera</label>
+                                        </div>
+                                    </div> <!-- Safety Features -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Exterior Features</label>
+                                        <div>
+                                            <input type="checkbox" id="exterior.alloyWheels" name="exterior.alloyWheels"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.alloyWheels}">
+                                            <label for="exterior.alloyWheels" class="form-check-label">Alloy
+                                                Wheels</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.powerSideMirrorAdjustment"
+                                                   name="exterior.powerSideMirrorAdjustment"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.powerSideMirrorAdjustment}">
+                                            <label for="exterior.powerSideMirrorAdjustment" class="form-check-label">Power
+                                                Side Mirror Adjustment</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.rainSensingWipers"
+                                                   name="exterior.rainSensingWipers"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.rainSensingWipers}">
+                                            <label for="exterior.rainSensingWipers" class="form-check-label">Rain
+                                                Sensing Wipers</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.sunroof" name="exterior.sunroof"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.sunroof}">
+                                            <label for="exterior.sunroof" class="form-check-label">Sunroof</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.ledHeadlights"
+                                                   name="exterior.ledHeadlights"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.ledHeadlights}">
+                                            <label for="exterior.ledHeadlights" class="form-check-label">LED
+                                                Headlights</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.fogLights" name="exterior.fogLights"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.fogLights}">
+                                            <label for="exterior.fogLights" class="form-check-label">Fog Lights</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="exterior.automaticHeadlights"
+                                                   name="exterior.automaticHeadlights"
+                                                   class="form-check-input"
+                                                   th:field="*{exterior.automaticHeadlights}">
+                                            <label for="exterior.automaticHeadlights" class="form-check-label">Automatic
+                                                Headlights</label>
+                                        </div>
+                                    </div> <!-- Exterior Features -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Interior Features</label>
+                                        <div>
+                                            <input type="checkbox" name="interior.leatherSeats" class="form-check-input"
+                                                   id="interior-leather-seats"
+                                                   th:field="*{interior.leatherSeats}">
+                                            <label class="form-check-label" for="interior-leather-seats">Leather
+                                                Seats</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.heatedSeats" class="form-check-input"
+                                                   id="interior-heated-seats"
+                                                   th:field="*{interior.heatedSeats}">
+                                            <label class="form-check-label" for="interior-heated-seats">Heated
+                                                Seats</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.powerWindows" class="form-check-input"
+                                                   id="interior-power-windows"
+                                                   th:field="*{interior.powerWindows}">
+                                            <label class="form-check-label" for="interior-power-windows">Power
+                                                Windows</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.powerLocks" class="form-check-input"
+                                                   id="interior-power-locks"
+                                                   th:field="*{interior.powerLocks}">
+                                            <label class="form-check-label" for="interior-power-locks">Power
+                                                Locks</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.sunroof" class="form-check-input"
+                                                   id="interior-sunroof"
+                                                   th:field="*{interior.sunroof}">
+                                            <label class="form-check-label" for="interior-sunroof">Sunroof</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.navigationSystem"
+                                                   class="form-check-input" id="interior-navigation-system"
+                                                   th:field="*{interior.navigationSystem}">
+                                            <label class="form-check-label" for="interior-navigation-system">Navigation
+                                                System</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.bluetooth" class="form-check-input"
+                                                   id="interior-bluetooth"
+                                                   th:field="*{interior.bluetooth}">
+                                            <label class="form-check-label" for="interior-bluetooth">Bluetooth</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.backupCamera" class="form-check-input"
+                                                   id="interior-backup-camera"
+                                                   th:field="*{interior.backupCamera}">
+                                            <label class="form-check-label" for="interior-backup-camera">Backup
+                                                Camera</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.pushButtonStart"
+                                                   class="form-check-input" id="interior-push-button-start"
+                                                   th:field="*{interior.pushButtonStart}">
+                                            <label class="form-check-label" for="interior-push-button-start">Push Button
+                                                Start</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="interior.dualClimateControl"
+                                                   class="form-check-input" id="interior-dual-climate-control"
+                                                   th:field="*{interior.dualClimateControl}">
+                                            <label class="form-check-label" for="interior-dual-climate-control">Dual
+                                                Climate Control</label>
+                                        </div>
+                                    </div> <!-- Interior Features -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Protection Features</label>
+                                        <div>
+                                            <input type="checkbox" name="protection.antiTheftSystem"
+                                                   class="form-check-input" id="protection-anti-theft-system"
+                                                   th:field="*{protection.antiTheftSystem}">
+                                            <label class="form-check-label" for="protection-anti-theft-system">Anti-Theft
+                                                System</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.remoteKeylessEntry"
+                                                   class="form-check-input" id="protection-remote-keyless-entry"
+                                                   th:field="*{protection.remoteKeylessEntry}">
+                                            <label class="form-check-label" for="protection-remote-keyless-entry">Remote
+                                                Keyless Entry</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.alarmSystem"
+                                                   class="form-check-input" id="protection-alarm-system"
+                                                   th:field="*{protection.alarmSystem}">
+                                            <label class="form-check-label" for="protection-alarm-system">Alarm
+                                                System</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.airbags" class="form-check-input"
+                                                   id="protection-airbags" th:field="*{protection.airbags}">
+                                            <label class="form-check-label" for="protection-airbags">Airbags</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.parkingSensors"
+                                                   class="form-check-input" id="protection-parking-sensors"
+                                                   th:field="*{protection.parkingSensors}">
+                                            <label class="form-check-label" for="protection-parking-sensors">Parking
+                                                Sensors</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.backupCamera"
+                                                   class="form-check-input" id="protection-backup-camera"
+                                                   th:field="*{protection.backupCamera}">
+                                            <label class="form-check-label" for="protection-backup-camera">Backup
+                                                Camera</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="protection.tirePressureMonitoring"
+                                                   class="form-check-input" id="protection-tire-pressure-monitoring"
+                                                   th:field="*{protection.tirePressureMonitoring}">
+                                            <label class="form-check-label" for="protection-tire-pressure-monitoring">Tire
+                                                Pressure Monitoring</label>
+                                        </div>
+                                    </div> <!-- Protection Features -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Comfort Features</label>
+                                        <div>
+                                            <input type="checkbox" name="comfort.airConditioning"
+                                                   class="form-check-input" id="comfort-air-conditioning"
+                                                   th:field="*{comfort.airConditioning}">
+                                            <label class="form-check-label" for="comfort-air-conditioning">Air
+                                                Conditioning</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.cruiseControl" class="form-check-input"
+                                                   id="comfort-cruise-control" th:field="*{comfort.cruiseControl}">
+                                            <label class="form-check-label" for="comfort-cruise-control">Cruise
+                                                Control</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.powerSteering" class="form-check-input"
+                                                   id="comfort-power-steering" th:field="*{comfort.powerSteering}">
+                                            <label class="form-check-label" for="comfort-power-steering">Power
+                                                Steering</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.tiltSteeringWheel"
+                                                   class="form-check-input" id="comfort-tilt-steering-wheel"
+                                                   th:field="*{comfort.tiltSteeringWheel}">
+                                            <label class="form-check-label" for="comfort-tilt-steering-wheel">Tilt
+                                                Steering Wheel</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.telescopingSteeringWheel"
+                                                   class="form-check-input" id="comfort-telescoping-steering-wheel"
+                                                   th:field="*{comfort.telescopingSteeringWheel}">
+                                            <label class="form-check-label" for="comfort-telescoping-steering-wheel">Telescoping
+                                                Steering Wheel</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.rearDefrost" class="form-check-input"
+                                                   id="comfort-rear-defrost" th:field="*{comfort.rearDefrost}">
+                                            <label class="form-check-label" for="comfort-rear-defrost">Rear
+                                                Defrost</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.remoteTrunkRelease"
+                                                   class="form-check-input" id="comfort-remote-trunk-release"
+                                                   th:field="*{comfort.remoteTrunkRelease}">
+                                            <label class="form-check-label" for="comfort-remote-trunk-release">Remote
+                                                Trunk Release</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.remoteEngineStart"
+                                                   class="form-check-input" id="comfort-remote-engine-start"
+                                                   th:field="*{comfort.remoteEngineStart}">
+                                            <label class="form-check-label" for="comfort-remote-engine-start">Remote
+                                                Engine Start</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.heatedSteeringWheel"
+                                                   class="form-check-input" id="comfort-heated-steering-wheel"
+                                                   th:field="*{comfort.heatedSteeringWheel}">
+                                            <label class="form-check-label" for="comfort-heated-steering-wheel">Heated
+                                                Steering Wheel</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="comfort.heatedMirrors" class="form-check-input"
+                                                   id="comfort-heated-mirrors" th:field="*{comfort.heatedMirrors}">
+                                            <label class="form-check-label" for="comfort-heated-mirrors">Heated
+                                                Mirrors</label>
+                                        </div>
+                                    </div> <!-- Comfort Features -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Other Features</label>
+                                        <div>
+                                            <input type="checkbox" name="other.powerTailgate" class="form-check-input"
+                                                   id="other-power-tailgate" th:field="*{other.powerTailgate}">
+                                            <label class="form-check-label" for="other-power-tailgate">Power
+                                                Tailgate</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.panoramicSunroof"
+                                                   class="form-check-input" id="other-panoramic-sunroof"
+                                                   th:field="*{other.panoramicSunroof}">
+                                            <label class="form-check-label" for="other-panoramic-sunroof">Panoramic
+                                                Sunroof</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.adaptiveHeadlights"
+                                                   class="form-check-input" id="other-adaptive-headlights"
+                                                   th:field="*{other.adaptiveHeadlights}">
+                                            <label class="form-check-label" for="other-adaptive-headlights">Adaptive
+                                                Headlights</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.appleCarPlay" class="form-check-input"
+                                                   id="other-apple-carplay" th:field="*{other.appleCarPlay}">
+                                            <label class="form-check-label" for="other-apple-carplay">Apple
+                                                CarPlay</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.androidAuto" class="form-check-input"
+                                                   id="other-android-auto" th:field="*{other.androidAuto}">
+                                            <label class="form-check-label" for="other-android-auto">Android
+                                                Auto</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.wirelessCharging"
+                                                   class="form-check-input" id="other-wireless-charging"
+                                                   th:field="*{other.wirelessCharging}">
+                                            <label class="form-check-label" for="other-wireless-charging">Wireless
+                                                Charging</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.premiumSoundSystem"
+                                                   class="form-check-input" id="other-premium-sound-system"
+                                                   th:field="*{other.premiumSoundSystem}">
+                                            <label class="form-check-label" for="other-premium-sound-system">Premium
+                                                Sound System</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.multiZoneClimateControl"
+                                                   class="form-check-input" id="other-multi-zone-climate-control"
+                                                   th:field="*{other.multiZoneClimateControl}">
+                                            <label class="form-check-label" for="other-multi-zone-climate-control">Multi-Zone
+                                                Climate Control</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.powerAdjustablePedals"
+                                                   class="form-check-input" id="other-power-adjustable-pedals"
+                                                   th:field="*{other.powerAdjustablePedals}">
+                                            <label class="form-check-label" for="other-power-adjustable-pedals">Power
+                                                Adjustable Pedals</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="other.heatedRearSeats" class="form-check-input"
+                                                   id="other-heated-rear-seats" th:field="*{other.heatedRearSeats}">
+                                            <label class="form-check-label" for="other-heated-rear-seats">Heated Rear
+                                                Seats</label>
+                                        </div>
+                                    </div> <!-- Other Features -->
+
+                                    <div class="col-12">
+                                        <label for="additional-information" class="form-label">Additional
+                                            Information</label>
+                                        <textarea name="additionalInformation" id="additional-information"
+                                                  class="form-control"
+                                                  th:field="*{additionalInformation}"
+                                                  th:errorclass="is-invalid"
+                                                  rows="5"
+                                                  placeholder="Contacts, Vehicle Location, Vehicle Insurance ..."></textarea>
+                                        <div class="invalid-feedback">Please, enter additional information!</div>
+                                    </div> <!-- Additional Information -->
+
+                                    <div class="col-12">
+                                        <label class="form-label">Upload Images</label>
+                                        <input type="file" name="imageFiles" class="form-control" multiple>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="terms" type="checkbox"
+                                                   value=""
+                                                   id="acceptTerms" required>
+                                            <label class="form-check-label" for="acceptTerms">I agree and accept
+                                                the <a
+                                                        href="/terms" target="_blank">terms and
+                                                    conditions</a></label>
+                                            <div class="invalid-feedback">You must agree before submitting.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" type="button" id="submit-btn"
+                                                onclick="submitForm()">Submit Offer
+                                        </button>
+                                    </div>
+                                </form>
+                                <script>
+                                   function submitForm() {
+                                     var makeSelect = document.getElementById("car-make");
+                                     let selectedMake = makeSelect.options[makeSelect.selectedIndex].value;
+                                     var modelSelect = document.getElementById("car-model");
+                                     var selectedModel = modelSelect.options[modelSelect.selectedIndex].value;
+                                     var price = document.getElementById("price").value;
+                                     var month = document.getElementById("month").value;
+                                     var year = document.getElementById("year").value;
+                                     var engineTypeSelect = document.getElementById("engine.engineType");
+                                     var selectedEngineType = engineTypeSelect.options[engineTypeSelect.selectedIndex].value;
+                                     var enginePower = document.getElementById("engine.power").value;
+                                     var euroStandardSelect = document.getElementById("engine.euroStandard");
+                                     var euroStandard = euroStandardSelect.options[euroStandardSelect.selectedIndex].value;
+                                     var cubicCapacity = document.getElementById("engine.cubicCapacity").value;
+                                     var categorySelect = document.getElementById("category.category");
+                                     var category = categorySelect.options[categorySelect.selectedIndex].value;
+                                     var gearBoxTypeSelect = document.getElementById("gearBox.gearBoxType");
+                                     var gearBoxType = gearBoxTypeSelect.options[gearBoxTypeSelect.selectedIndex].value;
+
+                                     var mileage = document.getElementById("mileage").value;
+                                     var colorSelect = document.getElementById("color.paint");
+                                     var color = colorSelect.options[colorSelect.selectedIndex].value;
+
+                                     var additionalInformation = document.getElementById("additional-information").value;
+                                     var terms = document.getElementById("acceptTerms").checked;
+
+
+                                     // Check if all fields are populated
+                                     if (selectedMake && selectedModel && !isNaN(price) && month && year && selectedEngineType
+                                         && !isNaN(enginePower) && euroStandard && !isNaN(cubicCapacity) && category && gearBoxType
+                                         && !isNaN(mileage) && color && additionalInformation && terms) {
+
+                                     // Check if file is uploaded
+
+                                     var fileInput = document.querySelector('input[type="file"]');
+                                      if (!fileInput || fileInput.files.length === 0) {
+                                        alert("Please upload at least one image.");
+                                      } else {
+                                        // Submit the form programmatically
+                                        document.getElementById("create-form").submit();
+
+                                        // Show success message
+                                        alert("Your offer has been submitted successfully!");
+
+                                        // Clear form fields
+                                        document.getElementById("create-form").reset();
+
+                                      }
+                                    } else {
+                                      // Show error message
+                                      alert("Please fill in all fields with valid information and accept the terms before submitting.");
+                                    }
+                                  }
+
+
+                                </script> <!-- JS check (Empty Fields, Valid Number Fields), Alerts, Form Submission -->
+
+
+                            </div>
+                        </div>
+
+                        <div class="credits">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</main><!-- End #main -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
