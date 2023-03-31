@@ -83,6 +83,9 @@ public class Car {
 
     @Column(name = "date_added")
     private LocalDateTime dateAdded;
+    
+    @ManyToOne
+    private User user;
 
     public Car() {
     }
@@ -245,5 +248,13 @@ public class Car {
 
     public void setDateAdded(LocalDateTime dateAdded) {
         this.dateAdded = dateAdded;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
