@@ -6,14 +6,12 @@ import automobile.cars.model.entity.*;
 import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.repository.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -33,13 +31,14 @@ public class CreateService {
     private final ComfortRepository comfortRepository;
     private final OtherRepository otherRepository;
     private final UserRepository userRepository;
+    private final FileUploadUtil fileUploadUtil;
 
     public CreateService(CarRepository carRepository,
                          ColorRepository colorRepository,
                          EngineRepository engineRepository,
                          CategoryRepository categoryRepository,
                          GearBoxRepository gearBoxRepository,
-                         SafetyRepository safetyRepository, ExteriorRepository exteriorRepository, InteriorRepository interiorRepository, ProtectionRepository protectionRepository, ComfortRepository comfortRepository, OtherRepository otherRepository, UserRepository userRepository) {
+                         SafetyRepository safetyRepository, ExteriorRepository exteriorRepository, InteriorRepository interiorRepository, ProtectionRepository protectionRepository, ComfortRepository comfortRepository, OtherRepository otherRepository, UserRepository userRepository, FileUploadUtil fileUploadUtil) {
         this.carRepository = carRepository;
         this.colorRepository = colorRepository;
         this.engineRepository = engineRepository;
@@ -52,6 +51,7 @@ public class CreateService {
         this.comfortRepository = comfortRepository;
         this.otherRepository = otherRepository;
         this.userRepository = userRepository;
+        this.fileUploadUtil = fileUploadUtil;
     }
 
     public boolean create(CreateCarDTO createCarDTO, CarsDealershipUserDetails userDetails) throws IOException {
@@ -218,16 +218,15 @@ public class CreateService {
 
         car.setAdditionalInformation(createCarDTO.getAdditionalInformation());
 
-        // handle images
-        List<String> imageFilePaths = new ArrayList<>();
-        for (MultipartFile imageFile : createCarDTO.getImageFiles()) {
-            String fileName = StringUtils.cleanPath(Objects.requireNonNull(imageFile.getOriginalFilename()));
-            FileUploadUtil.saveFile(uploadDir, fileName, imageFile);
-            imageFilePaths.add(fileName);
+        // Upload the images to Cloudinary and add the public URLs to the Car object
+        List<String> imagePaths = new ArrayList<>();
+        for (MultipartFile image : createCarDTO.getImageFiles()) {
+            String imagePath = fileUploadUtil.uploadFile(image);
+            imagePaths.add(imagePath);
         }
 
         // Set the image files to the car entity
-        car.setImageFilePaths(imageFilePaths);
+        car.setImageFilePaths(imagePaths);
 
         // Ser Car to the user
         Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
