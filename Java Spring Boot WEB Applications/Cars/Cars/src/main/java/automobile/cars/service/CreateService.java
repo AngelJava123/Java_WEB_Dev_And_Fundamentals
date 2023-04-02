@@ -17,8 +17,6 @@ import java.util.Optional;
 @Service
 public class CreateService {
 
-    private final static String uploadDir = "C:\\Users\\tasheva\\Desktop\\Cars\\Cars\\src\\main\\resources\\static\\assets\\uploads\\";
-
     private final CarRepository carRepository;
     private final ColorRepository colorRepository;
     private final EngineRepository engineRepository;
