@@ -133,7 +133,7 @@
             <div class="slider">
                 <div class="slider-item" th:each="imagePath : ${car.imageFilePaths}">
                     <div style="display: inline-block;">
-                        <img th:src="@{/assets/uploads/{fileName}(fileName=${imagePath})}" alt="car image">
+                        <img th:src="@{${imagePath}}" alt="car image">
                     </div>
                 </div>
             </div>
