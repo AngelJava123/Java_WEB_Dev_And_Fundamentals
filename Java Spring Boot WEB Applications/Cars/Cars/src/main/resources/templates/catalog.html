@@ -65,7 +65,7 @@
                                     <ul>
                                         <li th:each="imagePath : ${car.imageFilePaths}">
                                             <div class="image-container">
-                                                <img id="carImage" th:src="@{/assets/uploads/{fileName}(fileName=${imagePath})}"
+                                                <img id="carImage" th:src="@{${imagePath}}"
                                                      alt="Image">
                                                 <div class="price-bubble">
                                                     <span th:text="${car.price}"></span>€
