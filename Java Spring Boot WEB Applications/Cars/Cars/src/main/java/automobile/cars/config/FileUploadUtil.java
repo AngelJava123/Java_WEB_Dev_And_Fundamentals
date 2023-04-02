@@ -21,6 +21,8 @@ public class FileUploadUtil {
                 "api_key", "my_api_key",
                 "api_secret", "my_api_secret"));
     }
+    
+    // I will give the cloudinary details for access on demand, since it is a sensitive information and should not be public.
 
     public String uploadFile(MultipartFile file) throws IOException {
         // Generate a unique filename
