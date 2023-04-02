@@ -17,9 +17,9 @@ public class FileUploadUtil {
 
     public FileUploadUtil() {
         cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "dms1ciius",
-                "api_key", "916444979765684",
-                "api_secret", "HXxr20NSx7tcGERn5Jq27HVNt4k"));
+                "cloud_name", "my_cloud_name",
+                "api_key", "my_api_key",
+                "api_secret", "my_api_secret"));
     }
 
     public String uploadFile(MultipartFile file) throws IOException {
@@ -28,7 +28,7 @@ public class FileUploadUtil {
 
         // Upload the file to Cloudinary
         Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
-                "folder", "AutoGeniusImages",
+                "folder", "my_folder_name",
                 "public_id", filename));
 
         // Return the public URL of the uploaded file
