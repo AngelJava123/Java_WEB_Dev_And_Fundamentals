@@ -1295,5 +1295,21 @@ h6 {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* POP-UP MESSAGE CONTAINER IN [PROFILE EDIT FORM] */
 
+.popup-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      color: #333;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      max-width: 400px;
+      padding: 20px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
