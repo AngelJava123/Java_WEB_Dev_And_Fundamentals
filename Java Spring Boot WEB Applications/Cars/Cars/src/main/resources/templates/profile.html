@@ -118,7 +118,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form th:action="@{/profile}" method="post" th:each="a : ${profileViewModel}" th:object="${a}">
+                  <form id="edit-form" th:action="@{/profile}" method="post" action="#" th:each="a : ${profileViewModel}" th:object="${a}">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -133,7 +133,7 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Username</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName">
+                        <input name="fullName" type="text" class="form-control" id="fullName" th:value="${profileViewModel.username}">
                       </div>
                     </div>
 
@@ -180,7 +180,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary" onclick="return confirmAction()">Save Changes</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -268,6 +268,30 @@
         </div>
       </div>
     </section>
+
+    <div class="popup-container" id="popup-container" style="display: none;">
+      <p>Note: Clicking 'Save Changes' will log you out and require you to log in again with new details. Are you sure you want to proceed?</p>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" onclick="submitForm()">Yes</button>
+        <button type="button" class="btn btn-secondary" onclick="hidePopup()">No</button>
+      </div>
+    </div>
+
+    <script>
+     function confirmAction() {
+      document.getElementById("popup-container").style.display = "block";
+      return false;
+    }
+
+    function hidePopup() {
+      document.getElementById("popup-container").style.display = "none";
+    }
+
+    function submitForm() {
+      document.getElementById("popup-container").style.display = "none";
+      document.getElementById("edit-form").submit();
+    }
+    </script>
 
   </main><!-- End #main -->
 
