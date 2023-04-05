@@ -269,6 +269,13 @@
       </div>
     </section>
 
+    <div class="popup-container" id="filedCheck-popup-container" style="display: none;">
+      <p>You cannot submit empty values!</p>
+      <div class="text-center">
+        <button type="button" class="btn btn-secondary" onclick="hidePopup()">Ok</button>
+      </div>
+    </div>
+
     <div class="popup-container" id="popup-container" style="display: none;">
       <p>Note: Clicking 'Save Changes' will log you out and require you to log in again with new details. Are you sure you want to proceed?</p>
       <div class="text-center">
@@ -276,22 +283,6 @@
         <button type="button" class="btn btn-secondary" onclick="hidePopup()">No</button>
       </div>
     </div>
-
-    <script>
-     function confirmAction() {
-      document.getElementById("popup-container").style.display = "block";
-      return false;
-    }
-
-    function hidePopup() {
-      document.getElementById("popup-container").style.display = "none";
-    }
-
-    function submitForm() {
-      document.getElementById("popup-container").style.display = "none";
-      document.getElementById("edit-form").submit();
-    }
-    </script>
 
   </main><!-- End #main -->
 
@@ -312,6 +303,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/profileEditForm.js"></script>
 
 </body>
 </html>
