@@ -1,7 +1,9 @@
 package automobile.cars.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "car_image_paths", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image_path")
     private List<String> imageFilePaths = new ArrayList<>();
@@ -78,12 +80,20 @@ public class Car {
     private VehicleOther other;
 
     @NotNull
+    @Pattern(regexp="\\d{10}", message="Invalid phone number")
+    private String phoneNumber;
+
+    @NotNull
+    @NotBlank(message="Location cannot be blank")
+    private String location;
+
+    @NotNull
     @Column(name = "additional_information", columnDefinition = "TEXT")
     private String additionalInformation;
 
     @Column(name = "date_added")
     private LocalDateTime dateAdded;
-    
+
     @ManyToOne
     private User user;
 
@@ -249,12 +259,28 @@ public class Car {
     public void setDateAdded(LocalDateTime dateAdded) {
         this.dateAdded = dateAdded;
     }
-    
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
