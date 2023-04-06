@@ -2,7 +2,10 @@ package automobile.cars.model.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +14,22 @@ public class CreateCarDTO {
     private Long id;
     @NotEmpty(message = "At least one image is required")
     private List<MultipartFile> imageFiles = new ArrayList<>();
+
+    @NotNull
     private String make;
+
+    @NotNull
     private String model;
+
+    @NotNull
     private String price;
+
+    @NotNull
     private String month;
+
+    @NotNull
     private String year;
+
     private EngineDTO engine;
     private CategoryDTO category;
     private GearBoxDTO gearBox;
@@ -27,7 +41,17 @@ public class CreateCarDTO {
     private ProtectionDTO protection;
     private ComfortDTO comfort;
     private OtherDTO other;
+
+    @NotNull
     private String additionalInformation;
+
+    @NotNull
+    @Pattern(regexp="\\d{10}", message="Invalid phone number")
+    private String phoneNumber;
+
+    @NotNull
+    @NotBlank(message="Location cannot be blank")
+    private String location;
 
     public CreateCarDTO() {
         this.engine = new EngineDTO();
@@ -192,5 +216,21 @@ public class CreateCarDTO {
 
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
