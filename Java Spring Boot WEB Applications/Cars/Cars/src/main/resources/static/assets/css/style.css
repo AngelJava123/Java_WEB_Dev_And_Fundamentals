@@ -1313,3 +1313,14 @@ h6 {
       transform: translate(-50%, -50%);
     }
 
+/* [CAR DETAILS PHONE NUMBER CAPSULE] */
+
+.phone-capsule {
+  display: inline-block;
+  background-color: #0074D9;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
