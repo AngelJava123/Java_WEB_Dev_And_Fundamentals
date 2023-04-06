@@ -18,6 +18,8 @@ function submitForm() {
   var gearBoxType = gearBoxTypeSelect.options[gearBoxTypeSelect.selectedIndex].value;
   var mileage = document.getElementById("mileage").value;
   var colorSelect = document.getElementById("color.paint");
+  var phoneNumber = document.getElementById("phoneNumber").value;
+  var location = document.getElementById("location").value;
   var color = colorSelect.options[colorSelect.selectedIndex].value;
   var additionalInformation = document.getElementById("additional-information").value;
   var terms = document.getElementById("acceptTerms").checked;
@@ -27,7 +29,7 @@ function submitForm() {
   // Check if all fields are populated
   if (selectedMake && selectedModel && !isNaN(price) && month && year && selectedEngineType
       && !isNaN(enginePower) && euroStandard && !isNaN(cubicCapacity) && category && gearBoxType
-      && !isNaN(mileage) && color && additionalInformation && terms) {
+      && !isNaN(mileage) && color && phoneNumber && location && additionalInformation && terms) {
 
     // Check if file is uploaded
     var fileInput = document.querySelector('input[type="file"]');
