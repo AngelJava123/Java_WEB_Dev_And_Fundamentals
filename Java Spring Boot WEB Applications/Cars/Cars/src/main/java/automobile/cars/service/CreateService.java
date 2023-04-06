@@ -74,6 +74,14 @@ public class CreateService {
 
         car.setYear(createCarDTO.getYear());
 
+        // Contact Info
+
+        car.setPhoneNumber(createCarDTO.getPhoneNumber());
+
+        // Location
+
+        car.setLocation(createCarDTO.getLocation());
+
         // Engine
 
         VehicleEngine engine = new VehicleEngine(createCarDTO.getEngine().getId(),
