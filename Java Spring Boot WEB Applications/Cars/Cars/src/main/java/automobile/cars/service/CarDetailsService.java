@@ -28,6 +28,8 @@ public class CarDetailsService {
             carViewModel.setPrice(car.get().getPrice());
             carViewModel.setMonth(car.get().getMonth());
             carViewModel.setYear(car.get().getYear());
+            carViewModel.setPhoneNumber(car.get().getPhoneNumber());
+            carViewModel.setLocation(car.get().getLocation());
             carViewModel.setImageFilePaths(car.get().getImageFilePaths());
 
             // Engine
