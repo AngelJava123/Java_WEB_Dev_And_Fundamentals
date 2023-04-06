@@ -1076,6 +1076,27 @@
                                     </div> <!-- Other Features -->
 
                                     <div class="col-12">
+                                        <label for="phoneNumber" class="form-label">Phone
+                                            Number</label>
+                                        <input type="text" name="phoneNumber" class="form-control" required id="phoneNumber"
+                                               th:field="*{phoneNumber}"
+                                               th:errorclass="is-invalid"
+                                               aria-describedby="phoneNumberHelpInline" placeholder="088473657">
+                                        <div class="invalid-feedback">Please, enter phone number!</div>
+                                    </div> <!-- Phone Number -->
+
+                                    <div class="col-12">
+                                        <label for="location" class="form-label">Location</label>
+                                        <textarea name="location" id="location"
+                                                  class="form-control"
+                                                  th:field="*{location}"
+                                                  th:errorclass="is-invalid"
+                                                  rows="5"
+                                                  placeholder="123 Main Street, Apt 4, Paris 75001, France"></textarea>
+                                        <div class="invalid-feedback">Please, enter location!</div>
+                                    </div> <!-- Location -->
+
+                                    <div class="col-12">
                                         <label for="additional-information" class="form-label">Additional
                                             Information</label>
                                         <textarea name="additionalInformation" id="additional-information"
@@ -1083,7 +1104,7 @@
                                                   th:field="*{additionalInformation}"
                                                   th:errorclass="is-invalid"
                                                   rows="5"
-                                                  placeholder="Contacts, Vehicle Location, Vehicle Insurance ..."></textarea>
+                                                  placeholder="Ex: Vehicle Insurance ..."></textarea>
                                         <div class="invalid-feedback">Please, enter additional information!</div>
                                     </div> <!-- Additional Information -->
 
