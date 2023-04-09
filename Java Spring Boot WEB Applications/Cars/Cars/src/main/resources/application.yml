@@ -2,8 +2,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/AutomobileDealership?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8"
-    username:
-    password:
+    username: root
+    password: Harmantika123.
   servlet:
     multipart:
       max-file-size: 1MB
@@ -12,7 +12,6 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-
   sql:
     init:
       mode: always
@@ -34,13 +33,14 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
-server:
-  servlet:
-    session:
-      timeout: 15m
-
-mail:
-  host: "localhost"
-  port: 1025
-  username: "mobilele@mobilele.com"
-  password: ""
+  mail:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+          auth: 'true'
+    host: smtp.gmail.com
+    username: angelvtashev@gmail.com
+    password: liticynltqvtygwd
+    port: 587
