@@ -152,6 +152,7 @@
                                                 <option value="Volvo">Volvo</option>
                                             </optgroup>
                                         </select>
+                                        <div class="invalid-feedback">The field cannot be empty!</div>
                                     </div> <!-- Makes -->
 
                                     <div class="col-12">
@@ -483,25 +484,8 @@
                                             <option value="XC60" data-make="Volvo">XC60</option>
                                             <option value="XC90" data-make="Volvo">XC90</option>
                                         </select>
+                                        <div class="invalid-feedback">The field cannot be empty!</div>
                                     </div> <!-- Models -->
-
-                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    <script>
-                                    $(document).ready(function() {
-                                      // Hide all car models initially
-                                      $('#car-model option').hide();
-
-                                      // When car make is selected, show only the models for that make
-                                      $('#car-make').change(function() {
-                                        var selectedMake = $(this).val();
-                                        $('#car-model option').hide();
-                                        $('#car-model option[data-make="' + selectedMake + '"]').show();
-                                        $('#car-model').val('');
-                                      });
-                                    });
-
-                                    </script>
-
 
                                     <!------------------------------------------------------>
 
@@ -511,8 +495,8 @@
                                                id="price"
                                                th:field="*{price}"
                                                th:errorclass="is-invalid"
-                                               aria-describedby="usernameHelpInline" placeholder="5,394">
-                                        <div class="invalid-feedback">Please, enter a price!</div>
+                                               aria-describedby="usernameHelpInline" placeholder="5394">
+                                        <div class="invalid-feedback">Price should contain only digits and should not exceed 1 million in value!</div>
                                     </div> <!-- Price -->
 
                                     <div class="col-12">
@@ -536,9 +520,7 @@
                                             <option value="November">November</option>
                                             <option value="December">December</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please enter a valid month!
-                                        </div>
+                                        <div class="invalid-feedback">Production Month cannot be empty!</div>
                                     </div> <!-- Production Month -->
 
                                     <div class="col-12">
@@ -553,9 +535,7 @@
                                                 <option th:value="${year}" th:text="${year}"></option>
                                             </th:block>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please enter a valid year!
-                                        </div>
+                                        <div class="invalid-feedback">Production Year cannot be empty!</div>
                                     </div> <!-- Production Year -->
 
                                     <div class="col-12">
@@ -571,9 +551,7 @@
                                             <option value="Electric">Electric</option>
                                             <option value="Hybrid">Hybrid</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid engine type!
-                                        </div>
+                                        <div class="invalid-feedback">Engine Type cannot be empty!</div>
                                     </div> <!-- Engine Type -->
 
                                     <div class="col-12">
@@ -583,9 +561,7 @@
                                                th:field="*{engine.power}"
                                                th:errorclass="is-invalid"
                                                aria-describedby="usernameHelpInline" placeholder="150">
-                                        <div class="invalid-feedback">Please enter a valid engine power in horsepower
-                                            (HP)!
-                                        </div>
+                                        <div class="invalid-feedback">Power field should not be empty, should contain only digits that not exceed 5!</div>
                                     </div> <!-- Engine Power (HP) -->
 
                                     <div class="col-12">
@@ -602,9 +578,7 @@
                                             <option value="EURO5">EURO5</option>
                                             <option value="EURO6">EURO6</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid Euro Standard!
-                                        </div>
+                                        <div class="invalid-feedback">Euro Standard cannot be empty!</div>
                                     </div> <!-- Euro Standard -->
 
                                     <div class="col-12">
@@ -614,9 +588,7 @@
                                                th:field="*{engine.cubicCapacity}"
                                                th:errorclass="is-invalid"
                                                aria-describedby="usernameHelpInline" placeholder="Enter cubic capacity">
-                                        <div class="invalid-feedback">
-                                            Please enter a valid cubic capacity!
-                                        </div>
+                                        <div class="invalid-feedback">Cubic Capacity should be a digit with maximum 4 in value!</div>
                                     </div> <!-- Cubic Capacity -->
 
                                     <div class="col-12">
@@ -635,9 +607,7 @@
                                             <option value="Truck">Truck</option>
                                             <option value="Van">Van</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid category!
-                                        </div>
+                                        <div class="invalid-feedback">Category cannot be empty!</div>
                                     </div> <!-- Category -->
 
                                     <div class="col-12">
@@ -652,9 +622,7 @@
                                             <option value="Manual">Manual</option>
                                             <option value="Semi-Automatic">Semi-Automatic</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid gearbox type!
-                                        </div>
+                                        <div class="invalid-feedback">Gearbox Type cannot be empty!</div>
                                     </div> <!-- Gearbox -->
 
                                     <div class="col-12">
@@ -662,8 +630,8 @@
                                         <input type="text" name="mileage" class="form-control" required id="mileage"
                                                th:field="*{mileage}"
                                                th:errorclass="is-invalid"
-                                               aria-describedby="mileageHelpInline" placeholder="20,000">
-                                        <div class="invalid-feedback">Please, enter a valid mileage!</div>
+                                               aria-describedby="mileageHelpInline" placeholder="20000">
+                                        <div class="invalid-feedback">Mileage should be a number not exceeding 250000!</div>
                                     </div> <!-- Mileage -->
 
                                     <div class="col-12">
@@ -694,9 +662,7 @@
                                             <option value="Olive">Olive</option>
                                             <option value="Teal">Teal</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid color!
-                                        </div>
+                                        <div class="invalid-feedback">Color cannot be empty!</div>
                                     </div> <!-- Color -->
 
                                     <div class="col-12">
@@ -1082,7 +1048,7 @@
                                                th:field="*{phoneNumber}"
                                                th:errorclass="is-invalid"
                                                aria-describedby="phoneNumberHelpInline" placeholder="088473657">
-                                        <div class="invalid-feedback">Please, enter phone number!</div>
+                                        <div class="invalid-feedback">Phone Number must starts with 088,089 or 087 and be exactly 10 digits long</div>
                                     </div> <!-- Phone Number -->
 
                                     <div class="col-12">
@@ -1093,7 +1059,7 @@
                                                   th:errorclass="is-invalid"
                                                   rows="5"
                                                   placeholder="123 Main Street, Apt 4, Paris 75001, France"></textarea>
-                                        <div class="invalid-feedback">Please, enter location!</div>
+                                        <div class="invalid-feedback">Location cannot be empty!</div>
                                     </div> <!-- Location -->
 
                                     <div class="col-12">
@@ -1105,12 +1071,13 @@
                                                   th:errorclass="is-invalid"
                                                   rows="5"
                                                   placeholder="Ex: Vehicle Insurance ..."></textarea>
-                                        <div class="invalid-feedback">Please, enter additional information!</div>
+                                        <div class="invalid-feedback">Additional Information should be at least 50 characters long!</div>
                                     </div> <!-- Additional Information -->
 
                                     <div class="col-12">
                                         <label class="form-label">Upload Images</label>
                                         <input type="file" name="imageFiles" class="form-control" multiple>
+                                        <div class="invalid-feedback">You should select at least one image!</div>
                                     </div>
 
                                     <div class="col-12">
@@ -1156,9 +1123,11 @@
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
+<!-- Template Main JS File and J Query -->
 <script src="assets/js/main.js"></script>
 <script src="assets/js/createFormValidation.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets/js/createShowModelForMakeJQuery.js"></script>
 
 </body>
 
