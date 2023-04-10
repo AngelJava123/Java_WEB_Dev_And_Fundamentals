@@ -74,12 +74,12 @@
                                                th:field="*{name}"
                                                th:errorclass="is-invalid"
                                                aria-describedby="usernameHelpInline" placeholder="Name">
-                                        <div class="invalid-feedback">Please, enter your name!</div>
+                                        <div class="invalid-feedback">The field cannot be empty and cannot contain any numbers or special characters!</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Your Email</label>
-                                        <input type="email" name="email" class="form-control"
+                                        <input type="email" name="email" class="form-control" required
                                                id="email"
                                                th:field="*{email}"
                                                th:errorclass="is-invalid"
@@ -94,12 +94,13 @@
                                                th:field="*{mobile}"
                                                th:errorclass="is-invalid"
                                                aria-describedby="usernameHelpInline" placeholder="Mobile Phone">
-                                        <div class="invalid-feedback">Please, enter your mobile phone number!</div>
+                                        <div class="invalid-feedback">Phone Number must starts with 088,089 or 087 and be exactly 10 digits long</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="message" class="form-label">Your Message</label>
-                                        <textarea name="message" class="form-control" required id="message"
+                                        <textarea name="message" class="form-control" required
+                                                  id="message"
                                                   th:field="*{message}"
                                                   th:errorclass="is-invalid"
                                                   aria-describedby="usernameHelpInline"
@@ -122,50 +123,12 @@
                                         </button>
                                     </div>
                                 </form>
-                                <script>
-                                function submitForm() {
-                                  var name = document.getElementById("username").value;
-                                  var email = document.getElementById("email").value;
-                                  var mobile = document.getElementById("mobile").value;
-                                  var message = document.getElementById("message").value;
-                                  var terms = document.getElementById("acceptTerms").checked;
-
-                                  // Check if all fields are populated
-                                  if (name && email && mobile && message && terms) {
-                                    // Submit the form programmatically
-                                    document.getElementById("inquiry-form").submit();
-
-                                    // Show success message
-                                    alert("Your inquiry has been submitted successfully!");
-
-                                    // Clear form fields
-                                    document.getElementById("inquiry-form").reset();
-
-                                    // Return to home page
-                                    // window.location.href = "/";
-                                  } else {
-                                    // Show error message
-                                    alert("Please fill in all fields and accept the terms before submitting.");
-                                  }
-                                }
-
-
-
-                                </script>
-
-
                             </div>
                         </div>
-
-                        <div class="credits">
-                        </div>
-
                     </div>
                 </div>
             </div>
-
         </section>
-
     </div>
 </main><!-- End #main -->
 
@@ -184,6 +147,7 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/inquiryFormValidation.js"></script>
 
 </body>
 
