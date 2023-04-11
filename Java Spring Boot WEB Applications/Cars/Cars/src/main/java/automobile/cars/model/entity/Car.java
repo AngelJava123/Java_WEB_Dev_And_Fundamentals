@@ -1,9 +1,7 @@
 package automobile.cars.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,7 @@ public class Car {
     private String model;
 
     @NotNull
+    @Pattern(regexp = "^(?!0)(\\d{1,6}|1000000)$")
     private String price;
 
     @NotNull
@@ -49,6 +48,7 @@ public class Car {
     private VehicleGearBox gearBox;
 
     @NotNull
+    @Size(max = 6)
     private String mileage;
 
     @NotNull
@@ -80,7 +80,7 @@ public class Car {
     private VehicleOther other;
 
     @NotNull
-    @Pattern(regexp="\\d{10}", message="Invalid phone number")
+    @Pattern(regexp="08[789]\\d{7}", message="Invalid phone number")
     private String phoneNumber;
 
     @NotNull
@@ -89,6 +89,7 @@ public class Car {
 
     @NotNull
     @Column(name = "additional_information", columnDefinition = "TEXT")
+    @Size(min = 50, message = "Additional information should be at least 50 characters long")
     private String additionalInformation;
 
     @Column(name = "date_added")
