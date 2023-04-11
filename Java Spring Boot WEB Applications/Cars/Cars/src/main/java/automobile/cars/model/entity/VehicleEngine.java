@@ -1,7 +1,9 @@
 package automobile.cars.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "engines")
@@ -16,6 +18,8 @@ public class VehicleEngine {
     private String engineType;
 
     @NotNull
+    @Size(max = 5)
+    @Digits(integer = 5, fraction = 0)
     private String power;
 
     @NotNull
@@ -24,6 +28,8 @@ public class VehicleEngine {
 
     @NotNull
     @Column(name = "cubic_capacity")
+    @Size(max = 4)
+    @Digits(integer = 4, fraction = 0)
     private  String cubicCapacity;
 
     public VehicleEngine() {
