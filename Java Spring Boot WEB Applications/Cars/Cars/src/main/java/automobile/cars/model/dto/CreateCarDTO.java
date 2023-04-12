@@ -2,10 +2,8 @@ package automobile.cars.model.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Column;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +20,7 @@ public class CreateCarDTO {
     private String model;
 
     @NotNull
+    @Pattern(regexp = "^(?!0)(\\d{1,6}|1000000)$")
     private String price;
 
     @NotNull
@@ -33,7 +32,12 @@ public class CreateCarDTO {
     private EngineDTO engine;
     private CategoryDTO category;
     private GearBoxDTO gearBox;
+
+    @NotNull
+    @Size(max = 6)
+    @Digits(integer = 6, fraction = 0)
     private String mileage;
+
     private ColorDTO color;
     private SafetyDTO safety;
     private ExteriorDTO exterior;
@@ -43,10 +47,12 @@ public class CreateCarDTO {
     private OtherDTO other;
 
     @NotNull
+    @Column(name = "additional_information", columnDefinition = "TEXT")
+    @Size(min = 50, message = "Additional information should be at least 50 characters long")
     private String additionalInformation;
 
     @NotNull
-    @Pattern(regexp="\\d{10}", message="Invalid phone number")
+    @Pattern(regexp="08[789]\\d{7}", message="Invalid phone number")
     private String phoneNumber;
 
     @NotNull
