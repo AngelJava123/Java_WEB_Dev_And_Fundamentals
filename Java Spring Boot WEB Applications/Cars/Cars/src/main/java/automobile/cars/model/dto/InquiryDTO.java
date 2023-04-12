@@ -3,20 +3,23 @@ package automobile.cars.model.dto;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 public class InquiryDTO {
 
     @NotNull
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Name must contain only letters and spaces")
     private String name;
 
-    @Email
     @NotNull
+    @Email
     private String email;
 
     @NotNull
     private String message;
 
     @NotNull
+    @Pattern(regexp="08[789]\\d{7}", message="Invalid phone number")
     private String mobile;
 
     public InquiryDTO() {
