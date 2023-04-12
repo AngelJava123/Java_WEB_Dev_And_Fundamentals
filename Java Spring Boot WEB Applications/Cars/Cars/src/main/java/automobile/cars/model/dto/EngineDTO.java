@@ -1,6 +1,9 @@
 package automobile.cars.model.dto;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class EngineDTO {
 
@@ -10,12 +13,17 @@ public class EngineDTO {
     private String engineType;
 
     @NotNull
+    @Size(max = 5)
+    @Digits(integer = 5, fraction = 0)
     private String power;
 
     @NotNull
     private String euroStandard;
 
     @NotNull
+    @Column(name = "cubic_capacity")
+    @Size(max = 4)
+    @Digits(integer = 4, fraction = 0)
     private  String cubicCapacity;
 
     public EngineDTO() {
