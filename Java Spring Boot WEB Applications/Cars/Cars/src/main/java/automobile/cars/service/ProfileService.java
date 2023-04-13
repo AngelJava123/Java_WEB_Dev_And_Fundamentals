@@ -4,15 +4,21 @@ import automobile.cars.model.dto.ChangeEmailDTO;
 import automobile.cars.model.entity.User;
 import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.repository.UserRepository;
+import automobile.cars.view.ProfileViewModel;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class ProfileSettingsService {
+public class ProfileService {
 
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
-    public ProfileSettingsService(UserRepository userRepository) {
+    public ProfileService(UserRepository userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
     public boolean changeEmail(CarsDealershipUserDetails userDetails, ChangeEmailDTO changeEmailDTO) {
@@ -40,5 +46,12 @@ public class ProfileSettingsService {
         userRepository.save(user);
 
         return true;
+    }
+
+    public ProfileViewModel getUserDetails(CarsDealershipUserDetails userDetails) {
+
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
+
+        return modelMapper.map(user, ProfileViewModel.class);
     }
 }
