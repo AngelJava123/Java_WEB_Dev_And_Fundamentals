@@ -59,7 +59,7 @@
                                 </div>
 
                                 <form class="row g-3 needs-validation" th:action="@{/change-email}" th:method="post"
-                                      th:object="${changeEmailDTO}">
+                                      th:object="${changeEmailDTO}" data-current-email="{{userDetails.getUsername()}}">
 
                                     <div class="col-12">
                                         <label for="newEmail" class="form-label">New Email</label>
