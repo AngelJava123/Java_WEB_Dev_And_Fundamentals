@@ -27,21 +27,22 @@ public class CarsDealershipSecurityConfig {
                                            OAuthSuccessHandler oAuthSuccessHandler) throws Exception {
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/login", "/register").permitAll().
-                antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/create", "/catalog", "/details/**").permitAll().
-                anyRequest().
-                authenticated().
-                and().formLogin().
-                loginPage("/login").
-                usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
-                passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-                defaultSuccessUrl("/").
-                failureForwardUrl("/login-error").
-                and().logout().
-                logoutUrl("/logout").
-                logoutSuccessUrl("/").
-                invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                .antMatchers("/", "/login", "/register").permitAll()
+                .antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/catalog", "/details/**").permitAll()
+                .antMatchers("/create", "/profile", "/change-email").authenticated() // restrict access to create route
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login")
+                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/login-error")
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
+
 
         return http.build();
     }
