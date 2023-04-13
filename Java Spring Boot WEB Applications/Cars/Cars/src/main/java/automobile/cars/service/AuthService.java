@@ -2,9 +2,7 @@ package automobile.cars.service;
 
 import automobile.cars.model.dto.UserRegisterDTO;
 import automobile.cars.model.entity.User;
-import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.repository.UserRepository;
-import automobile.cars.view.ProfileViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -96,20 +94,5 @@ public class AuthService {
             newUser.setPassword(null);
             userRepository.save(newUser);
         }
-    }
-
-    public ProfileViewModel getUserDetails(CarsDealershipUserDetails userDetails) {
-
-        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
-
-        return modelMapper.map(user, ProfileViewModel.class);
-    }
-
-    public void updateUserDetails(CarsDealershipUserDetails userDetails, ProfileViewModel profileViewModel) {
-        User user = userRepository.findByEmail(userDetails.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setEmail(profileViewModel.getEmail());
-        // user.setUsername(profileViewModel.getUsername());
-        userRepository.save(user);
     }
 }
