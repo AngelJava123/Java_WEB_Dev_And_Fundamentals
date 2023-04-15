@@ -1,6 +1,7 @@
 package automobile.cars.web;
 
 import automobile.cars.model.dto.ChangeEmailDTO;
+import automobile.cars.model.dto.ChangePasswordDTO;
 import automobile.cars.model.user.CarsDealershipUserDetails;
 import automobile.cars.service.ProfileService;
 import automobile.cars.view.ProfileViewModel;
@@ -50,18 +51,48 @@ public class ProfileController {
         return new ChangeEmailDTO();
     }
 
+    @ModelAttribute("changePasswordDTO")
+    public ChangePasswordDTO initChangePasswordDTO() {
+        return new ChangePasswordDTO();
+    }
+
     @PostMapping("/change-email")
     public String changeEmail(@Valid ChangeEmailDTO changeEmailDTO,
                               BindingResult bindingResult,
                               @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
                               HttpSession session,
-                              RedirectAttributes redirectAttributes) {
+                              RedirectAttributes redirectAttributes,
+                              Model model) {
+
+        model.addAttribute("userDetails", userDetails.getUsername());
 
         if (bindingResult.hasErrors() || !this.profileService.changeEmail(userDetails, changeEmailDTO)) {
             redirectAttributes.addFlashAttribute("changeEmailDTO", changeEmailDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changeEmailDTO", bindingResult);
 
             return "redirect:/change-email";
+        }
+
+        session.invalidate();
+
+        return "redirect:/login";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(@Valid ChangePasswordDTO changePasswordDTO,
+                              BindingResult bindingResult,
+                              @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
+                              HttpSession session,
+                              RedirectAttributes redirectAttributes,
+                              Model model) {
+
+        model.addAttribute("userDetails", userDetails.getUsername());
+
+        if (bindingResult.hasErrors() || !this.profileService.changePassword(userDetails, changePasswordDTO)) {
+            redirectAttributes.addFlashAttribute("changePasswordDTO", changePasswordDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordDTO", bindingResult);
+
+            return "redirect:/change-password";
         }
 
         session.invalidate();
