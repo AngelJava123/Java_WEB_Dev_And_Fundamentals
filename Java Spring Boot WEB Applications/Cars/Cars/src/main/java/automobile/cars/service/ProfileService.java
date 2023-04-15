@@ -48,6 +48,16 @@ public class ProfileService {
         user.setEmail(changeEmailDTO.getNewEmail());
 
         userRepository.save(user);
+        
+        //Send email after successful changing the email.
+        String email = user.getEmail();
+        String subject = "Change Email Confirmation";
+        String body = "Dear " + user.getUsername() + ",\n\nYour email has been successfully changed at AutoGenius!\n\n" +
+                "We're glad to have helped you with this update and hope you continue to enjoy our services.\n\n" +
+                "If you have any questions or need further assistance, don't hesitate to contact us at support@autogenius.com.\n\n" +
+                "Thank you again for choosing AutoGenius. We look forward to serving you!\n\n" +
+                "Best regards,\nAutoGenius Team";
+        emailService.sendSimpleEmail(email, subject, body);
 
         return true;
     }
@@ -79,6 +89,16 @@ public class ProfileService {
         user.setPassword(passwordEncoder.encode(changePasswordDTO.getNewPassword()));
 
         userRepository.save(user);
+        
+        //Send email after successful changing the password.
+        String email = user.getEmail();
+        String subject = "Change Password Confirmation";
+        String body = "Dear " + user.getUsername() + ",\n\nYour password has been successfully changed at AutoGenius!\n\n" +
+                "We're glad to have helped you with this update and hope you continue to enjoy our services.\n\n" +
+                "If you have any questions or need further assistance, don't hesitate to contact us at support@autogenius.com.\n\n" +
+                "Thank you again for choosing AutoGenius. We look forward to serving you!\n\n" +
+                "Best regards,\nAutoGenius Team";
+        emailService.sendSimpleEmail(email, subject, body);
 
         return true;
     }
