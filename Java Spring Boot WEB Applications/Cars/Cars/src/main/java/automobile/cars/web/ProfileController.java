@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 public class ProfileController {
@@ -62,7 +64,7 @@ public class ProfileController {
                               @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
                               HttpSession session,
                               RedirectAttributes redirectAttributes,
-                              Model model) {
+                              Model model) throws IOException, MessagingException {
 
         model.addAttribute("userDetails", userDetails.getUsername());
 
@@ -84,7 +86,7 @@ public class ProfileController {
                               @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
                               HttpSession session,
                               RedirectAttributes redirectAttributes,
-                              Model model) {
+                              Model model) throws MessagingException, IOException {
 
         model.addAttribute("userDetails", userDetails.getUsername());
 
