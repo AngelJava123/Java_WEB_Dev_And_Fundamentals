@@ -2,32 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Users / Profile - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -40,100 +41,115 @@
 
 <main id="main" class="main">
 
-  <div class="pagetitle">
-    <h1>Profile</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item">Users</li>
-        <li class="breadcrumb-item active">Profile</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
+    <div class="pagetitle">
+        <h1>Profile</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item">Users</li>
+                <li class="breadcrumb-item active">Profile</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-  <section class="section profile" th:each="a : ${profileDetails}" th:object="${a}">
-    <div class="row">
-      <div class="col-xl-4">
+    <section class="section profile" th:each="a : ${profileDetails}" th:object="${a}">
+        <div class="row">
+            <div class="col-xl-4">
 
-        <div class="card">
-          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <h2 th:text="*{username}"></h2>
-          </div>
+                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <h2 th:text="*{username}"></h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">
+                                    Profile Details
+                                </button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">
+                                    Settings
+                                </button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                                    <div class="col-lg-9 col-md-8" th:text="*{username}"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-9 col-md-8" th:text="*{email}"></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade pt-3" id="profile-settings">
+
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4">
+                                        <a th:href="@{/change-email}" class="btn btn-primary">
+                                            <span class="fa fa-envelope"></span>
+                                            Change Email
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4">
+                                        <a th:href="@{/change-password}" class="btn btn-primary">
+                                            <span class="fa fa-lock"></span>
+                                            Change Password
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4">
+                                        <form id="delete-account-form" method="GET" action="/delete-account">
+                                            <button onclick="showPopup()" type="button" class="btn btn-danger">
+                                                <span class="fa fa-trash"></span>
+                                                Delete Account
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div id="popup-container" class="popup-container" style="display:none;">
+                                    <p>Are you sure you want to delete your account?</p>
+                                    <button id="popup-yes" class="btn btn-primary" onclick="submitForm()">Yes</button>
+                                    <button id="popup-no" class="btn btn-secondary" onclick="hidePopup()">No</button>
+                                </div>
+
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
-
-      <div class="col-xl-8">
-
-        <div class="card">
-          <div class="card-body pt-3">
-            <!-- Bordered Tabs -->
-            <ul class="nav nav-tabs nav-tabs-bordered">
-
-              <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profile Details</button>
-              </li>
-
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-              </li>
-
-            </ul>
-            <div class="tab-content pt-2">
-
-              <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
-                <br>
-
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label ">Username</div>
-                  <div class="col-lg-9 col-md-8" th:text="*{username}"></div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8" th:text="*{email}"></div>
-                </div>
-              </div>
-
-              <div class="tab-pane fade pt-3" id="profile-settings">
-
-                <br>
-
-                <div class="row">
-                  <div class="col-lg-3 col-md-4">
-                    <a th:href="@{/change-email}" class="btn btn-primary">
-                      <span class="fa fa-envelope"></span>
-                      Change Email
-                    </a>
-                  </div>
-                  <div class="col-lg-3 col-md-4">
-                    <a th:href="@{/change-password}" class="btn btn-primary">
-                      <span class="fa fa-lock"></span>
-                      Change Password
-                    </a>
-                  </div>
-                </div>
-
-
-              </div>
-
-            </div><!-- End Bordered Tabs -->
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+    </section>
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
 <footer th:replace="fragments/fragment :: footer"></footer>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -147,6 +163,7 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/deleteProfilePopUp.js"></script>
 
 </body>
 </html>
