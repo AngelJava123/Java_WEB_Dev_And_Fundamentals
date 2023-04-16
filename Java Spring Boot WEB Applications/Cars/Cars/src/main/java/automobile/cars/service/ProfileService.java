@@ -129,6 +129,13 @@ public class ProfileService {
         return modelMapper.map(user, ProfileViewModel.class);
     }
 
+    public void deleteUserAccount(CarsDealershipUserDetails userDetails) {
+        User user = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        userRepository.delete(user);
+    }
+
     private String readFile() throws IOException {
         // Read contents of file into a string
         return new String(Files.readAllBytes(Paths
