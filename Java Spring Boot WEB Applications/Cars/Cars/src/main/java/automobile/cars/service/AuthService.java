@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Service
@@ -31,7 +35,7 @@ public class AuthService {
         this.emailService = emailService;
     }
 
-    public boolean register(UserRegisterDTO registerDTO) {
+    public boolean register(UserRegisterDTO registerDTO) throws IOException, MessagingException {
 
         Optional<User> byUsername = this.userRepository.findByUsername(registerDTO.getUsername());
 
@@ -54,16 +58,21 @@ public class AuthService {
 
         userRepository.save(user);
 
-        //Send email after successful registration.
         String email = user.getEmail();
         String subject = "Registration Confirmation";
-        String body = "Dear " + user.getUsername() + ",\n\nThank you for registering with AutoGenius!\n\n" +
-                "We're excited to have you on board and can't wait to help you find the car of your dreams.\n\n" +
-                "To get started, log in to your account and browse our wide selection of cars, or search for specific makes and models.\n\n" +
-                "If you have any questions or need assistance, don't hesitate to contact us at support@autogenius.com.\n\n" +
-                "Thank you again for choosing AutoGenius. We look forward to serving you!\n\n" +
-                "Best regards,\nAutoGenius Team";
-        emailService.sendSimpleEmail(email, subject, body);
+
+        // Read the HTML template into a String variable
+        String htmlTemplate = readFile();
+
+        // Replace placeholders in the HTML template with dynamic values
+        htmlTemplate = htmlTemplate
+                .replace("{{username}}", user.getUsername())
+                .replace("{{type}}", "Registration")
+                .replace("{{action}}", "accepted")
+                .replace("{{confirmationType}}", "Registration");
+
+        // Send email using the HTML template
+        emailService.sendHtmlEmail(email, subject, htmlTemplate);
 
         return true;
     }
@@ -94,5 +103,11 @@ public class AuthService {
             newUser.setPassword(null);
             userRepository.save(newUser);
         }
+    }
+
+    private String readFile() throws IOException {
+        // Read contents of file into a string
+        return new String(Files.readAllBytes(Paths
+                .get("C:\\Users\\tasheva\\Desktop\\Cars\\Cars\\src\\main\\resources\\templates\\emailConfirmation.html")));
     }
 }
