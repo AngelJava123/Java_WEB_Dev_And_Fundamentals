@@ -82,11 +82,11 @@ public class ProfileController {
 
     @PostMapping("/change-password")
     public String changePassword(@Valid ChangePasswordDTO changePasswordDTO,
-                              BindingResult bindingResult,
-                              @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
-                              HttpSession session,
-                              RedirectAttributes redirectAttributes,
-                              Model model) throws MessagingException, IOException {
+                                 BindingResult bindingResult,
+                                 @AuthenticationPrincipal CarsDealershipUserDetails userDetails,
+                                 HttpSession session,
+                                 RedirectAttributes redirectAttributes,
+                                 Model model) throws MessagingException, IOException {
 
         model.addAttribute("userDetails", userDetails.getUsername());
 
@@ -100,5 +100,16 @@ public class ProfileController {
         session.invalidate();
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/delete-account")
+    public String deleteAccount(@AuthenticationPrincipal CarsDealershipUserDetails userDetails,
+                                HttpSession session) {
+
+        profileService.deleteUserAccount(userDetails);
+
+        session.invalidate();
+
+        return "redirect:/";
     }
 }
