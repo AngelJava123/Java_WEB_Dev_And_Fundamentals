@@ -37,7 +37,7 @@ public class RegistrationController {
     @PostMapping("/register")
     public String register(@Valid UserRegisterDTO registerDTO,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes) {
+                           RedirectAttributes redirectAttributes) throws MessagingException, IOException {
 
         if (bindingResult.hasErrors() || !this.authService.register(registerDTO)) {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
