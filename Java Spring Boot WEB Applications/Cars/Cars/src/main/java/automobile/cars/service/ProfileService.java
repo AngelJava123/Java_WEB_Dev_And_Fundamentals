@@ -10,6 +10,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Service
@@ -18,14 +22,16 @@ public class ProfileService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
-    public ProfileService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public ProfileService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
-    public boolean changeEmail(CarsDealershipUserDetails userDetails, ChangeEmailDTO changeEmailDTO) {
+    public boolean changeEmail(CarsDealershipUserDetails userDetails, ChangeEmailDTO changeEmailDTO) throws IOException, MessagingException {
         User user = userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -48,21 +54,28 @@ public class ProfileService {
         user.setEmail(changeEmailDTO.getNewEmail());
 
         userRepository.save(user);
-        
-        //Send email after successful changing the email.
+
         String email = user.getEmail();
         String subject = "Change Email Confirmation";
-        String body = "Dear " + user.getUsername() + ",\n\nYour email has been successfully changed at AutoGenius!\n\n" +
-                "We're glad to have helped you with this update and hope you continue to enjoy our services.\n\n" +
-                "If you have any questions or need further assistance, don't hesitate to contact us at support@autogenius.com.\n\n" +
-                "Thank you again for choosing AutoGenius. We look forward to serving you!\n\n" +
-                "Best regards,\nAutoGenius Team";
-        emailService.sendSimpleEmail(email, subject, body);
+
+        // Read the HTML template into a String variable
+        String htmlTemplate = readFile();
+
+        // Replace placeholders in the HTML template with dynamic values
+
+        htmlTemplate = htmlTemplate
+                .replace("{{username}}", user.getUsername())
+                .replace("{{type}}", "Email")
+                .replace("{{action}}", "changed")
+                .replace("{{confirmationType}}", "Change Email");
+
+        // Send email using the HTML template
+        emailService.sendHtmlEmail(email, subject, htmlTemplate);
 
         return true;
     }
 
-    public boolean changePassword(CarsDealershipUserDetails userDetails, ChangePasswordDTO changePasswordDTO) {
+    public boolean changePassword(CarsDealershipUserDetails userDetails, ChangePasswordDTO changePasswordDTO) throws IOException, MessagingException {
         User user = userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -78,9 +91,9 @@ public class ProfileService {
             return false;
         }
 
-      //  if (!user.getPassword().equals(passwordEncoder.encode(changePasswordDTO.getCurrentPassword()))) {
-      //      return false;
-      //  }
+        //  if (!user.getPassword().equals(passwordEncoder.encode(changePasswordDTO.getCurrentPassword()))) {
+        //      return false;
+        //  }
 
         if (!changePasswordDTO.getNewPassword().equals(changePasswordDTO.getConfirmNewPassword())) {
             return false;
@@ -89,16 +102,22 @@ public class ProfileService {
         user.setPassword(passwordEncoder.encode(changePasswordDTO.getNewPassword()));
 
         userRepository.save(user);
-        
-        //Send email after successful changing the password.
+
         String email = user.getEmail();
         String subject = "Change Password Confirmation";
-        String body = "Dear " + user.getUsername() + ",\n\nYour password has been successfully changed at AutoGenius!\n\n" +
-                "We're glad to have helped you with this update and hope you continue to enjoy our services.\n\n" +
-                "If you have any questions or need further assistance, don't hesitate to contact us at support@autogenius.com.\n\n" +
-                "Thank you again for choosing AutoGenius. We look forward to serving you!\n\n" +
-                "Best regards,\nAutoGenius Team";
-        emailService.sendSimpleEmail(email, subject, body);
+
+        // Read the HTML template into a String variable
+        String htmlTemplate = readFile();
+
+        // Replace placeholders in the HTML template with dynamic values
+        htmlTemplate = htmlTemplate
+                .replace("{{username}}", user.getUsername())
+                .replace("{{type}}", "Password")
+                .replace("{{action}}", "changed")
+                .replace("{{confirmationType}}", "Change Password");
+
+        // Send email using the HTML template
+        emailService.sendHtmlEmail(email, subject, htmlTemplate);
 
         return true;
     }
@@ -108,5 +127,11 @@ public class ProfileService {
         Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
 
         return modelMapper.map(user, ProfileViewModel.class);
+    }
+
+    private String readFile() throws IOException {
+        // Read contents of file into a string
+        return new String(Files.readAllBytes(Paths
+                .get("C:\\Users\\tasheva\\Desktop\\Cars\\Cars\\src\\main\\resources\\templates\\emailConfirmation.html")));
     }
 }
