@@ -18,8 +18,17 @@ public class CarDetailsController {
 
     @GetMapping("/details/{id}")
     public String carDetailsById(@PathVariable Long id, Model model) {
+        // retrieve car details
         CarViewModel car = carDetailsService.findById(id);
+
+        // increment the visits counter
+        int visits = carDetailsService.incrementVisits(id);
+
+        // add car and visits to the model
         model.addAttribute("car", car);
+        model.addAttribute("visits", visits);
+
         return "details";
     }
+
 }
