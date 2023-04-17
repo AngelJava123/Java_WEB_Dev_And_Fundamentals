@@ -49,6 +49,7 @@ public class Car {
 
     @NotNull
     @Size(max = 6)
+    @Digits(integer = 6, fraction = 0)
     private String mileage;
 
     @NotNull
@@ -97,6 +98,8 @@ public class Car {
 
     @ManyToOne
     private User user;
+
+    private int visits = 0;
 
     public Car() {
     }
@@ -283,5 +286,13 @@ public class Car {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public void setVisits(int visits) {
+        this.visits = visits;
     }
 }
