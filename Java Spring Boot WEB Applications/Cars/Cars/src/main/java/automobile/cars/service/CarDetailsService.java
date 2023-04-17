@@ -127,4 +127,11 @@ public class CarDetailsService {
 
         return carViewModel;
     }
+    
+    public int incrementVisits(Long id) {
+        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found"));
+        car.setVisits(car.getVisits() + 1);
+        carRepository.save(car);
+        return car.getVisits();
+    }
 }
