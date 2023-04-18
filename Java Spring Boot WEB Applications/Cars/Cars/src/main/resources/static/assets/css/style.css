@@ -1295,7 +1295,7 @@ h6 {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* POP-UP MESSAGE CONTAINER IN [PROFILE EDIT FORM] */
+/* POP-UP MESSAGE CONTAINER IN [PROFILE DELETE FORM] */
 
 .popup-container {
       background-color: #fff;
@@ -1311,7 +1311,7 @@ h6 {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-    }
+}
 
 /* [CAR DETAILS PHONE NUMBER CAPSULE] */
 
@@ -1324,3 +1324,84 @@ h6 {
   margin-right: 10px;
 }
 
+/* [MY OFFERS EDIT AND REMOVE CAPSULES] */
+
+.edit-link {
+    background-color: blue;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.remove-link {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.edit-link:hover, .remove-link:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.edit-link, .remove-link {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.edit-link {
+    background-image: linear-gradient(to bottom, #007bff, #0062cc);
+}
+.remove-link {
+    background-image: linear-gradient(to bottom, #dc3545, #c82333);
+}
+
+.edit-remove-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-remove-container a {
+  display: inline-block;
+}
+
+.edit-remove-container a:not(:last-child) {
+  margin-right: 10px;
+}
+
+/* [MY PROFILE SETTINGS BUTTONS] */
+
+.btn-primary {
+    background: linear-gradient(to bottom right, #2196F3, #1976D2);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(to bottom right, #F44336, #E53935);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+}
