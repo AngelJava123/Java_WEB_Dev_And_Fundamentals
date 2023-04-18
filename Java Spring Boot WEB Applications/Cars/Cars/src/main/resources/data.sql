@@ -2,6 +2,9 @@ INSERT INTO roles(id, role)
 VALUES (1, "PRIVATE_USER"),
        (2, "DEALER");
 
+INSERT INTO users(id, email, password, username)
+VALUES (1, "charlisasi@abv.bg", "9cfc1b893228dec4fb8bd03b86e308105318d8ea026e3ee3f6cb5da84dc4cb6f0b6cc224b7c486a2", "angelvtashev");
+
 INSERT INTO contacts(id, web_site_name, address, mobile_phone, working_hours, info_email, LTD, FD, VAT, fax)
 VALUES(1, "autogenius.bg", "1221 Bulgaria Blvd. Sofia, №85, bl. 324", "02 5610 307", "9:00 - 18:00 /without weekends/",
           "info@autogenius.bg", "GOLD STANDARD LTD", "F.D. 1380/18 - SGS", "BG571943287", "02/9156890");
@@ -76,8 +79,8 @@ VALUES(1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1);
 INSERT INTO others(id, adaptive_headlights, android_auto, apple_carplay, heated_rear_seats, multi_zone_climate_control, panoramic_sunroof, power_adjustable_pedals, power_tailgate, premium_sound_system, wireless_charging)
 VALUES(1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0);
 
-INSERT INTO cars(id, make, model, price, month, year, engine_id, category_id, gear_box_id, mileage, color_id, safety_id, exterior_id, interior_id, protection_id,  comfort_id, other_id, additional_information, date_added, phone_number, location, user_id)
-VALUES(1, "Volkswagen", "Tiguan", "16400", "June", "2010", 1, 4, 2, "245000", 1, 1, 1, 1, 1, 1, 1, "New importation . . SWITZERLAND. . . 4x4. . . . Navigation. . . . Service book. . . Very good technical and visual condition. . . . Solid undercarriage - Preserved Interior - Motor and Box work perfectly. . . Very Strong and Practical Jeep. . . All systems and units are 100% functional. The car was bought directly from the owner, uniquely preserved. The car is sold with an invoice and a contract from the company, at any time convenient for you. I assist in the extraction of transit insurance numbers. ALL VEHICLES IN THE DEALERSHIP HAVE CATALYTIC DEVICES AVAILABLE. ! !", NOW(), "0883967584", "123 Main Street, Apt 4, Paris 75001, France", NULL);
+INSERT INTO cars(id, make, model, price, month, year, engine_id, category_id, gear_box_id, mileage, color_id, safety_id, exterior_id, interior_id, protection_id,  comfort_id, other_id, additional_information, date_added, phone_number, location, user_id, visits)
+VALUES(1, "Volkswagen", "Tiguan", "16400", "June", "2010", 1, 4, 2, "245000", 1, 1, 1, 1, 1, 1, 1, "New importation . . SWITZERLAND. . . 4x4. . . . Navigation. . . . Service book. . . Very good technical and visual condition. . . . Solid undercarriage - Preserved Interior - Motor and Box work perfectly. . . Very Strong and Practical Jeep. . . All systems and units are 100% functional. The car was bought directly from the owner, uniquely preserved. The car is sold with an invoice and a contract from the company, at any time convenient for you. I assist in the extraction of transit insurance numbers. ALL VEHICLES IN THE DEALERSHIP HAVE CATALYTIC DEVICES AVAILABLE. ! !", NOW(), "0883967584", "123 Main Street, Apt 4, Paris 75001, France", 1, 0);
 
 INSERT INTO car_image_paths(car_id, image_path)
 VALUES(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan1_uh9gmd.jpg"),
