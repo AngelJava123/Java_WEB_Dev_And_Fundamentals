@@ -56,7 +56,7 @@ public class ProfileService {
         userRepository.save(user);
 
         String email = user.getEmail();
-        String subject = "Change Email Confirmation";
+        String subject = "Email Change Confirmation";
 
         // Read the HTML template into a String variable
         String htmlTemplate = readFile();
@@ -67,7 +67,7 @@ public class ProfileService {
                 .replace("{{username}}", user.getUsername())
                 .replace("{{type}}", "Email")
                 .replace("{{action}}", "changed")
-                .replace("{{confirmationType}}", "Change Email");
+                .replace("{{confirmationType}}", "Email Change");
 
         // Send email using the HTML template
         emailService.sendHtmlEmail(email, subject, htmlTemplate);
@@ -104,7 +104,7 @@ public class ProfileService {
         userRepository.save(user);
 
         String email = user.getEmail();
-        String subject = "Change Password Confirmation";
+        String subject = "Password Change Confirmation";
 
         // Read the HTML template into a String variable
         String htmlTemplate = readFile();
@@ -114,7 +114,7 @@ public class ProfileService {
                 .replace("{{username}}", user.getUsername())
                 .replace("{{type}}", "Password")
                 .replace("{{action}}", "changed")
-                .replace("{{confirmationType}}", "Change Password");
+                .replace("{{confirmationType}}", "Password Change");
 
         // Send email using the HTML template
         emailService.sendHtmlEmail(email, subject, htmlTemplate);
