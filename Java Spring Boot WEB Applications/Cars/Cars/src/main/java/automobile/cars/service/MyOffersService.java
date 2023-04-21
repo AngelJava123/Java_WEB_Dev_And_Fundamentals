@@ -187,10 +187,10 @@ public class MyOffersService {
         return this.carRepository.findById(id);
     }
 
-    public void updateCar(CreateCarDTO createCarDTO) throws IOException {
+    public void updateCar(CreateCarDTO createCarDTO, Long carId) throws IOException {
         // Create a new car entity
 
-        Optional<Car> optionalCar = carRepository.findByMileage(createCarDTO.getMileage());
+        Optional<Car> optionalCar = getCarById(carId);
 
         Car car = optionalCar.get();
 
@@ -375,5 +375,4 @@ public class MyOffersService {
 
         carRepository.save(car);
     }
-
 }
