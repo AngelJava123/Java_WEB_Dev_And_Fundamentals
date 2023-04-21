@@ -3,7 +3,6 @@ package automobile.cars.web;
 import automobile.cars.model.dto.CreateCarDTO;
 import automobile.cars.model.entity.Car;
 import automobile.cars.model.user.CarsDealershipUserDetails;
-import automobile.cars.service.CreateService;
 import automobile.cars.service.MyOffersService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,11 +23,10 @@ import java.util.Optional;
 public class MyOffersController {
 
     private final MyOffersService myOffersService;
-    private final CreateService createService;
+    public static Long editCarId;
 
-    public MyOffersController(MyOffersService myOffersService, CreateService createService) {
+    public MyOffersController(MyOffersService myOffersService) {
         this.myOffersService = myOffersService;
-        this.createService = createService;
     }
 
     @GetMapping("/myOffers")
@@ -55,12 +53,13 @@ public class MyOffersController {
         Optional<Car> car = myOffersService.getCarById(id);
         ModelAndView modelAndView = new ModelAndView("edit-car");
         modelAndView.addObject("car", car);
+        editCarId = id;
         return modelAndView;
     }
 
     @PostMapping("/save-edit")
     public String saveEdit(@ModelAttribute("car") CreateCarDTO carDTO) throws IOException {
-        myOffersService.updateCar(carDTO);
+        myOffersService.updateCar(carDTO, editCarId);
         return "redirect:/myOffers";
     }
 
