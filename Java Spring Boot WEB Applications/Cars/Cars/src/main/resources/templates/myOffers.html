@@ -65,7 +65,7 @@
                                     <ul>
                                         <li th:each="imagePath : ${car.imageFilePaths}">
                                             <div class="image-container">
-                                                <img id="carImage"  th:src="@{${imagePath}}"
+                                                <img id="carImage" th:src="@{${imagePath}}"
                                                      alt="Image">
                                                 <div class="price-bubble">
                                                     <span th:text="${car.price}"></span>€
@@ -89,14 +89,14 @@
                                 </p>
                             </li>
                             <br>
-                            <li style="text-align: center; margin-top: 20px;">
-                                <a th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
+                            <li class="edit-remove-container text-center">
+                                <a class="edit-link" th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
                             </li>
                             <li style="text-align: center; margin-top: 20px;">
-                                <div class="edit-remove-container text-center">
-                                    <a th:href="@{/edit/{id}(id=${car.id})}" class="edit-link">EDIT</a>
+                                <div class="blue-red-container text-center">
+                                    <a th:href="@{/edit/{id}(id=${car.id})}" class="blue-link">EDIT</a>
                                     <span style="padding: 0 10px;"></span>
-                                    <a th:href="@{/remove/{id}(id=${car.id})}" class="remove-link">REMOVE</a>
+                                    <a th:href="@{/remove/{id}(id=${car.id})}" class="red-link">REMOVE</a>
                                 </div>
                             </li>
                         </ul>
