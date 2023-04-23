@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header th:replace="fragments/fragment :: headerNav"></header>
+
+<!-- ======= Sidebar ======= -->
+<aside th:replace="fragments/fragment :: asideNav"></aside>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>My Favourite Car Offers</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Favourites</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section" id="carCatalog">
+        <div class="row">
+            <div class="col-lg-6" th:each="car : ${allCars}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="blue-red-container">
+                            <a th:href="@{/remove-favourite/{id}(id=${car.id})}" class="red-link"
+                               th:if="${car.favourite}" title="Remove from favourites">
+                                <i class="bi bi-heart-fill text-dark" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
+                        <ul style="margin: 0; padding: 0; list-style: none;">
+                            <li>
+                                <div class="slider">
+                                    <ul>
+                                        <li th:each="imagePath : ${car.imageFilePaths}">
+                                            <div class="image-container">
+                                                <img id="carImage" th:src="@{${imagePath}}"
+                                                     alt="Image">
+                                                <div class="price-bubble">
+                                                    <span th:text="${car.price}"></span>€
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <br>
+                            <li style="margin-bottom: 10px;">
+                                <p style="margin: 0;">
+                                    <span th:text="${car.year}"></span>,
+                                    <span th:text="${car.engineViewModel.engineType}"></span>,
+                                    <span th:text="${car.mileage}"></span> <a>km</a>
+                                </p>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <p style="margin: 0; opacity: 0.5">
+                                    Posted on <span th:text="${car.formattedDateAdded}"></span>
+                                </p>
+                            </li>
+                            <br>
+                            <li class="blue-red-container text-center">
+                                <a class="blue-link" th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-fluid row justify-content-center">
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item" th:classappend="${allCars.isFirst()} ? 'disabled' : ''">
+                <a th:unless="${allCars.isFirst()}"
+                   th:href="@{/catalog(size=${allCars.getSize()},page=0)}"
+                   class="page-link" href="#">First</a>
+                <a th:if="${allCars.isFirst()}"
+                   class="page-link" href="#">First</a>
+            </li>
+            <li class="page-item" th:classappend="${allCars.hasPrevious() ? '' : 'disabled'}">
+                <a th:if="${allCars.hasPrevious()}"
+                   th:href="@{/catalog(size=${allCars.getSize()},page=${allCars.getNumber() - 1})}"
+                   class="page-link" href="#">Previous</a>
+                <a th:unless="${allCars.hasPrevious()}"
+                   class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item" th:classappend="${allCars.hasNext() ? '' : 'disabled'}">
+                <a th:if="${allCars.hasNext()}"
+                   th:href="@{/catalog(size=${allCars.getSize()},page=${allCars.getNumber() + 1})}"
+                   class="page-link" href="#">Next</a>
+                <a th:unless="${allCars.hasNext()}"
+                   class="page-link" href="#">Next</a>
+            </li>
+            <li class="page-item" th:classappend="${allCars.isLast()} ? 'disabled' : ''">
+                <a th:unless="${allCars.isLast()}"
+                   th:href="@{/catalog(size=${allCars.getSize()},page=${allCars.getTotalPages() - 1})}"
+                   class="page-link" href="#">Last</a>
+                <a th:if="${allCars.isLast()}"
+                   class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+    </div> <!-- Pagination -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer th:replace="fragments/fragment :: footer"></footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
