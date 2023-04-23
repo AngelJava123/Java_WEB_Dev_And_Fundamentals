@@ -81,11 +81,11 @@ public class Car {
     private VehicleOther other;
 
     @NotNull
-    @Pattern(regexp="08[789]\\d{7}", message="Invalid phone number")
+    @Pattern(regexp = "08[789]\\d{7}", message = "Invalid phone number")
     private String phoneNumber;
 
     @NotNull
-    @NotBlank(message="Location cannot be blank")
+    @NotBlank(message = "Location cannot be blank")
     private String location;
 
     @NotNull
@@ -100,6 +100,8 @@ public class Car {
     private User user;
 
     private int visits = 0;
+
+    private boolean favourite = false;
 
     public Car() {
     }
@@ -294,5 +296,13 @@ public class Car {
 
     public void setVisits(int visits) {
         this.visits = visits;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 }
