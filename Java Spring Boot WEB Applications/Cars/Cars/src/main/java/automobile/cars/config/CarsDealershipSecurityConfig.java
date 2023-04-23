@@ -30,7 +30,8 @@ public class CarsDealershipSecurityConfig {
                 .antMatchers("/", "/login", "/register").permitAll()
                 .antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/catalog", "/details/**").permitAll()
                 .antMatchers("/create", "/profile", "/change-email", "/change-password", "/remove/{id}"
-                        , "/delete-account", "/myOffers", "/edit/{id}", "/edit-car", "/save-edit").authenticated() // restrict access to some routes
+                        , "/delete-account", "/myOffers", "/edit/{id}", "/edit-car", "/save-edit", "/remove-favourite/{id}",
+                        "/add-favourite/{id}", "/favourites").authenticated() // restrict access to some routes
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login")
