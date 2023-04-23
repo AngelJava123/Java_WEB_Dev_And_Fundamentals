@@ -5,6 +5,9 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,8 +32,22 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-   // @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-   // private List<SavedCars> savedCars;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_favorites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_id"))
+    private Set<Car> favorites;
+
+    public void addToFavorites(Car car) {
+        if (favorites == null) {
+            favorites = new HashSet<>();
+        }
+        favorites.add(car);
+    }
+
+    public void removeFromFavorites(Car car) {
+        favorites.remove(car);
+    }
 
     public User() {
     }
@@ -75,11 +92,11 @@ public class User {
         this.roles = roles;
     }
 
-    //public List<SavedCars> getSavedCars() {
-    //    return savedCars;
-    //}
-//
-    //public void setSavedCars(List<SavedCars> savedCars) {
-    //    this.savedCars = savedCars;
-    //}
+    public Set<Car> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Car> favorites) {
+        this.favorites = favorites;
+    }
 }
