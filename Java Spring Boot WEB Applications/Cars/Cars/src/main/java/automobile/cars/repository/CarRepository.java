@@ -10,4 +10,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
   Page<Car> findByUser(User user, Pageable pageable);
   
   Optional<Car> findByMileage(String mileage);
+  
+  Page<Car> findByFavouriteTrue(Pageable pageable);
 }
