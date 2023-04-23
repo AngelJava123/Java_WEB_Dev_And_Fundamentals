@@ -38,8 +38,11 @@ public class CarViewModel {
     private VehicleComfortViewModel comfortViewModel;
     private VehicleOtherViewModel otherViewModel;
     private String additionalInformation;
+    private String phoneNumber;
+    private String location;
     private LocalDateTime dateAdded;
     private String formattedDateAdded;
+    private boolean favourite;
 
     public CarViewModel() {
     }
@@ -212,5 +215,29 @@ public class CarViewModel {
     private String formatDateAdded(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm a 'on' dd MMMM yyyy", Locale.ENGLISH);
         return localDateTime.format(formatter);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 }
