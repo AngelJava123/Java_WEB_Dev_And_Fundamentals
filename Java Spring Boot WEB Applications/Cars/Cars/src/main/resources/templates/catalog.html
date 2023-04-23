@@ -58,6 +58,16 @@
             <div class="col-lg-6" th:each="car : ${allCars}">
                 <div class="card">
                     <div class="card-body">
+                        <div class="blue-red-container">
+                            <a th:href="@{/add-favourite/{id}(id=${car.id})}" class="red-link"
+                               th:unless="${car.favourite}" title="Add to favourites">
+                                <i class="bi bi-heart" aria-hidden="true"></i>
+                            </a>
+                            <a th:href="@{/remove-favourite/{id}(id=${car.id})}" class="red-link"
+                               th:if="${car.favourite}" title="Remove from favourites">
+                                <i class="bi bi-heart-fill text-dark" aria-hidden="true"></i>
+                            </a>
+                        </div>
                         <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
                         <ul style="margin: 0; padding: 0; list-style: none;">
                             <li>
@@ -89,8 +99,8 @@
                                 </p>
                             </li>
                             <br>
-                            <li style="text-align: center; margin-top: 20px;">
-                                <a th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
+                            <li class="blue-red-container text-center">
+                                <a class="blue-link" th:href="@{/details/{id}(id=${car.id})}">MORE DETAILS</a>
                             </li>
                         </ul>
                     </div>
