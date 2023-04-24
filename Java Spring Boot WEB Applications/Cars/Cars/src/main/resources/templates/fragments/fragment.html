@@ -30,7 +30,7 @@
 
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <i class="bi bi-person-square"></i>
                     <span class="d-none d-md-block dropdown-toggle ps-2" sec:authorize="isAuthenticated()">Welcome,
                         <th:block sec:authentication="name"></th:block>
                         !</span>
@@ -48,7 +48,7 @@
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <a class="dropdown-item d-flex align-items-center"  th:href="@{/profile}">
-                            <i class="bi bi-person"></i>
+                            <i class="bi bi-person-gear"></i>
                             <span>Profile & Settings</span>
                         </a>
                     </li>
@@ -65,7 +65,7 @@
 
                     <li>
                         <a class="dropdown-item d-flex align-items-center" th:href="@{/favourites}">
-                            <i class="bi bi-heart"></i>
+                            <i class="bi bi-suit-heart"></i>
                             <span>Favourite Offers</span>
                         </a>
                     </li>
@@ -140,7 +140,7 @@
 
         <li class="nav-item" sec:authorize="isAuthenticated()">
             <a class="nav-link collapsed" th:href="@{/favourites}">
-                <i class="bi bi-heart"></i>
+                <i class="bi bi-suit-heart"></i>
                 <span>Favourites</span>
             </a>
         </li><!-- End My Offers Page Nav -->
