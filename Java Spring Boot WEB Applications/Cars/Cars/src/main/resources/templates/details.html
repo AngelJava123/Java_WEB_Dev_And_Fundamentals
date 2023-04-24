@@ -117,6 +117,8 @@
 
 
 
+
+
     </style>
 </head>
 
@@ -172,11 +174,15 @@
                 <div>
                     <p>Contact Info:</p>
                     <br>
-                    <p>Phone:</p>
-                    <p><strong th:text="${car.phoneNumber}" class="phone-capsule"></strong></p>
+                    <p>
+                        <i class="bi bi-telephone-forward" style="font-size: 24px;"></i>
+                        <strong th:text="${car.phoneNumber}" class="phone-capsule"></strong>
+                    </p>
                     <br>
-                    <p>Location:</p>
-                    <p><strong th:text="${car.location}"></strong></p>
+                    <p>
+                        <i class="bi bi-geo-alt" style="font-size: 24px;"></i>
+                        <strong th:text="${car.location}"></strong>
+                    </p>
                 </div>
             </div>
         </div>
