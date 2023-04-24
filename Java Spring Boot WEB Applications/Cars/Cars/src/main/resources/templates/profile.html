@@ -59,7 +59,7 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <i class="bi bi-person-square" style="font-size: 73px;"></i>
                         <h2 th:text="*{username}"></h2>
                     </div>
                 </div>
@@ -109,20 +109,21 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4">
-                                        <a th:href="@{/change-email}" class="btn btn-primary">
+                                        <a th:href="@{/change-email}" class="btn btn-primary custom-button">
                                             <span class="fa fa-envelope"></span>
                                             Change Email
                                         </a>
                                     </div>
                                     <div class="col-lg-3 col-md-4">
-                                        <a th:href="@{/change-password}" class="btn btn-primary">
+                                        <a th:href="@{/change-password}" class="btn btn-primary custom-button">
                                             <span class="fa fa-lock"></span>
                                             Change Password
                                         </a>
                                     </div>
                                     <div class="col-lg-3 col-md-4">
                                         <form id="delete-account-form" method="GET" action="/delete-account">
-                                            <button onclick="showPopup()" type="button" class="btn btn-danger">
+                                            <button onclick="showPopup()" type="button"
+                                                    class="btn btn-danger custom-button">
                                                 <span class="fa fa-trash"></span>
                                                 Delete Account
                                             </button>
