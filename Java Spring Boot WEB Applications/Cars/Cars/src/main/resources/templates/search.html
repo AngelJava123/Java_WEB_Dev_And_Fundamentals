@@ -511,31 +511,6 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="month" class="form-label" style="font-weight: bold;">Production
-                                                Month</label>
-                                            <select name="month" class="form-control"
-                                                    id="month"
-                                                    th:field="*{month}"
-                                                    th:errorclass="is-invalid"
-                                                    aria-describedby="usernameHelpInline">
-                                                <option value="">-- Select Month --</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                                <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                            </select>
-                                            <div class="invalid-feedback">Production Month cannot be empty!</div>
-                                        </div> <!-- Production Month -->
-
-                                        <div class="col-md-4">
                                             <label for="year" class="form-label" style="font-weight: bold;">Production
                                                 Year</label>
                                             <select name="year" class="form-control"
@@ -567,11 +542,7 @@
                                             </select>
                                             <div class="invalid-feedback">Engine Type cannot be empty!</div>
                                         </div> <!-- Engine Type -->
-                                    </div>
 
-                                    <div></div>
-
-                                    <div class="row">
                                         <div class="col-md-4">
                                             <label for="engine.power" class="form-label" style="font-weight: bold;">Engine
                                                 Power (HP)</label>
@@ -585,7 +556,11 @@
                                                 only digits that not exceed 5!
                                             </div>
                                         </div> <!-- Engine Power (HP) -->
+                                    </div>
 
+                                    <div></div>
+
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <label for="engine.euroStandard" class="form-label"
                                                    style="font-weight: bold;">Euro Standard</label>
@@ -618,6 +593,18 @@
                                                 value!
                                             </div>
                                         </div> <!-- Cubic Capacity -->
+
+                                        <div class="col-md-4">
+                                            <label for="mileage" class="form-label"
+                                                   style="font-weight: bold;">Mileage</label>
+                                            <input type="text" name="mileage" class="form-control" id="mileage"
+                                                   th:field="*{mileage}"
+                                                   th:errorclass="is-invalid"
+                                                   aria-describedby="mileageHelpInline" placeholder="20000">
+                                            <div class="invalid-feedback">Mileage should be a number not exceeding
+                                                250000!
+                                            </div>
+                                        </div> <!-- Mileage -->
                                     </div>
 
                                     <div></div>
@@ -660,22 +647,6 @@
                                         </div> <!-- Gearbox -->
 
                                         <div class="col-md-4">
-                                            <label for="mileage" class="form-label"
-                                                   style="font-weight: bold;">Mileage</label>
-                                            <input type="text" name="mileage" class="form-control" id="mileage"
-                                                   th:field="*{mileage}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="mileageHelpInline" placeholder="20000">
-                                            <div class="invalid-feedback">Mileage should be a number not exceeding
-                                                250000!
-                                            </div>
-                                        </div> <!-- Mileage -->
-                                    </div>
-
-                                    <div></div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
                                             <label for="color.paint" class="form-label"
                                                    style="font-weight: bold;">Color</label>
                                             <select name="color.paint" class="form-select" id="color.paint"
@@ -706,21 +677,11 @@
                                             </select>
                                             <div class="invalid-feedback">Color cannot be empty!</div>
                                         </div> <!-- Color -->
+                                    </div>
 
-                                        <div class="col-md-4">
-                                            <label for="phoneNumber" class="form-label" style="font-weight: bold;">Phone
-                                                Number</label>
-                                            <input type="text" name="phoneNumber" class="form-control"
-                                                   id="phoneNumber"
-                                                   th:field="*{phoneNumber}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="phoneNumberHelpInline" placeholder="088473657">
-                                            <div class="invalid-feedback">Phone Number must starts with 088,089 or 087
-                                                and
-                                                be exactly 10 digits long
-                                            </div>
-                                        </div> <!-- Phone Number -->
+                                    <div></div>
 
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <label for="location" class="form-label"
                                                    style="font-weight: bold;">Location</label>
@@ -1149,26 +1110,7 @@
 
                                     <div></div>
 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label for="additional-information" class="form-label"
-                                                   style="font-weight: bold;">Additional
-                                                Information</label>
-                                            <textarea name="additionalInformation" id="additional-information"
-                                                      class="form-control"
-                                                      th:field="*{additionalInformation}"
-                                                      th:errorclass="is-invalid"
-                                                      rows="5"
-                                                      placeholder="Ex: Vehicle Insurance ..."></textarea>
-                                            <div class="invalid-feedback">Additional Information should be at least 50
-                                                characters long!
-                                            </div>
-                                        </div> <!-- Additional Information -->
-                                    </div>
-
-                                    <div></div>
-
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mx-auto">
                                         <button class="btn btn-primary w-100" type="button" id="submit-btn" onclick="submitSearchForm()">Search</button>
                                     </div>
                                 </form>
