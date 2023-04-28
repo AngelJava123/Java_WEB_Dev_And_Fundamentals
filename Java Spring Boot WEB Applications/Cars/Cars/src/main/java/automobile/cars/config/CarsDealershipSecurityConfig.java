@@ -28,7 +28,8 @@ public class CarsDealershipSecurityConfig {
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/", "/login", "/register").permitAll()
-                .antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/catalog", "/details/**").permitAll()
+                .antMatchers("/assets/**", "/contact", "/inquiries", "/terms", "/catalog", "/details/**",
+                        "/search", "/results").permitAll()
                 .antMatchers("/create", "/profile", "/change-email", "/change-password", "/remove/{id}"
                         , "/delete-account", "/myOffers", "/edit/{id}", "/edit-car", "/save-edit", "/remove-favourite/{id}",
                         "/add-favourite/{id}", "/favourites").authenticated() // restrict access to some routes
