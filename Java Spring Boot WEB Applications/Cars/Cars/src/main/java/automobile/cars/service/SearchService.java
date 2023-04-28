@@ -1,11 +1,13 @@
 package automobile.cars.service;
 
+import automobile.cars.config.CarSpecification;
 import automobile.cars.model.dto.CreateCarDTO;
 import automobile.cars.model.entity.Car;
 import automobile.cars.repository.CarRepository;
 import automobile.cars.view.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,17 +23,31 @@ public class SearchService {
     }
 
     public Page<CarViewModel> searchCars(CreateCarDTO car, Pageable pageable) {
+        Specification<Car> spec = Specification.where(null);
 
-       // Page<Car> cars = carRepository.findAllByMakeAndModel(car.getMake(), car.getModel(), pageable);
+        if (car.getMake() != null && !car.getMake().isEmpty()) {
+            spec = spec.and(CarSpecification.make(car.getMake()));
+        }
 
-        String make = car.getMake();
-        String model = car.getModel();
-        String year = car.getYear();
+        if (car.getModel() != null && !car.getModel().isEmpty()) {
+            spec = spec.and(CarSpecification.model(car.getModel()));
+        }
 
-        Page<Car> cars = carRepository.searchCars(make, model, year, pageable);
+        if (car.getPrice() != null && !car.getPrice().isEmpty()) {
+            spec = spec.and(CarSpecification.price(car.getPrice()));
+        }
+
+        if (car.getYear() != null && !car.getYear().isEmpty()) {
+            spec = spec.and(CarSpecification.year(car.getYear()));
+        }
+
+        // Add more conditions for other search fields
+
+        Page<Car> cars = carRepository.findAll(spec, pageable);
 
         return cars.map(this::mapToCarViewModel);
     }
+
 
     private CarViewModel mapToCarViewModel(Car car) {
         CarViewModel carViewModel = new CarViewModel();
