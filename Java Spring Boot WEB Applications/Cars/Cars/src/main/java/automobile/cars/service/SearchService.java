@@ -41,6 +41,38 @@ public class SearchService {
             spec = spec.and(CarSpecification.year(car.getYear()));
         }
 
+        if (car.getEngine().getEngineType() != null && !car.getEngine().getEngineType().isEmpty()) {
+            spec = spec.and(CarSpecification.engineType(car.getEngine().getEngineType()));
+        }
+
+        if (car.getEngine().getPower() != null && !car.getEngine().getPower().isEmpty()) {
+            spec = spec.and(CarSpecification.enginePower(car.getEngine().getPower()));
+        }
+
+        if (car.getEngine().getEuroStandard() != null && !car.getEngine().getEuroStandard().isEmpty()) {
+            spec = spec.and(CarSpecification.engineEuroStandard(car.getEngine().getEuroStandard()));
+        }
+
+        if (car.getEngine().getCubicCapacity() != null && !car.getEngine().getCubicCapacity().isEmpty()) {
+            spec = spec.and(CarSpecification.engineCubicCapacity(car.getEngine().getCubicCapacity()));
+        }
+
+        if (car.getCategory().getCategory() != null && !car.getCategory().getCategory().isEmpty()) {
+            spec = spec.and(CarSpecification.category(car.getCategory().getCategory()));
+        }
+
+        if (car.getGearBox().getGearBoxType() != null && !car.getGearBox().getGearBoxType().isEmpty()) {
+            spec = spec.and(CarSpecification.category(car.getGearBox().getGearBoxType()));
+        }
+
+        if (car.getMileage() != null && !car.getMileage().isEmpty()) {
+            spec = spec.and(CarSpecification.mileage(car.getMileage()));
+        }
+
+        if (car.getColor().getPaint() != null && !car.getColor().getPaint().isEmpty()) {
+            spec = spec.and(CarSpecification.color(car.getColor().getPaint()));
+        }
+
         // Add more conditions for other search fields
 
         Page<Car> cars = carRepository.findAll(spec, pageable);
