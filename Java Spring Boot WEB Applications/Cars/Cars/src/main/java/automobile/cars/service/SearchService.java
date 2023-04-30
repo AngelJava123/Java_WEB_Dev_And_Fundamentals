@@ -73,6 +73,20 @@ public class SearchService {
             spec = spec.and(CarSpecification.color(car.getColor().getPaint()));
         }
 
+        if (car.getSafety() != null) {
+            spec = spec.and(CarSpecification.safetyFeatures(
+                    car.getSafety().isAntiLockBrakingSystem(),
+                    car.getSafety().isElectronicStabilityControl(),
+                    car.getSafety().isAdaptiveCruiseControl(),
+                    car.getSafety().isLaneDepartureWarning(),
+                    car.getSafety().isBlindSpotDetection(),
+                    car.getSafety().isForwardCollisionWarning(),
+                    car.getSafety().isAutomaticEmergencyBraking(),
+                    car.getSafety().isRearviewCamera()
+            ));
+        }
+
+
         // Add more conditions for other search fields
 
         Page<Car> cars = carRepository.findAll(spec, pageable);
