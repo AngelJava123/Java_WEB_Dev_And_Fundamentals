@@ -126,7 +126,8 @@ public interface CarSpecification {
         };
     }
 
-    static Specification<Car> safetyFeatures(boolean abs, boolean esc, boolean acc, boolean ldw, boolean bsd, boolean fcw, boolean aeb, boolean rvc) {
+    static Specification<Car> safetyFeatures(boolean abs, boolean esc, boolean acc, boolean ldw, boolean bsd, boolean fcw,
+                                             boolean aeb, boolean rvc) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -161,6 +162,240 @@ public interface CarSpecification {
 
             if (rvc) {
                 predicates.add(builder.isTrue(safetyJoin.get("rearviewCamera")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    static Specification<Car> exteriorFeatures(boolean alloyWheels, boolean powerSideMirrorAdjustment,
+                                               boolean rainSensingWipers, boolean sunroof, boolean ledHeadlights,
+                                               boolean fogLights, boolean automaticHeadlights) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            Join<Car, VehicleExterior> vehicleExteriorJoin = root.join("exterior");
+
+            if (alloyWheels) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("alloyWheels")));
+            }
+
+            if (powerSideMirrorAdjustment) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("powerSideMirrorAdjustment")));
+            }
+
+            if (rainSensingWipers) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("rainSensingWipers")));
+            }
+
+            if (sunroof) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("sunroof")));
+            }
+
+            if (ledHeadlights) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("ledHeadlights")));
+            }
+
+            if (fogLights) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("fogLights")));
+            }
+
+            if (automaticHeadlights) {
+                predicates.add(builder.isTrue(vehicleExteriorJoin.get("automaticHeadlights")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    static Specification<Car> interiorFeatures(boolean leatherSeats, boolean heatedSeats, boolean powerWindows,
+                                               boolean powerLocks, boolean sunroof, boolean navigationSystem,
+                                               boolean bluetooth, boolean backupCamera, boolean pushButtonStart,
+                                               boolean dualClimateControl) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            Join<Car, VehicleInterior> vehicleInteriorJoin = root.join("interior");
+
+            if (leatherSeats) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("leatherSeats")));
+            }
+
+            if (heatedSeats) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("heatedSeats")));
+            }
+
+            if (powerWindows) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("powerWindows")));
+            }
+
+            if (powerLocks) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("powerLocks")));
+            }
+
+            if (sunroof) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("sunroof")));
+            }
+
+            if (navigationSystem) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("navigationSystem")));
+            }
+
+            if (bluetooth) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("bluetooth")));
+            }
+
+            if (backupCamera) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("backupCamera")));
+            }
+
+            if (pushButtonStart) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("pushButtonStart")));
+            }
+
+            if (dualClimateControl) {
+                predicates.add(builder.isTrue(vehicleInteriorJoin.get("dualClimateControl")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    static Specification<Car> protectionFeatures(boolean antiTheftSystem, boolean remoteKeylessEntry,
+                                                 boolean alarmSystem, boolean airbags, boolean parkingSensors,
+                                                 boolean backupCamera, boolean tirePressureMonitoring) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            Join<Car, VehicleProtection> vehicleProtectionJoin = root.join("protection");
+
+            if (antiTheftSystem) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("antiTheftSystem")));
+            }
+
+            if (remoteKeylessEntry) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("remoteKeylessEntry")));
+            }
+
+            if (alarmSystem) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("alarmSystem")));
+            }
+
+            if (airbags) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("airbags")));
+            }
+
+            if (parkingSensors) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("parkingSensors")));
+            }
+
+            if (backupCamera) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("backupCamera")));
+            }
+
+            if (tirePressureMonitoring) {
+                predicates.add(builder.isTrue(vehicleProtectionJoin.get("tirePressureMonitoring")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    static Specification<Car> comfortFeatures(boolean airConditioning, boolean cruiseControl, boolean powerSteering,
+                                              boolean tiltSteeringWheel, boolean telescopingSteeringWheel, boolean rearDefrost,
+                                              boolean remoteTrunkRelease, boolean remoteEngineStart, boolean heatedSteeringWheel,
+                                              boolean heatedMirrors) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            Join<Car, VehicleComfort> vehicleComfortJoin = root.join("comfort");
+
+            if (airConditioning) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("airConditioning")));
+            }
+
+            if (cruiseControl) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("cruiseControl")));
+            }
+
+            if (powerSteering) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("powerSteering")));
+            }
+
+            if (tiltSteeringWheel) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("tiltSteeringWheel")));
+            }
+
+            if (telescopingSteeringWheel) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("telescopingSteeringWheel")));
+            }
+
+            if (rearDefrost) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("rearDefrost")));
+            }
+
+            if (remoteTrunkRelease) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("remoteTrunkRelease")));
+            }
+
+            if (remoteEngineStart) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("remoteEngineStart")));
+            }
+
+            if (heatedSteeringWheel) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("heatedSteeringWheel")));
+            }
+
+            if (heatedMirrors) {
+                predicates.add(builder.isTrue(vehicleComfortJoin.get("heatedMirrors")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    static Specification<Car> otherFeatures(boolean powerTailgate, boolean panoramicSunroof, boolean adaptiveHeadlights,
+                                            boolean appleCarPlay, boolean androidAuto, boolean wirelessCharging,
+                                            boolean premiumSoundSystem, boolean multiZoneClimateControl,
+                                            boolean powerAdjustablePedals, boolean heatedRearSeats) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            Join<Car, VehicleOther> vehicleOtherJoin = root.join("other");
+
+            if (powerTailgate) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("powerTailgate")));
+            }
+
+            if (panoramicSunroof) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("panoramicSunroof")));
+            }
+
+            if (adaptiveHeadlights) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("adaptiveHeadlights")));
+            }
+
+            if (appleCarPlay) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("appleCarPlay")));
+            }
+
+            if (androidAuto) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("androidAuto")));
+            }
+
+            if (wirelessCharging) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("wirelessCharging")));
+            }
+
+            if (premiumSoundSystem) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("premiumSoundSystem")));
+            }
+
+            if (multiZoneClimateControl) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("multiZoneClimateControl")));
+            }
+
+            if (powerAdjustablePedals) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("powerAdjustablePedals")));
+            }
+
+            if (heatedRearSeats) {
+                predicates.add(builder.isTrue(vehicleOtherJoin.get("heatedRearSeats")));
             }
 
             return builder.and(predicates.toArray(new Predicate[0]));
