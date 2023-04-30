@@ -86,6 +86,74 @@ public class SearchService {
             ));
         }
 
+        if (car.getExterior() != null) {
+            spec = spec.and(CarSpecification.exteriorFeatures(
+                    car.getExterior().isAlloyWheels(),
+                    car.getExterior().isPowerSideMirrorAdjustment(),
+                    car.getExterior().isRainSensingWipers(),
+                    car.getExterior().isSunroof(),
+                    car.getExterior().isLedHeadlights(),
+                    car.getExterior().isFogLights(),
+                    car.getExterior().isAutomaticHeadlights()
+            ));
+        }
+
+        if (car.getInterior() != null) {
+            spec = spec.and(CarSpecification.interiorFeatures(
+                    car.getInterior().isLeatherSeats(),
+                    car.getInterior().isHeatedSeats(),
+                    car.getInterior().isPowerWindows(),
+                    car.getInterior().isPowerLocks(),
+                    car.getInterior().isSunroof(),
+                    car.getInterior().isNavigationSystem(),
+                    car.getInterior().isBluetooth(),
+                    car.getInterior().isBackupCamera(),
+                    car.getInterior().isPushButtonStart(),
+                    car.getInterior().isDualClimateControl()
+            ));
+        }
+
+        if (car.getProtection() != null) {
+            spec = spec.and(CarSpecification.protectionFeatures(
+                    car.getProtection().isAntiTheftSystem(),
+                    car.getProtection().isRemoteKeylessEntry(),
+                    car.getProtection().isAlarmSystem(),
+                    car.getProtection().isAirbags(),
+                    car.getProtection().isParkingSensors(),
+                    car.getProtection().isBackupCamera(),
+                    car.getProtection().isTirePressureMonitoring()
+            ));
+        }
+
+        if (car.getComfort() != null) {
+            spec = spec.and(CarSpecification.comfortFeatures(
+                    car.getComfort().isAirConditioning(),
+                    car.getComfort().isCruiseControl(),
+                    car.getComfort().isPowerSteering(),
+                    car.getComfort().isTiltSteeringWheel(),
+                    car.getComfort().isTelescopingSteeringWheel(),
+                    car.getComfort().isRearDefrost(),
+                    car.getComfort().isRemoteTrunkRelease(),
+                    car.getComfort().isRemoteEngineStart(),
+                    car.getComfort().isHeatedSteeringWheel(),
+                    car.getComfort().isHeatedMirrors()
+            ));
+        }
+
+        if (car.getOther() != null) {
+            spec = spec.and(CarSpecification.otherFeatures(
+                    car.getOther().isPowerTailgate(),
+                    car.getOther().isPanoramicSunroof(),
+                    car.getOther().isAdaptiveHeadlights(),
+                    car.getOther().isAppleCarPlay(),
+                    car.getOther().isAndroidAuto(),
+                    car.getOther().isWirelessCharging(),
+                    car.getOther().isPremiumSoundSystem(),
+                    car.getOther().isMultiZoneClimateControl(),
+                    car.getOther().isPowerAdjustablePedals(),
+                    car.getOther().isHeatedRearSeats()
+            ));
+        }
 
         // Add more conditions for other search fields
 
