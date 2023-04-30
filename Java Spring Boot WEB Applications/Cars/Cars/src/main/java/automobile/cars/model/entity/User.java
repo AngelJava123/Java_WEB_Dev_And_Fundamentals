@@ -32,10 +32,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_favorites",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "car_id"))
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Car> favorites;
 
     public void addToFavorites(Car car) {
