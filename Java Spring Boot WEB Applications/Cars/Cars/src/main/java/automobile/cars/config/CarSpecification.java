@@ -6,6 +6,9 @@ import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.JoinType;
 
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface CarSpecification {
     static Specification<Car> make(String make) {
@@ -122,6 +125,48 @@ public interface CarSpecification {
             return builder.equal(engineJoin.get("paint"), color);
         };
     }
+
+    static Specification<Car> safetyFeatures(boolean abs, boolean esc, boolean acc, boolean ldw, boolean bsd, boolean fcw, boolean aeb, boolean rvc) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            Join<Car, VehicleSafety> safetyJoin = root.join("safety");
+            if (abs) {
+                predicates.add(builder.isTrue(safetyJoin.get("antiLockBrakingSystem")));
+            }
+
+            if (esc) {
+                predicates.add(builder.isTrue(safetyJoin.get("electronicStabilityControl")));
+            }
+
+            if (acc) {
+                predicates.add(builder.isTrue(safetyJoin.get("adaptiveCruiseControl")));
+            }
+
+            if (ldw) {
+                predicates.add(builder.isTrue(safetyJoin.get("laneDepartureWarning")));
+            }
+
+            if (bsd) {
+                predicates.add(builder.isTrue(safetyJoin.get("blindSpotDetection")));
+            }
+
+            if (fcw) {
+                predicates.add(builder.isTrue(safetyJoin.get("forwardCollisionWarning")));
+            }
+
+            if (aeb) {
+                predicates.add(builder.isTrue(safetyJoin.get("automaticEmergencyBraking")));
+            }
+
+            if (rvc) {
+                predicates.add(builder.isTrue(safetyJoin.get("rearviewCamera")));
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
 
     // Add more methods for other search fields
 }
