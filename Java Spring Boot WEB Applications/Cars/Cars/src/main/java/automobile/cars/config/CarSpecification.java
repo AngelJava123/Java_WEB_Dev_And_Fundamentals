@@ -29,12 +29,17 @@ public interface CarSpecification {
         };
     }
 
-    static Specification<Car> price(String price) {
+    static Specification<Car> price(int fromPrice, int toPrice) {
         return (root, query, builder) -> {
-            if (price == null || price.isEmpty()) {
+            if (fromPrice > 0 && toPrice > 0) {
+                return builder.between(root.get("price"), fromPrice, toPrice);
+            } else if (fromPrice > 0) {
+                return builder.greaterThanOrEqualTo(root.get("price"), fromPrice);
+            } else if (toPrice > 0) {
+                return builder.lessThanOrEqualTo(root.get("price"), toPrice);
+            } else {
                 return null;
             }
-            return builder.equal(root.get("price"), price);
         };
     }
 
@@ -57,15 +62,23 @@ public interface CarSpecification {
         };
     }
 
-    static Specification<Car> enginePower(String enginePower) {
+    static Specification<Car> enginePower(int powerFrom, int powerTo) {
         return (root, query, builder) -> {
-            if (enginePower == null || enginePower.isEmpty()) {
+            if (powerFrom > 0 && powerTo > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.between(engineJoin.get("power"), powerFrom, powerTo);
+            } else if (powerFrom > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.greaterThanOrEqualTo(engineJoin.get("power"), powerFrom);
+            } else if (powerTo > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.lessThanOrEqualTo(engineJoin.get("power"), powerTo);
+            } else {
                 return null;
             }
-            Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
-            return builder.equal(engineJoin.get("power"), enginePower);
         };
     }
+
 
     static Specification<Car> engineEuroStandard(String engineEuroStandard) {
         return (root, query, builder) -> {
@@ -77,13 +90,20 @@ public interface CarSpecification {
         };
     }
 
-    static Specification<Car> engineCubicCapacity(String engineCubicCapacity) {
+    static Specification<Car> engineCubicCapacity(int cubicCapacityFrom, int cubicCapacityTo) {
         return (root, query, builder) -> {
-            if (engineCubicCapacity == null || engineCubicCapacity.isEmpty()) {
+            if (cubicCapacityFrom > 0 && cubicCapacityTo > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.between(engineJoin.get("cubicCapacity"), cubicCapacityFrom, cubicCapacityTo);
+            } else if (cubicCapacityFrom > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.greaterThanOrEqualTo(engineJoin.get("cubicCapacity"), cubicCapacityFrom);
+            } else if (cubicCapacityTo > 0) {
+                Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
+                return builder.lessThanOrEqualTo(engineJoin.get("cubicCapacity"), cubicCapacityTo);
+            } else {
                 return null;
             }
-            Join<Car, VehicleEngine> engineJoin = root.join("engine", JoinType.LEFT);
-            return builder.equal(engineJoin.get("cubicCapacity"), engineCubicCapacity);
         };
     }
 
@@ -107,13 +127,8 @@ public interface CarSpecification {
         };
     }
 
-    static Specification<Car> mileage(String mileage) {
-        return (root, query, builder) -> {
-            if (mileage == null || mileage.isEmpty()) {
-                return null;
-            }
-            return builder.equal(root.get("mileage"), mileage);
-        };
+    static Specification<Car> mileage(int mileage) {
+        return (root, query, builder) -> builder.lessThanOrEqualTo(root.get("mileage"), mileage);
     }
 
     static Specification<Car> color(String color) {
