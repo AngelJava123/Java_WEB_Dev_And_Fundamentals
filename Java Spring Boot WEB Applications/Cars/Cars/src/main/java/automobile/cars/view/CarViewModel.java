@@ -11,7 +11,7 @@ public class CarViewModel {
     private List<String> imageFilePaths;
     private String make;
     private String model;
-    private String price;
+    private int price;
     private String month;
     private String year;
 
@@ -25,7 +25,7 @@ public class CarViewModel {
 
     private String gearBoxType;
 
-    private String mileage;
+    private int mileage;
 
     // private VehicleColor color;
 
@@ -79,11 +79,11 @@ public class CarViewModel {
         this.model = model;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -127,11 +127,11 @@ public class CarViewModel {
         this.gearBoxType = gearBoxType;
     }
 
-    public String getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
