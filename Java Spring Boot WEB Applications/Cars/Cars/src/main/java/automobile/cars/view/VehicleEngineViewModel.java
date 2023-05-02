@@ -3,9 +3,9 @@ package automobile.cars.view;
 public class VehicleEngineViewModel {
 
     private String engineType;
-    private String power;
+    private int power;
     private String euroStandard;
-    private String cubicCapacity;
+    private int cubicCapacity;
 
     public VehicleEngineViewModel() {
     }
@@ -18,11 +18,11 @@ public class VehicleEngineViewModel {
         this.engineType = engineType;
     }
 
-    public String getPower() {
+    public int getPower() {
         return power;
     }
 
-    public void setPower(String power) {
+    public void setPower(int power) {
         this.power = power;
     }
 
@@ -34,11 +34,11 @@ public class VehicleEngineViewModel {
         this.euroStandard = euroStandard;
     }
 
-    public String getCubicCapacity() {
+    public int getCubicCapacity() {
         return cubicCapacity;
     }
 
-    public void setCubicCapacity(String cubicCapacity) {
+    public void setCubicCapacity(int cubicCapacity) {
         this.cubicCapacity = cubicCapacity;
     }
 }
