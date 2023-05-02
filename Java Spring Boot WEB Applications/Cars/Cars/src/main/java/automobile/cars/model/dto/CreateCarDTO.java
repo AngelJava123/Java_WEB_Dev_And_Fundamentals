@@ -10,6 +10,7 @@ import java.util.List;
 public class CreateCarDTO {
 
     private Long id;
+
     @NotEmpty(message = "At least one image is required")
     private List<MultipartFile> imageFiles = new ArrayList<>();
 
@@ -20,8 +21,12 @@ public class CreateCarDTO {
     private String model;
 
     @NotNull
-    @Pattern(regexp = "^(?!0)(\\d{1,6}|1000000)$")
-    private String price;
+    @Min(value = 1)
+    @Max(value = 1000000)
+    private int price;
+
+    private int fromPrice;
+    private int toPrice;
 
     @NotNull
     private String month;
@@ -34,9 +39,9 @@ public class CreateCarDTO {
     private GearBoxDTO gearBox;
 
     @NotNull
-    @Size(max = 6)
-    @Digits(integer = 6, fraction = 0)
-    private String mileage;
+    @Min(value = 0)
+    @Max(value = 300000)
+    private int mileage;
 
     private ColorDTO color;
     private SafetyDTO safety;
@@ -104,11 +109,11 @@ public class CreateCarDTO {
         this.model = model;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -152,11 +157,11 @@ public class CreateCarDTO {
         this.gearBox = gearBox;
     }
 
-    public String getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
@@ -238,5 +243,21 @@ public class CreateCarDTO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getFromPrice() {
+        return fromPrice;
+    }
+
+    public void setFromPrice(int fromPrice) {
+        this.fromPrice = fromPrice;
+    }
+
+    public int getToPrice() {
+        return toPrice;
+    }
+
+    public void setToPrice(int toPrice) {
+        this.toPrice = toPrice;
     }
 }
