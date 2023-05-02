@@ -33,8 +33,8 @@ public class SearchService {
             spec = spec.and(CarSpecification.model(car.getModel()));
         }
 
-        if (car.getPrice() != null && !car.getPrice().isEmpty()) {
-            spec = spec.and(CarSpecification.price(car.getPrice()));
+        if (car.getFromPrice() > 0 || car.getToPrice() > 0) {
+            spec = spec.and(CarSpecification.price(car.getFromPrice(), car.getToPrice()));
         }
 
         if (car.getYear() != null && !car.getYear().isEmpty()) {
@@ -45,16 +45,16 @@ public class SearchService {
             spec = spec.and(CarSpecification.engineType(car.getEngine().getEngineType()));
         }
 
-        if (car.getEngine().getPower() != null && !car.getEngine().getPower().isEmpty()) {
-            spec = spec.and(CarSpecification.enginePower(car.getEngine().getPower()));
+        if (car.getEngine().getPowerFrom() > 0 || car.getEngine().getPowerTo() > 0) {
+            spec = spec.and(CarSpecification.enginePower(car.getEngine().getPowerFrom(), car.getEngine().getPowerTo()));
         }
 
         if (car.getEngine().getEuroStandard() != null && !car.getEngine().getEuroStandard().isEmpty()) {
             spec = spec.and(CarSpecification.engineEuroStandard(car.getEngine().getEuroStandard()));
         }
 
-        if (car.getEngine().getCubicCapacity() != null && !car.getEngine().getCubicCapacity().isEmpty()) {
-            spec = spec.and(CarSpecification.engineCubicCapacity(car.getEngine().getCubicCapacity()));
+        if (car.getEngine().getCubicCapacityFrom() > 0 || car.getEngine().getCubicCapacityTo() > 0) {
+            spec = spec.and(CarSpecification.engineCubicCapacity(car.getEngine().getCubicCapacityFrom(), car.getEngine().getCubicCapacityTo()));
         }
 
         if (car.getCategory().getCategory() != null && !car.getCategory().getCategory().isEmpty()) {
@@ -62,10 +62,10 @@ public class SearchService {
         }
 
         if (car.getGearBox().getGearBoxType() != null && !car.getGearBox().getGearBoxType().isEmpty()) {
-            spec = spec.and(CarSpecification.category(car.getGearBox().getGearBoxType()));
+            spec = spec.and(CarSpecification.gearBox(car.getGearBox().getGearBoxType()));
         }
 
-        if (car.getMileage() != null && !car.getMileage().isEmpty()) {
+        if (car.getMileage() > 0) {
             spec = spec.and(CarSpecification.mileage(car.getMileage()));
         }
 
