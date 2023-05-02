@@ -44,11 +44,11 @@ function submitForm() {
   }
 
   // Validate price field
-  if (price.trim() === '' || isNaN(price) || parseInt(price) > 1000000) {
-    document.getElementById("price").classList.add('is-invalid');
-    isValid = false;
+  if (price.trim() === '' || isNaN(price) || parseInt(price) <= 0 || parseInt(price) > 1000000) {
+      document.getElementById("price").classList.add('is-invalid');
+      isValid = false;
   } else {
-    document.getElementById("price").classList.remove('is-invalid');
+      document.getElementById("price").classList.remove('is-invalid');
   }
 
   // Validate month field
@@ -76,7 +76,7 @@ function submitForm() {
   }
 
   // Validate engine power field
-  if (enginePower.trim() === '' || !/^\d{1,5}$/.test(enginePower)) {
+  if (enginePower === '' || isNaN(enginePower) || parseInt(enginePower) <= 0 || parseInt(enginePower) > 3000) {
     document.getElementById("engine.power").classList.add('is-invalid');
     isValid = false;
   } else {
@@ -92,12 +92,13 @@ function submitForm() {
   }
 
   // Validate cubicCapacity field
-  if (cubicCapacity.trim() === '' || !/^\d{1,4}$/.test(cubicCapacity)) {
+  if (!cubicCapacity || cubicCapacity <= 0 || cubicCapacity > 5000) {
     document.getElementById("engine.cubicCapacity").classList.add('is-invalid');
     isValid = false;
   } else {
     document.getElementById("engine.cubicCapacity").classList.remove('is-invalid');
   }
+
 
   // Validate category field
   if (category.trim() === '') {
@@ -116,8 +117,7 @@ function submitForm() {
   }
 
   // Validate mileage field
-  var mileage = document.getElementById("mileage").value;
-  if (mileage.trim() === '' || isNaN(mileage) || parseInt(mileage) > 250000) {
+  if (mileage.trim() === '' || isNaN(mileage) || parseInt(mileage) < 0 || parseInt(mileage) > 300000) {
     document.getElementById("mileage").classList.add('is-invalid');
     isValid = false;
   } else {
