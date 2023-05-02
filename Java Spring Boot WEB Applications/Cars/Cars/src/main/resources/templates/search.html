@@ -494,17 +494,24 @@
                                         </div> <!-- Models -->
 
                                         <div class="col-md-4">
-                                            <label for="price" class="form-label"
-                                                   style="font-weight: bold;">Price</label>
-                                            <input type="text" name="price" class="form-control"
-                                                   id="price"
-                                                   th:field="*{price}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="usernameHelpInline" placeholder="5394">
-                                            <div class="invalid-feedback">Price should contain only digits and should
-                                                not exceed 1 million in value!
-                                            </div>
-                                        </div> <!-- Price -->
+                                            <label for="category.category" class="form-label"
+                                                   style="font-weight: bold;">Category</label>
+                                            <select name="category.category" class="form-select"
+                                                    id="category.category"
+                                                    th:field="*{category.category}"
+                                                    th:errorclass="is-invalid"
+                                                    aria-describedby="categoryCategoryHelpInline">
+                                                <option value="">--Select a category--</option>
+                                                <option value="Sedan">Sedan</option>
+                                                <option value="Hatchback">Hatchback</option>
+                                                <option value="Coupe">Coupe</option>
+                                                <option value="SUV">SUV</option>
+                                                <option value="Cabrio">Cabrio</option>
+                                                <option value="Truck">Truck</option>
+                                                <option value="Van">Van</option>
+                                            </select>
+                                            <div class="invalid-feedback">Category cannot be empty!</div>
+                                        </div> <!-- Category -->
                                     </div>
 
                                     <div></div>
@@ -544,18 +551,20 @@
                                         </div> <!-- Engine Type -->
 
                                         <div class="col-md-4">
-                                            <label for="engine.power" class="form-label" style="font-weight: bold;">Engine
-                                                Power (HP)</label>
-                                            <input type="text" name="engine.power" class="form-control"
-                                                   id="engine.power"
-                                                   th:field="*{engine.power}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="usernameHelpInline" placeholder="150">
-                                            <div class="invalid-feedback">Power field should not be empty, should
-                                                contain
-                                                only digits that not exceed 5!
-                                            </div>
-                                        </div> <!-- Engine Power (HP) -->
+                                            <label for="gearBox.gearBoxType" class="form-label"
+                                                   style="font-weight: bold;">Gearbox Type</label>
+                                            <select name="gearBox.gearBoxType" class="form-select"
+                                                    id="gearBox.gearBoxType"
+                                                    th:field="*{gearBox.gearBoxType}"
+                                                    th:errorclass="is-invalid"
+                                                    aria-describedby="gearBoxTypeHelpInline">
+                                                <option value="">--Select a gearbox type--</option>
+                                                <option value="Automatic">Automatic</option>
+                                                <option value="Manual">Manual</option>
+                                                <option value="Semi-Automatic">Semi-Automatic</option>
+                                            </select>
+                                            <div class="invalid-feedback">Gearbox Type cannot be empty!</div>
+                                        </div> <!-- Gearbox -->
                                     </div>
 
                                     <div></div>
@@ -578,73 +587,6 @@
                                             </select>
                                             <div class="invalid-feedback">Euro Standard cannot be empty!</div>
                                         </div> <!-- Euro Standard -->
-
-                                        <div class="col-md-4">
-                                            <label for="engine.cubicCapacity" class="form-label"
-                                                   style="font-weight: bold;">Cubic Capacity</label>
-                                            <input type="text" name="engine.cubicCapacity" class="form-control"
-                                                   id="engine.cubicCapacity"
-                                                   th:field="*{engine.cubicCapacity}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="usernameHelpInline"
-                                                   placeholder="Enter cubic capacity">
-                                            <div class="invalid-feedback">Cubic Capacity should be a digit with maximum
-                                                4 in
-                                                value!
-                                            </div>
-                                        </div> <!-- Cubic Capacity -->
-
-                                        <div class="col-md-4">
-                                            <label for="mileage" class="form-label"
-                                                   style="font-weight: bold;">Mileage</label>
-                                            <input type="text" name="mileage" class="form-control" id="mileage"
-                                                   th:field="*{mileage}"
-                                                   th:errorclass="is-invalid"
-                                                   aria-describedby="mileageHelpInline" placeholder="20000">
-                                            <div class="invalid-feedback">Mileage should be a number not exceeding
-                                                250000!
-                                            </div>
-                                        </div> <!-- Mileage -->
-                                    </div>
-
-                                    <div></div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="category.category" class="form-label"
-                                                   style="font-weight: bold;">Category</label>
-                                            <select name="category.category" class="form-select"
-                                                    id="category.category"
-                                                    th:field="*{category.category}"
-                                                    th:errorclass="is-invalid"
-                                                    aria-describedby="categoryCategoryHelpInline">
-                                                <option value="">--Select a category--</option>
-                                                <option value="Sedan">Sedan</option>
-                                                <option value="Hatchback">Hatchback</option>
-                                                <option value="Coupe">Coupe</option>
-                                                <option value="SUV">SUV</option>
-                                                <option value="Cabrio">Cabrio</option>
-                                                <option value="Truck">Truck</option>
-                                                <option value="Van">Van</option>
-                                            </select>
-                                            <div class="invalid-feedback">Category cannot be empty!</div>
-                                        </div> <!-- Category -->
-
-                                        <div class="col-md-4">
-                                            <label for="gearBox.gearBoxType" class="form-label"
-                                                   style="font-weight: bold;">Gearbox Type</label>
-                                            <select name="gearBox.gearBoxType" class="form-select"
-                                                    id="gearBox.gearBoxType"
-                                                    th:field="*{gearBox.gearBoxType}"
-                                                    th:errorclass="is-invalid"
-                                                    aria-describedby="gearBoxTypeHelpInline">
-                                                <option value="">--Select a gearbox type--</option>
-                                                <option value="Automatic">Automatic</option>
-                                                <option value="Manual">Manual</option>
-                                                <option value="Semi-Automatic">Semi-Automatic</option>
-                                            </select>
-                                            <div class="invalid-feedback">Gearbox Type cannot be empty!</div>
-                                        </div> <!-- Gearbox -->
 
                                         <div class="col-md-4">
                                             <label for="color.paint" class="form-label"
@@ -677,22 +619,66 @@
                                             </select>
                                             <div class="invalid-feedback">Color cannot be empty!</div>
                                         </div> <!-- Color -->
+
+                                        <div class="col-md-4">
+                                            <label for="mileage" class="form-label"
+                                                   style="font-weight: bold;">Max Mileage in km</label>
+                                            <input type="number" name="mileage" class="form-control" required
+                                                   id="mileage"
+                                                   th:field="*{mileage}"
+                                                   th:errorclass="is-invalid"
+                                                   aria-describedby="mileageHelpInline" placeholder="20000"
+                                                   min="0" max="300000">
+                                            <div class="invalid-feedback">Mileage should be a number not exceeding
+                                                300000!
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div></div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="location" class="form-label"
-                                                   style="font-weight: bold;">Location</label>
-                                            <textarea name="location" id="location"
-                                                      class="form-control"
-                                                      th:field="*{location}"
-                                                      th:errorclass="is-invalid"
-                                                      rows="5"
-                                                      placeholder="123 Main Street, Apt 4, Paris 75001, France"></textarea>
-                                            <div class="invalid-feedback">Location cannot be empty!</div>
-                                        </div> <!-- Location -->
+                                            <label class="form-label" style="font-weight: bold;">Price</label>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">From</span>
+                                                <input type="number" name="fromPrice" id="fromPrice"
+                                                       th:field="*{fromPrice}" class="form-control">
+                                            </div>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">To</span>
+                                                <input type="number" name="toPrice" id="toPrice"
+                                                       th:field="*{toPrice}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label" style="font-weight: bold;">Power (hp)</label>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">From</span>
+                                                <input type="number" name="powerFrom" id="powerFrom"
+                                                       th:field="*{engine.powerFrom}" class="form-control">
+                                            </div>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">To</span>
+                                                <input type="number" name="powerTo" id="powerTo"
+                                                       th:field="*{engine.powerTo}" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label" style="font-weight: bold;">Cubic Capacity</label>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">From</span>
+                                                <input type="number" name="cubicCapacityFrom" id="cubicCapacityFrom"
+                                                       th:field="*{engine.cubicCapacityFrom}" class="form-control">
+                                            </div>
+                                            <div class="input-group mt-2">
+                                                <span class="input-group-text">To</span>
+                                                <input type="number" name="cubicCapacityTo" id="cubicCapacityTo"
+                                                       th:field="*{engine.cubicCapacityTo}" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div></div>
@@ -1120,7 +1106,9 @@
                                     <div></div>
 
                                     <div class="col-sm-6 mx-auto">
-                                        <button class="btn btn-primary w-100" type="button" id="submit-btn" onclick="submitSearchForm()">Search</button>
+                                        <button class="btn btn-primary w-100" type="button" id="submit-btn"
+                                                onclick="submitSearchForm()">Search
+                                        </button>
                                     </div>
                                 </form>
                             </div>
