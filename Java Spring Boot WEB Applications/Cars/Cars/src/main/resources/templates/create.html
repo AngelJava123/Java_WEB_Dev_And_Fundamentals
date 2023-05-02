@@ -494,15 +494,15 @@
                                         </div> <!-- Models -->
 
                                         <div class="col-md-4">
-                                            <label for="price" class="form-label" style="font-weight: bold;">Price</label>
-                                            <input type="text" name="price" class="form-control" required
+                                            <label for="price" class="form-label"
+                                                   style="font-weight: bold;">Price</label>
+                                            <input type="number" name="price" class="form-control" required
                                                    id="price"
                                                    th:field="*{price}"
                                                    th:errorclass="is-invalid"
-                                                   aria-describedby="usernameHelpInline" placeholder="5394">
-                                            <div class="invalid-feedback">Price should contain only digits and should
-                                                not exceed 1 million in value!
-                                            </div>
+                                                   aria-describedby="usernameHelpInline" placeholder="5394"
+                                                   min="1" max="1000000">
+                                            <div class="invalid-feedback">Price should be between 1 and 1 million!</div>
                                         </div> <!-- Price -->
                                     </div>
 
@@ -510,7 +510,8 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="month" class="form-label" style="font-weight: bold;">Production Month</label>
+                                            <label for="month" class="form-label" style="font-weight: bold;">Production
+                                                Month</label>
                                             <select name="month" class="form-control" required
                                                     id="month"
                                                     th:field="*{month}"
@@ -534,7 +535,8 @@
                                         </div> <!-- Production Month -->
 
                                         <div class="col-md-4">
-                                            <label for="year" class="form-label" style="font-weight: bold;">Production Year</label>
+                                            <label for="year" class="form-label" style="font-weight: bold;">Production
+                                                Year</label>
                                             <select name="year" class="form-control" required
                                                     id="year"
                                                     th:field="*{year}"
@@ -549,7 +551,8 @@
                                         </div> <!-- Production Year -->
 
                                         <div class="col-md-4">
-                                            <label for="engine.engineType" class="form-label" style="font-weight: bold;">Engine Type</label>
+                                            <label for="engine.engineType" class="form-label"
+                                                   style="font-weight: bold;">Engine Type</label>
                                             <select name="engine.engineType" class="form-select" required
                                                     id="engine.engineType"
                                                     th:field="*{engine.engineType}"
@@ -569,20 +572,21 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="engine.power" class="form-label" style="font-weight: bold;">Engine Power (HP)</label>
-                                            <input type="text" name="engine.power" class="form-control" required
+                                            <label for="engine.power" class="form-label" style="font-weight: bold;">Engine
+                                                Power (HP)</label>
+                                            <input type="number" name="engine.power" class="form-control" required
                                                    id="engine.power"
                                                    th:field="*{engine.power}"
                                                    th:errorclass="is-invalid"
-                                                   aria-describedby="usernameHelpInline" placeholder="150">
-                                            <div class="invalid-feedback">Power field should not be empty, should
-                                                contain
-                                                only digits that not exceed 5!
+                                                   aria-describedby="usernameHelpInline" placeholder="150" min="1" max="3000">
+                                            <div class="invalid-feedback">Power field should not be empty and should
+                                                contain only non-negative integers that do not exceed 3000!
                                             </div>
                                         </div> <!-- Engine Power (HP) -->
 
                                         <div class="col-md-4">
-                                            <label for="engine.euroStandard" class="form-label" style="font-weight: bold;">Euro Standard</label>
+                                            <label for="engine.euroStandard" class="form-label"
+                                                   style="font-weight: bold;">Euro Standard</label>
                                             <select name="engine.euroStandard" class="form-select" required
                                                     id="engine.euroStandard"
                                                     th:field="*{engine.euroStandard}"
@@ -599,16 +603,16 @@
                                         </div> <!-- Euro Standard -->
 
                                         <div class="col-md-4">
-                                            <label for="engine.cubicCapacity" class="form-label" style="font-weight: bold;">Cubic Capacity</label>
+                                            <label for="engine.cubicCapacity" class="form-label"
+                                                   style="font-weight: bold;">Cubic Capacity</label>
                                             <input type="text" name="engine.cubicCapacity" class="form-control" required
                                                    id="engine.cubicCapacity"
                                                    th:field="*{engine.cubicCapacity}"
                                                    th:errorclass="is-invalid"
                                                    aria-describedby="usernameHelpInline"
-                                                   placeholder="Enter cubic capacity">
-                                            <div class="invalid-feedback">Cubic Capacity should be a digit with maximum
-                                                4 in
-                                                value!
+                                                   placeholder="Enter cubic capacity" min="1" max="5000">
+                                            <div class="invalid-feedback">Cubic Capacity should not be negative, zero or exceeds
+                                                5000!
                                             </div>
                                         </div> <!-- Cubic Capacity -->
                                     </div>
@@ -617,7 +621,8 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="category.category" class="form-label" style="font-weight: bold;">Category</label>
+                                            <label for="category.category" class="form-label"
+                                                   style="font-weight: bold;">Category</label>
                                             <select name="category.category" class="form-select" required
                                                     id="category.category"
                                                     th:field="*{category.category}"
@@ -636,7 +641,8 @@
                                         </div> <!-- Category -->
 
                                         <div class="col-md-4">
-                                            <label for="gearBox.gearBoxType" class="form-label" style="font-weight: bold;">Gearbox Type</label>
+                                            <label for="gearBox.gearBoxType" class="form-label"
+                                                   style="font-weight: bold;">Gearbox Type</label>
                                             <select name="gearBox.gearBoxType" class="form-select" required
                                                     id="gearBox.gearBoxType"
                                                     th:field="*{gearBox.gearBoxType}"
@@ -651,22 +657,26 @@
                                         </div> <!-- Gearbox -->
 
                                         <div class="col-md-4">
-                                            <label for="mileage" class="form-label" style="font-weight: bold;">Mileage</label>
-                                            <input type="text" name="mileage" class="form-control" required id="mileage"
+                                            <label for="mileage" class="form-label"
+                                                   style="font-weight: bold;">Mileage</label>
+                                            <input type="number" name="mileage" class="form-control" required
+                                                   id="mileage"
                                                    th:field="*{mileage}"
                                                    th:errorclass="is-invalid"
-                                                   aria-describedby="mileageHelpInline" placeholder="20000">
-                                            <div class="invalid-feedback">Mileage should be a number not exceeding
-                                                250000!
+                                                   aria-describedby="mileageHelpInline" placeholder="20000"
+                                                   min="0" max="300000">
+                                            <div class="invalid-feedback">Mileage should not be empty, zero, negative or exceeding
+                                                300000!
                                             </div>
-                                        </div> <!-- Mileage -->
+                                        </div>
                                     </div>
 
                                     <div></div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="color.paint" class="form-label" style="font-weight: bold;">Color</label>
+                                            <label for="color.paint" class="form-label"
+                                                   style="font-weight: bold;">Color</label>
                                             <select name="color.paint" class="form-select" required id="color.paint"
                                                     th:field="*{color.paint}"
                                                     th:errorclass="is-invalid"
@@ -711,7 +721,8 @@
                                         </div> <!-- Phone Number -->
 
                                         <div class="col-md-4">
-                                            <label for="location" class="form-label" style="font-weight: bold;">Location</label>
+                                            <label for="location" class="form-label"
+                                                   style="font-weight: bold;">Location</label>
                                             <textarea name="location" id="location"
                                                       class="form-control"
                                                       th:field="*{location}"
@@ -726,7 +737,8 @@
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label class="form-label" style="font-weight: bold;">Interior Features</label>
+                                            <label class="form-label" style="font-weight: bold;">Interior
+                                                Features</label>
                                             <div>
                                                 <input type="checkbox" name="interior.leatherSeats"
                                                        class="form-check-input"
@@ -806,7 +818,8 @@
                                         </div> <!-- Interior Features -->
 
                                         <div class="col-md-4">
-                                            <label class="form-label" style="font-weight: bold;">Protection Features</label>
+                                            <label class="form-label" style="font-weight: bold;">Protection
+                                                Features</label>
                                             <div>
                                                 <input type="checkbox" name="protection.antiTheftSystem"
                                                        class="form-check-input" id="protection-anti-theft-system"
@@ -859,7 +872,8 @@
                                         </div> <!-- Protection Features -->
 
                                         <div class="col-md-4">
-                                            <label class="form-label" style="font-weight: bold;">Comfort Features</label>
+                                            <label class="form-label" style="font-weight: bold;">Comfort
+                                                Features</label>
                                             <div>
                                                 <input type="checkbox" name="comfort.airConditioning"
                                                        class="form-check-input" id="comfort-air-conditioning"
@@ -1082,7 +1096,8 @@
                                         </div> <!-- Safety Features -->
 
                                         <div class="col-md-4">
-                                            <label class="form-label" style="font-weight: bold;">Exterior Features</label>
+                                            <label class="form-label" style="font-weight: bold;">Exterior
+                                                Features</label>
                                             <div>
                                                 <input type="checkbox" id="exterior.alloyWheels"
                                                        name="exterior.alloyWheels"
@@ -1144,7 +1159,8 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label for="additional-information" class="form-label" style="font-weight: bold;">Additional
+                                            <label for="additional-information" class="form-label"
+                                                   style="font-weight: bold;">Additional
                                                 Information</label>
                                             <textarea name="additionalInformation" id="additional-information"
                                                       class="form-control"
