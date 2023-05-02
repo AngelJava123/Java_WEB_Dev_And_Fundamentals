@@ -1,9 +1,7 @@
 package automobile.cars.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "engines")
@@ -18,24 +16,23 @@ public class VehicleEngine {
     private String engineType;
 
     @NotNull
-    @Size(max = 5)
-    @Digits(integer = 5, fraction = 0)
-    private String power;
+    @Min(value = 1, message = "Value must be greater than zero")
+    @Max(value = 3000, message = "Value cannot exceed 3000")
+    private int power;
 
     @NotNull
     @Column(name = "euro_standard")
     private String euroStandard;
 
     @NotNull
-    @Column(name = "cubic_capacity")
-    @Size(max = 4)
-    @Digits(integer = 4, fraction = 0)
-    private  String cubicCapacity;
+    @Min(value = 1, message = "Value must be greater than zero")
+    @Max(value = 5000, message = "Value cannot exceed 5000")
+    private int cubicCapacity;
 
     public VehicleEngine() {
     }
 
-    public VehicleEngine(Long id, String engineType, String power, String euroStandard, String cubicCapacity) {
+    public VehicleEngine(Long id, String engineType, int power, String euroStandard, int cubicCapacity) {
         this.id = id;
         this.engineType = engineType;
         this.power = power;
@@ -59,11 +56,11 @@ public class VehicleEngine {
         this.engineType = engineType;
     }
 
-    public String getPower() {
+    public int getPower() {
         return power;
     }
 
-    public void setPower(String power) {
+    public void setPower(int power) {
         this.power = power;
     }
 
@@ -75,11 +72,11 @@ public class VehicleEngine {
         this.euroStandard = euroStandard;
     }
 
-    public String getCubicCapacity() {
+    public int getCubicCapacity() {
         return cubicCapacity;
     }
 
-    public void setCubicCapacity(String cubicCapacity) {
+    public void setCubicCapacity(int cubicCapacity) {
         this.cubicCapacity = cubicCapacity;
     }
 }
