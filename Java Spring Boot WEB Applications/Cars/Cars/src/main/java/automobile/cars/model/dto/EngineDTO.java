@@ -1,9 +1,6 @@
 package automobile.cars.model.dto;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class EngineDTO {
 
@@ -13,18 +10,23 @@ public class EngineDTO {
     private String engineType;
 
     @NotNull
-    @Size(max = 5)
-    @Digits(integer = 5, fraction = 0)
-    private String power;
+    @Min(value = 1, message = "Value must be greater than zero")
+    @Max(value = 3000, message = "Value cannot exceed 3000")
+    private int power;
+
+    private int powerFrom;
+    private int powerTo;
 
     @NotNull
     private String euroStandard;
 
     @NotNull
-    @Column(name = "cubic_capacity")
-    @Size(max = 4)
-    @Digits(integer = 4, fraction = 0)
-    private  String cubicCapacity;
+    @Min(value = 1, message = "Value must be greater than zero")
+    @Max(value = 5000, message = "Value cannot exceed 5000")
+    private int cubicCapacity;
+
+    private int cubicCapacityFrom;
+    private int cubicCapacityTo;
 
     public EngineDTO() {
     }
@@ -45,11 +47,11 @@ public class EngineDTO {
         this.engineType = engineType;
     }
 
-    public String getPower() {
+    public int getPower() {
         return power;
     }
 
-    public void setPower(String power) {
+    public void setPower(int power) {
         this.power = power;
     }
 
@@ -61,11 +63,43 @@ public class EngineDTO {
         this.euroStandard = euroStandard;
     }
 
-    public String getCubicCapacity() {
+    public int getCubicCapacity() {
         return cubicCapacity;
     }
 
-    public void setCubicCapacity(String cubicCapacity) {
+    public void setCubicCapacity(int cubicCapacity) {
         this.cubicCapacity = cubicCapacity;
+    }
+
+    public int getCubicCapacityFrom() {
+        return cubicCapacityFrom;
+    }
+
+    public void setCubicCapacityFrom(int cubicCapacityFrom) {
+        this.cubicCapacityFrom = cubicCapacityFrom;
+    }
+
+    public int getCubicCapacityTo() {
+        return cubicCapacityTo;
+    }
+
+    public void setCubicCapacityTo(int cubicCapacityTo) {
+        this.cubicCapacityTo = cubicCapacityTo;
+    }
+
+    public int getPowerFrom() {
+        return powerFrom;
+    }
+
+    public void setPowerFrom(int powerFrom) {
+        this.powerFrom = powerFrom;
+    }
+
+    public int getPowerTo() {
+        return powerTo;
+    }
+
+    public void setPowerTo(int powerTo) {
+        this.powerTo = powerTo;
     }
 }
