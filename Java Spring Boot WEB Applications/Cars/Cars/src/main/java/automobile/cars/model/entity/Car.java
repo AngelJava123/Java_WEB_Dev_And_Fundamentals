@@ -26,8 +26,9 @@ public class Car {
     private String model;
 
     @NotNull
-    @Pattern(regexp = "^(?!0)(\\d{1,6}|1000000)$")
-    private String price;
+    @Min(value = 1)
+    @Max(value = 1000000)
+    private int price;
 
     @NotNull
     private String month;
@@ -48,9 +49,9 @@ public class Car {
     private VehicleGearBox gearBox;
 
     @NotNull
-    @Size(max = 6)
-    @Digits(integer = 6, fraction = 0)
-    private String mileage;
+    @Min(value = 0)
+    @Max(value = 300000)
+    private int mileage;
 
     @NotNull
     @OneToOne
@@ -138,11 +139,11 @@ public class Car {
         this.model = model;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -186,11 +187,11 @@ public class Car {
         this.gearBox = gearBox;
     }
 
-    public String getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
