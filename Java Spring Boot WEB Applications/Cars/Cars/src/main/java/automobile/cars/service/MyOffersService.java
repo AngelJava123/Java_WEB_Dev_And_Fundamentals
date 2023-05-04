@@ -179,7 +179,10 @@ public class MyOffersService {
                 });
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws IOException {
+        Optional<Car> car = this.carRepository.findById(id);
+        List<String> imageFilePaths = car.get().getImageFilePaths();
+        fileUploadUtil.deleteFiles(imageFilePaths);
         this.carRepository.deleteById(id);
     }
 
