@@ -104,7 +104,7 @@ public class ProfileController {
 
     @GetMapping("/delete-account")
     public String deleteAccount(@AuthenticationPrincipal CarsDealershipUserDetails userDetails,
-                                HttpSession session) {
+                                HttpSession session) throws IOException {
 
         profileService.deleteUserAccount(userDetails);
 
