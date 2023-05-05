@@ -96,7 +96,8 @@
                                 <div class="blue-red-container text-center">
                                     <a th:href="@{/edit/{id}(id=${car.id})}" class="blue-link">EDIT</a>
                                     <span style="padding: 0 10px;"></span>
-                                    <a th:href="@{/remove/{id}(id=${car.id})}" class="red-link">REMOVE</a>
+                                    <a th:href="@{/remove/{id}(id=${car.id})}" class="red-link remove-link"
+                                       data-car-id="${car.id}" onclick="return confirmDelete()">REMOVE</a>
                                 </div>
                             </li>
                         </ul>
@@ -139,6 +140,14 @@
         </ul>
     </div> <!-- Pagination -->
 
+    <div id="popup-container" class="popup-container" style="display:none;">
+        <p>Are you sure you want to delete this offer?</p>
+        <div style="display: flex; justify-content: center;">
+            <button id="popup-yes" class="btn-primary" onclick="deleteOffer()">Yes</button>
+            <button id="popup-no" class="btn-danger" onclick="hidePopup()">No</button>
+        </div>
+    </div>
+
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
@@ -159,6 +168,7 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/removeOfferPopUp.js"></script>
 
 </body>
 
