@@ -133,8 +133,10 @@
 
                                 <div id="popup-container" class="popup-container" style="display:none;">
                                     <p>Are you sure you want to delete your account?</p>
-                                    <button id="popup-yes" class="btn btn-primary" onclick="submitForm()">Yes</button>
-                                    <button id="popup-no" class="btn btn-secondary" onclick="hidePopup()">No</button>
+                                    <div style="display: flex; justify-content: center;">
+                                        <button id="popup-yes" class="btn-primary" onclick="submitForm()">Yes</button>
+                                        <button id="popup-no" class="btn-danger" onclick="hidePopup()">No</button>
+                                    </div>
                                 </div>
 
                             </div>
