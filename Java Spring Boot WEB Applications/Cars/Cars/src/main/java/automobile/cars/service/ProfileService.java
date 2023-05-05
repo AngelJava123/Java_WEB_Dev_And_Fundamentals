@@ -1,9 +1,12 @@
 package automobile.cars.service;
 
+import automobile.cars.config.FileUploadUtil;
 import automobile.cars.model.dto.ChangeEmailDTO;
 import automobile.cars.model.dto.ChangePasswordDTO;
+import automobile.cars.model.entity.Car;
 import automobile.cars.model.entity.User;
 import automobile.cars.model.user.CarsDealershipUserDetails;
+import automobile.cars.repository.CarRepository;
 import automobile.cars.repository.UserRepository;
 import automobile.cars.view.ProfileViewModel;
 import org.modelmapper.ModelMapper;
@@ -11,9 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,12 +28,16 @@ public class ProfileService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
+    private final CarRepository carRepository;
+    private final FileUploadUtil fileUploadUtil;
 
-    public ProfileService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, EmailService emailService) {
+    public ProfileService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, EmailService emailService, CarRepository carRepository, FileUploadUtil fileUploadUtil) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
+        this.carRepository = carRepository;
+        this.fileUploadUtil = fileUploadUtil;
     }
 
     public boolean changeEmail(CarsDealershipUserDetails userDetails, ChangeEmailDTO changeEmailDTO) throws IOException, MessagingException {
@@ -129,10 +138,19 @@ public class ProfileService {
         return modelMapper.map(user, ProfileViewModel.class);
     }
 
-    public void deleteUserAccount(CarsDealershipUserDetails userDetails) {
+    @Transactional
+    public void deleteUserAccount(CarsDealershipUserDetails userDetails) throws IOException {
         User user = userRepository.findByEmail(userDetails.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        List<Car> cars = carRepository.findAllByUserId(user.getId());
+
+        for (Car car : cars) {
+            List<String> imageFilePaths = car.getImageFilePaths();
+            fileUploadUtil.deleteFiles(imageFilePaths);
+        }
+
+        carRepository.deleteAllByUserId(user.getId());
         userRepository.delete(user);
     }
 
