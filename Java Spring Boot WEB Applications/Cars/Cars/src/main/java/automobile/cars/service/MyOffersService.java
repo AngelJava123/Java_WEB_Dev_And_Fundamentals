@@ -378,4 +378,29 @@ public class MyOffersService {
 
         carRepository.save(car);
     }
+
+    public void addImageToCar(Car car, MultipartFile file) throws IOException {
+
+        // Upload the images to Cloudinary and add the public URLs to the Car object
+        String imagePath = fileUploadUtil.uploadFile(file);
+
+        // Set the image files to the car entity
+        car.getImageFilePaths().add(imagePath);
+
+        this.carRepository.save(car);
+    }
+
+    public void deleteImageFromCar(Car car, String imagePath) throws IOException {
+
+        // Remove the image file path from the list of image file paths
+        car.getImageFilePaths().remove(imagePath);
+
+        // Delete the image file from Cloudinary
+        fileUploadUtil.deleteFile(imagePath);
+
+        // Save the updated car object
+        carRepository.save(car);
+    }
 }
+
+
