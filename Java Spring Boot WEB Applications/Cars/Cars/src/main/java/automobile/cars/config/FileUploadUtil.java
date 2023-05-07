@@ -52,4 +52,14 @@ public class FileUploadUtil {
         }
     }
 
+    public void deleteFile(String imageFilePath) throws IOException {
+        // Extract the public ID from the image URL
+        Pattern pattern = Pattern.compile("upload/v\\d+/(.*?)(\\.[^.]*$|$)");
+        Matcher matcher = pattern.matcher(imageFilePath);
+        if (matcher.find()) {
+            String publicId = matcher.group(1);
+            // Delete the file from Cloudinary
+            cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+        }
+    }
 }
