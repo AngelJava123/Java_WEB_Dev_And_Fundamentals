@@ -364,16 +364,6 @@ public class MyOffersService {
 
         car.setAdditionalInformation(createCarDTO.getAdditionalInformation());
 
-        // Upload the images to Cloudinary and add the public URLs to the Car object
-        List<String> imagePaths = new ArrayList<>();
-        for (MultipartFile image : createCarDTO.getImageFiles()) {
-            String imagePath = fileUploadUtil.uploadFile(image);
-            imagePaths.add(imagePath);
-        }
-
-        // Set the image files to the car entity
-        car.setImageFilePaths(imagePaths);
-
         // Save the car entity to the database
 
         carRepository.save(car);
