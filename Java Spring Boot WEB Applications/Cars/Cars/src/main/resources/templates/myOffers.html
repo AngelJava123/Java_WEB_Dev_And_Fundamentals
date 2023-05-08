@@ -67,8 +67,8 @@
                                             <div class="image-container">
                                                 <img id="carImage" th:src="@{${imagePath}}"
                                                      alt="Image">
-                                                <a th:href="@{/edit-img/{id}(id=${car.id})}" class="edit-link">
-                                                    <i class="bi bi-pencil-square" style="font-size: 1.6em;"></i>
+                                                <a th:href="@{/edit-img/{id}(id=${car.id})}" class="edit-link blue-link" title="Edit Car Image">
+                                                    <i class="bi bi-pencil-square" style="font-size: 1.4em;"></i>
                                                 </a>
                                                 <div class="price-bubble">
                                                     <span th:text="${car.price}"></span>€
@@ -99,7 +99,7 @@
                             </li>
                             <li style="text-align: center; margin-top: 20px;">
                                 <div class="blue-red-container text-center">
-                                    <a th:href="@{/edit/{id}(id=${car.id})}" class="blue-link">
+                                    <a th:href="@{/edit/{id}(id=${car.id})}" class="blue-link" title="Edit Car Info">
                                         <i class="bi bi-pencil-square"></i> EDIT
                                     </a>
                                     <span style="padding: 0 10px;"></span>
