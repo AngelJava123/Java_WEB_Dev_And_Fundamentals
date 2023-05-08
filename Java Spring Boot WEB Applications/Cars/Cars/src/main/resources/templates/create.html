@@ -1175,7 +1175,10 @@
 
                                         <div class="col-sm-6">
                                             <label class="form-label" style="font-weight: bold;">Upload Images</label>
-                                            <input type="file" name="imageFiles" class="form-control" multiple>
+                                            <label class="btn btn-primary">
+                                                <span id="file-name-label">Choose File</span>
+                                                <input type="file" name="imageFiles" hidden multiple onchange="createFileNameLabel(this)">
+                                            </label>
                                             <div class="invalid-feedback">You should select at least one image!</div>
                                         </div>
                                     </div>
@@ -1236,6 +1239,7 @@
 <script src="assets/js/createFormValidation.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="assets/js/createShowModelForMakeJQuery.js"></script>
+<script src="assets/js/createFileNameLabel.js"></script>
 
 </body>
 
