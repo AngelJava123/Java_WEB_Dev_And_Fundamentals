@@ -83,9 +83,9 @@ INSERT INTO cars(id, make, model, price, month, year, engine_id, category_id, ge
 VALUES(1, "Volkswagen", "Tiguan", 16400, "June", "2010", 1, 4, 2, 245000, 1, 1, 1, 1, 1, 1, 1, "New importation . . SWITZERLAND. . . 4x4. . . . Navigation. . . . Service book. . . Very good technical and visual condition. . . . Solid undercarriage - Preserved Interior - Motor and Box work perfectly. . . Very Strong and Practical Jeep. . . All systems and units are 100% functional. The car was bought directly from the owner, uniquely preserved. The car is sold with an invoice and a contract from the company, at any time convenient for you. I assist in the extraction of transit insurance numbers. ALL VEHICLES IN THE DEALERSHIP HAVE CATALYTIC DEVICES AVAILABLE. ! !", NOW(), "0883967584", "123 Main Street, Apt 4, Paris 75001, France", 1, 0, 0);
 
 INSERT INTO car_image_paths(car_id, image_path)
-VALUES(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan1_uh9gmd.jpg"),
-(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan2_mkg8li.jpg"),
-(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan3_is17k9.jpg"),
+VALUES(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1684100462/AutoGeniusImages/tiguan1_nler47.jpg"),
+(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1684100462/AutoGeniusImages/tiguan2_avsszh.jpg"),
+(1, "https://res.cloudinary.com/dms1ciius/image/upload/v1684100462/AutoGeniusImages/tiguan3_x07cs8.jpg"),
 (1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan4_x7n8dy.jpg"),
 (1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan5_gcbgpy.jpg"),
 (1, "https://res.cloudinary.com/dms1ciius/image/upload/v1680425018/AutoGeniusImages/tiguan6_pxmtew.jpg");
