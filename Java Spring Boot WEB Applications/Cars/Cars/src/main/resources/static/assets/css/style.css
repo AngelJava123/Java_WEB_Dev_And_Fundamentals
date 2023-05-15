@@ -1,3 +1,14 @@
+/**
+* Template Name: NiceAdmin
+* Updated: Mar 09 2023 with Bootstrap v5.2.3
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
 }
@@ -1480,4 +1491,11 @@ h6 {
   to {
     color: rgb(0, 71, 171);
   }
+}
+
+/* [EDIT CAR IMAGES] */
+
+#error-message {
+    text-align: center;
+    margin: 0 auto;
 }
