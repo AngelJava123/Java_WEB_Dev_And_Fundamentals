@@ -59,12 +59,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="blue-red-container">
-                            <a th:href="@{/add-favourite/{id}(id=${car.id})}" class="red-link"
-                               th:unless="${car.favourite}" title="Add to favourites">
+                            <a th:href="@{/add-favourite/{id}(id=${car.id})}" class="red-link" title="Add to favourites">
                                 <i class="bi bi-suit-heart" aria-hidden="true"></i>
                             </a>
-                            <a th:href="@{/remove-favourite/{id}(id=${car.id})}" class="red-link"
-                               th:if="${car.favourite}" title="Remove from favourites">
+                            <a th:href="@{/remove-favourite/{id}(id=${car.id})}" class="red-link" title="Remove from favourites">
                                 <i class="bi bi-suit-heart-fill text-dark" aria-hidden="true"></i>
                             </a>
                         </div>
