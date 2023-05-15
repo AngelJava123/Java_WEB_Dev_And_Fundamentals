@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
@@ -18,11 +19,11 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     Optional<Car> findByMileage(String mileage);
 
-    Page<Car> findByFavouriteTrue(Pageable pageable);
-
     Page<Car> findAll(Specification<Car> spec, Pageable pageable);
 
     void deleteAllByUserId(long id);
 
     List<Car> findAllByUserId(long id);
+
+    Page<Car> findAllByIdIn(Set<Long> carIds, Pageable pageable);
 }
