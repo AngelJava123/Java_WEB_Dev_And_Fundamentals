@@ -42,7 +42,7 @@ public class CatalogController {
 
     @GetMapping("/remove-favourite/{id}")
     public String remove(@PathVariable("id") Long id,
-                      @AuthenticationPrincipal CarsDealershipUserDetails user) {
+                         @AuthenticationPrincipal CarsDealershipUserDetails user) {
 
         this.catalogService.removeCarFromUserFavourites(id, user);
 
@@ -51,12 +51,13 @@ public class CatalogController {
 
     @GetMapping("/favourites")
     public String favourites(Model model,
-                          @PageableDefault(
-                                  sort = "make",
-                                  direction = Sort.Direction.ASC,
-                                  page = 0,
-                                  size = 5) Pageable pageable) {
-        model.addAttribute("allCars", catalogService.getFavouriteCars(pageable));
+                             @PageableDefault(
+                                     sort = "make",
+                                     direction = Sort.Direction.ASC,
+                                     page = 0,
+                                     size = 5) Pageable pageable,
+                             @AuthenticationPrincipal CarsDealershipUserDetails user) {
+        model.addAttribute("allCars", catalogService.getFavouriteCars(pageable, user));
         return "favourites";
     }
 }
