@@ -32,19 +32,8 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Car> favorites;
-
-    public void addToFavorites(Car car) {
-        if (favorites == null) {
-            favorites = new HashSet<>();
-        }
-        favorites.add(car);
-    }
-
-    public void removeFromFavorites(Car car) {
-        favorites.remove(car);
-    }
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Long> favoriteCarIds;
 
     public User() {
     }
@@ -89,11 +78,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<Car> getFavorites() {
-        return favorites;
+    public Set<Long> getFavoriteCarIds() {
+        return favoriteCarIds;
     }
 
-    public void setFavorites(Set<Car> favorites) {
-        this.favorites = favorites;
+    public void setFavoriteCarIds(Set<Long> favoriteCarIds) {
+        this.favoriteCarIds = favoriteCarIds;
     }
 }
