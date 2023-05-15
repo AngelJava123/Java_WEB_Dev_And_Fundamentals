@@ -1463,34 +1463,46 @@ h6 {
 }
 
 /* [TITLE INDEX PAGE] */
-.title-index {
-  text-align: center;
-  color: #fff;
-  font-size: 4em;
-  margin-top: 50px;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: slideIn 1s ease forwards, colorAppear 1s ease 1s forwards;
+.video-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.video-title {
+   text-align: center;
+   color: #fff;
+   font-size: 2em;
+   font-weight: bold;
+   margin-top: 20px;
+   opacity: 0;
+   transform: translateY(50px);
+   animation: slideIn 1s ease forwards, colorAppear 1s ease 1s forwards;
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform: translateX(-50%);
+   z-index: 1;
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes colorAppear {
-  from {
-    color: transparent;
-  }
-  to {
-    color: rgb(0, 71, 171);
-  }
+    from {
+        color: transparent;
+    }
+    to {
+        color: rgb(0, 71, 171);
+    }
 }
 
 /* [EDIT CAR IMAGES] */
