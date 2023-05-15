@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CatalogService {
@@ -32,34 +34,39 @@ public class CatalogService {
                 .map(this::getCarViewModel);
     }
 
-    public void addCarToUserFavourites(Long id, CarsDealershipUserDetails user) {
-
+    public void addCarToUserFavourites(Long carId, CarsDealershipUserDetails user) {
         Optional<User> userOpt = this.userRepository.findByEmail(user.getUsername());
-        Optional<Car> car = this.carRepository.findById(id);
+        Optional<Car> carOpt = this.carRepository.findById(carId);
 
-        car.get().setFavourite(true);
-        userOpt.get().addToFavorites(car.get());
+        if (userOpt.isPresent() && carOpt.isPresent()) {
+            User foundUser = userOpt.get();
+            Car foundCar = carOpt.get();
 
-        this.userRepository.save(userOpt.get());
-        this.carRepository.save(car.get());
+            if (!foundUser.getFavoriteCarIds().contains(carId)) {
+                foundUser.getFavoriteCarIds().add(carId);
+                this.userRepository.save(foundUser);
+            }
+        }
     }
 
-    @Transactional
-    public Page<CarViewModel> getFavouriteCars(Pageable pageable) {
-        return carRepository.findByFavouriteTrue(pageable)
-                .map(this::getCarViewModel);
+    public Page<CarViewModel> getFavouriteCars(Pageable pageable, CarsDealershipUserDetails user) {
+        Optional<User> userOpt = this.userRepository.findByEmail(user.getUsername());
+        Set<Long> favoriteCarIds = userOpt.get().getFavoriteCarIds();
+        Page<Car> carsPage = carRepository.findAllByIdIn(favoriteCarIds, pageable);
+        return carsPage.map(this::getCarViewModel);
     }
 
-    public void removeCarFromUserFavourites(Long id, CarsDealershipUserDetails user) {
-
+    public void removeCarFromUserFavourites(Long carId, CarsDealershipUserDetails user) {
         Optional<User> userOpt = this.userRepository.findByEmail(user.getUsername());
-        Optional<Car> car = this.carRepository.findById(id);
 
-        car.get().setFavourite(false);
-        userOpt.get().removeFromFavorites(car.get());
+        if (userOpt.isPresent()) {
+            User userFound = userOpt.get();
 
-        this.userRepository.save(userOpt.get());
-        this.carRepository.save(car.get());
+            if (userFound.getFavoriteCarIds().contains(carId)) {
+                userFound.getFavoriteCarIds().remove(carId);
+                this.userRepository.save(userFound);
+            }
+        }
     }
 
     @NotNull
