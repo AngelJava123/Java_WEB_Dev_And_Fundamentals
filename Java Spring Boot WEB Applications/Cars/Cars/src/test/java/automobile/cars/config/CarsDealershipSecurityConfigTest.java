@@ -41,5 +41,57 @@ public class CarsDealershipSecurityConfigTest {
         // Attempting to match with an incorrect password
         assertFalse(passwordEncoder.matches(incorrectPassword, encodedPassword));
     }
+
+    @Test
+    public void testPublicPathsAccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // Add more tests for other public paths as needed.
+    }
+
+    @Test
+    @WithMockUser
+    public void testAuthenticatedAccessToProtectedPaths() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/create"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/profile"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // Add more tests for other protected paths as needed.
+    }
+
+    @Test
+    public void testLoginPage() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // Add more login page tests as needed.
+    }
+
+    @Test
+    public void testLogin() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/login")
+                        .param("username", "yourUsername")
+                        .param("password", "yourPassword"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
+
+        // Add more login tests as needed.
+    }
+
+    @Test
+    public void testLogout() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/logout"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("http://localhost/login"));
+    }
 }
 
