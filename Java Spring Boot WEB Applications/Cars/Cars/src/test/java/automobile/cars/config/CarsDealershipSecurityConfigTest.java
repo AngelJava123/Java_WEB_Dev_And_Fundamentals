@@ -52,8 +52,6 @@ public class CarsDealershipSecurityConfigTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/register"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // Add more tests for other public paths as needed.
     }
 
     @Test
@@ -64,16 +62,12 @@ public class CarsDealershipSecurityConfigTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/profile"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // Add more tests for other protected paths as needed.
     }
 
     @Test
     public void testLoginPage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/login"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // Add more login page tests as needed.
     }
 
     @Test
@@ -83,8 +77,6 @@ public class CarsDealershipSecurityConfigTest {
                         .param("password", "yourPassword"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
-
-        // Add more login tests as needed.
     }
 
     @Test
