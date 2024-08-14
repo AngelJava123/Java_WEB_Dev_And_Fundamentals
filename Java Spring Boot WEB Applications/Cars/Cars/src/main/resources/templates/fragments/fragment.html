@@ -21,19 +21,6 @@
                 </a>
             </li><!-- End Search Icon-->
 
-            <li class="nav-item me-3">
-                <form th:method="get">
-                    <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
-                    <select
-                            onchange="this.form.submit()"
-                            id="lang"
-                            name="lang">
-                        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                    </select>
-                </form>
-            </li>
-
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-person-square"></i>
@@ -97,8 +84,26 @@
 
                 </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
+
+            <li class="nav-item me-3">
+                <div id="google_translate_element"></div>
+            </li>
+
         </ul>
     </nav><!-- End Icons Navigation -->
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,bg',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 </header><!-- End Header -->
 
@@ -177,8 +182,8 @@
                 <span>Contact</span>
             </a>
         </li><!-- End Contact Page Nav -->
-
     </ul>
+
 
 </aside><!-- End Sidebar-->
 
